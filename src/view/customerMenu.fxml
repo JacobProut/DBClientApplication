@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="customerViewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.customerMenuController">
+   <children>
+      <Label layoutX="416.0" layoutY="14.0" text="Customer View" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
+         <children>
+            <RadioButton fx:id="radioButtonViewAll" layoutX="259.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAll" selected="true" text="View All">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioButtons" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioButtonViewByMonth" layoutX="358.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewByMonth" text="View by Month" toggleGroup="$radioButtons" />
+            <RadioButton fx:id="radioButtonViewByWeek" layoutX="504.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewByWeek" text="View by Week" toggleGroup="$radioButtons" />
+            <RadioButton fx:id="radioButtonViewAllCustomers" layoutX="632.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers" toggleGroup="$radioButtons" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="customerTableView" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
+        <columns>
+          <TableColumn fx:id="tableColCustomerID" prefWidth="78.0" text="Customer_ID" />
+          <TableColumn fx:id="tableColCustomerName" prefWidth="99.0" text="Customer Name" />
+            <TableColumn fx:id="tableColCustomerAddress" prefWidth="122.0" text="Address" />
+            <TableColumn fx:id="tableColCustomerPostalCode" prefWidth="76.0" text="Postal Code" />
+            <TableColumn fx:id="tableColCustomerPhoneNumber" prefWidth="98.0" text="Phone Number" />
+            <TableColumn fx:id="tableColCustomerStateAndProvinces" prefWidth="105.0" text="State/Provinces" />
+            <TableColumn fx:id="tableColCustomerLastUpdated" prefWidth="88.0" text="Last Updated" />
+            <TableColumn fx:id="tableColCustomerLastUpdatedBy" prefWidth="114.0" text="Last Updated By" />
+            <TableColumn fx:id="tableColCustomerCreatedDate" prefWidth="92.0" text="Created Date" />
+            <TableColumn fx:id="tableColCustomerCreatedBy" prefWidth="77.0" text="Created By" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TableView>
+      <Button fx:id="reportsButton" layoutX="14.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="25.0" prefWidth="122.0" text="Reports" />
+      <Button fx:id="logoutButton" layoutX="825.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionLogout" prefHeight="25.0" prefWidth="122.0" text="Logout" />
+      <Button fx:id="addCustomerButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
+      <Button fx:id="updateCustomerButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
+      <Button fx:id="deleteCustomerButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
+   </children>
+</Pane>

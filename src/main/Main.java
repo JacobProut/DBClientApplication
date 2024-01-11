@@ -15,10 +15,8 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login Screen");
         stage.setScene(scene);
-        stage.show();}
-
-
-
+        stage.show();
+    }
 
     public static void main(String[] args) {
         JDBC.openConnection();

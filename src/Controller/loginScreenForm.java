@@ -4,14 +4,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.EventObject;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.time.ZoneId;
 
@@ -66,14 +76,26 @@ public class loginScreenForm implements Initializable {
         }
     }
 
-    @FXML
-    void onActionLogin(ActionEvent event){
 
+
+
+    //Need to add sql login information into login.
+    //The method in here right now is strictly just to proceed to appointment scheduler page
+    @FXML
+    public void onActionLogin(ActionEvent event) throws IOException, SQLException {
+        Stage stage;
+        Parent scene;
+
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Appointment Scheduler");
     }
 
 
     @FXML
-    void onActionLanguagePicker(ActionEvent event) {
+    public void onActionLanguagePicker(ActionEvent event) {
         languageComboBoxField.getSelectionModel().getSelectedItem();
 
         try {

@@ -26,12 +26,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Username:">
+                  <Label fx:id="labelUsername" text="Username:">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
                   </Label>
-                  <Label text="Password:" GridPane.rowIndex="1">
+                  <Label fx:id="labelPassword" text="Password:" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
@@ -42,7 +42,7 @@
             </GridPane>
             <ButtonBar prefHeight="40.0" prefWidth="248.0">
               <buttons>
-                <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#onActionLogin" text="Login" />
+                <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#onActionLogin" prefHeight="25.0" prefWidth="119.0" text="Login" />
               </buttons>
             </ButtonBar>
             <GridPane>
@@ -56,7 +56,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Language:" GridPane.rowIndex="1">
+                  <Label fx:id="labelLanguage" text="Language:" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
@@ -75,7 +75,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Timezone:">
+                  <Label fx:id="labelTimezone" text="Timezone:">
                      <padding>
                         <Insets left="25.0" />
                      </padding>

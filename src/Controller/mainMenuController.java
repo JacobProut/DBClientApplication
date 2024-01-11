@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.TableView;
 
 public class mainMenuController {
 
@@ -45,13 +46,16 @@ public class mainMenuController {
     private Button reportsButton;
 
     @FXML
-    private TableColumn<?, ?> tableColAppointmentID;
+    private TableView<?> appointmentSchedulerTable;
+
+    @FXML
+    private TableColumn<?, Integer> tableColAppointmentID;
 
     @FXML
     private TableColumn<?, ?> tableColContact;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerID;
+    private TableColumn<?, Integer> tableColCustomerID;
 
     @FXML
     private TableColumn<?, ?> tableColDescription;
@@ -72,7 +76,7 @@ public class mainMenuController {
     private TableColumn<?, ?> tableColType;
 
     @FXML
-    private TableColumn<?, ?> tableColUserID;
+    private TableColumn<?, Integer> tableColUserID;
 
     @FXML
     private Button updateAppointmentButton;

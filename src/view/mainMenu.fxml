@@ -31,7 +31,7 @@
          </children>
       </AnchorPane>
       <DatePicker fx:id="dateSearchField" layoutX="706.0" layoutY="82.0" prefHeight="25.0" prefWidth="237.0" promptText="Select a Date" />
-      <TableView layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
+      <TableView fx:id="appointmentSchedulerTable" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
         <columns>
           <TableColumn fx:id="tableColAppointmentID" prefWidth="102.0" text="Appointment_ID" />
           <TableColumn fx:id="tableColTitle" prefWidth="83.0" text="Title" />

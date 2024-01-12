@@ -12,8 +12,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class customerMenuController {
@@ -22,7 +24,7 @@ public class customerMenuController {
     private Button addCustomerButton;
 
     @FXML
-    private TableView<?> customerTableView;
+    private TableView<Customers> customerTableView;
 
     @FXML
     private Pane customerViewPane;
@@ -52,34 +54,34 @@ public class customerMenuController {
     private Button reportsButton;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerAddress;
+    private TableColumn<Customers, String> tableColCustomerAddress;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerCreatedBy;
+    private TableColumn<Customers, String> tableColCustomerCreatedBy;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerCreatedDate;
+    private TableColumn<Customers, Timestamp> tableColCustomerCreatedDate;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerID;
+    private TableColumn<Customers, Integer> tableColCustomerID;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerLastUpdated;
+    private TableColumn<Customers, Timestamp> tableColCustomerLastUpdated;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerLastUpdatedBy;
+    private TableColumn<Customers, String> tableColCustomerLastUpdatedBy;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerName;
+    private TableColumn<Customers, String> tableColCustomerName;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerPhoneNumber;
+    private TableColumn<Customers, Integer> tableColCustomerPhoneNumber;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerPostalCode;
+    private TableColumn<Customers, Integer> tableColCustomerPostalCode;
 
     @FXML
-    private TableColumn<?, ?> tableColCustomerStateAndProvinces;
+    private TableColumn<Customers, String> tableColCustomerStateAndProvinces;
 
     @FXML
     private Button updateCustomerButton;

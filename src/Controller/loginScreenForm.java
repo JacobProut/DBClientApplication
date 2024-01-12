@@ -63,13 +63,13 @@ public class loginScreenForm implements Initializable {
 
         try {
             if (Locale.getDefault().getLanguage().equals("fr")) {
-                ResourceBundle rb = ResourceBundle.getBundle("LanguageBundle/language_fr", Locale.getDefault());
+                ResourceBundle rbfr = ResourceBundle.getBundle("LanguageBundle/language_fr", Locale.getDefault());
 
-                labelUsername.setText(rb.getString("Username"));
-                labelPassword.setText(rb.getString("Password"));
-                labelTimezone.setText(rb.getString("Timezone"));
-                LoginButton.setText(rb.getString("Login"));
-                labelLanguage.setText(rb.getString("Language"));
+                labelUsername.setText(rbfr.getString("Username"));
+                labelPassword.setText(rbfr.getString("Password"));
+                labelTimezone.setText(rbfr.getString("Timezone"));
+                LoginButton.setText(rbfr.getString("Login"));
+                labelLanguage.setText(rbfr.getString("Language"));
             }
         } catch (Exception e ) {
             System.out.println("Error:"); //!!!!!!!!ADD ERRORMSG HERE!!!!!!!!
@@ -79,7 +79,7 @@ public class loginScreenForm implements Initializable {
 
 
 
-    //Need to add sql login information into login.
+    //NEED to add sql login information into login.
     //The method in here right now is strictly just to proceed to appointment scheduler page
     @FXML
     public void onActionLogin(ActionEvent event) throws IOException, SQLException {

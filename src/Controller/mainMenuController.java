@@ -88,6 +88,9 @@ public class mainMenuController {
     @FXML
     private Button updateAppointmentButton;
 
+    Stage stage;
+    Parent scene;
+
     @FXML
     void onActionAddAppointment(ActionEvent event) {
 
@@ -119,18 +122,14 @@ public class mainMenuController {
     }
 
 
-    //Not sure if this is right but it switches to customerMenu GUI
+    //Not sure if this is right, but it switches to customerMenu GUI
     @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent scene;
-
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
-
     }
 
     @FXML

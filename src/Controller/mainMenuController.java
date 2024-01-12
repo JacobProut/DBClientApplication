@@ -13,8 +13,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import model.Appointments;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class mainMenuController {
@@ -53,37 +55,37 @@ public class mainMenuController {
     private Button reportsButton;
 
     @FXML
-    private TableView<?> appointmentSchedulerTable;
+    private TableView<Appointments> appointmentSchedulerTable;
 
     @FXML
-    private TableColumn<?, Integer> tableColAppointmentID;
+    private TableColumn<Appointments, Integer> tableColAppointmentID;
 
     @FXML
-    private TableColumn<?, ?> tableColContact;
+    private TableColumn<Appointments, Integer> tableColContact;
 
     @FXML
-    private TableColumn<?, Integer> tableColCustomerID;
+    private TableColumn<Appointments, Integer> tableColCustomerID;
 
     @FXML
-    private TableColumn<?, ?> tableColDescription;
+    private TableColumn<Appointments, String> tableColDescription;
 
     @FXML
-    private TableColumn<?, ?> tableColEndDateAndTime;
+    private TableColumn<Appointments, Timestamp> tableColEndDateAndTime;
 
     @FXML
-    private TableColumn<?, ?> tableColLocation;
+    private TableColumn<Appointments, String> tableColLocation;
 
     @FXML
-    private TableColumn<?, ?> tableColStartDateAndTime;
+    private TableColumn<Appointments, Timestamp> tableColStartDateAndTime;
 
     @FXML
-    private TableColumn<?, ?> tableColTitle;
+    private TableColumn<Appointments, String> tableColTitle;
 
     @FXML
-    private TableColumn<?, ?> tableColType;
+    private TableColumn<Appointments, String> tableColType;
 
     @FXML
-    private TableColumn<?, Integer> tableColUserID;
+    private TableColumn<Appointments, Integer> tableColUserID;
 
     @FXML
     private Button updateAppointmentButton;

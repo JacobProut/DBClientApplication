@@ -2,10 +2,16 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import javax.naming.PartialResultException;
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Optional;
 
 public class appointmentCreationFormController {
 
@@ -51,9 +57,23 @@ public class appointmentCreationFormController {
     @FXML
     private Spinner<?> startTimeMinuteSpinner;
 
-    @FXML
-    void onActionCancelAppointment(ActionEvent event) {
+    Parent scene;
+    Stage stage;
 
+    @FXML
+    void onActionCancelAppointment(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Close Appointment Creation Page");
+        alert.setHeaderText("Are you sure you want to leave without saving?");
+        alert.setContentText("Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back.");
+        Optional<ButtonType> confirmation = alert.showAndWait();
+        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
+            stage.setScene(new Scene(scene));
+            stage.show();
+            stage.setTitle("Appointment Scheduler");
+        }
     }
 
     @FXML

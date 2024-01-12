@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Countries;
+import model.First_Level_Divisions;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -16,7 +18,7 @@ import java.util.Optional;
 public class customerCreationFormController {
 
     @FXML
-    private ComboBox<?> countryPicker;
+    private ComboBox<Countries> countryPicker;
 
     @FXML
     private Button creationCancelButton;
@@ -40,7 +42,7 @@ public class customerCreationFormController {
     private Pane customerCreationFormPane;
 
     @FXML
-    private ComboBox<?> divisionPicker;
+    private ComboBox<First_Level_Divisions> divisionPicker;
 
     @FXML
     private Button saveButton;
@@ -56,7 +58,7 @@ public class customerCreationFormController {
     @FXML
     void onActionCreationCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Close Creation Page");
+        alert.setTitle("Closing Customer Creation Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
         alert.setContentText("Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back.");
         Optional<ButtonType> confirmation = alert.showAndWait();
@@ -67,7 +69,6 @@ public class customerCreationFormController {
             stage.show();
             stage.setTitle("Customer View List");
         }
-
     }
 
     @FXML

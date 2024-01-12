@@ -117,7 +117,7 @@ public class loginScreenForm implements Initializable {
                 labelLanguage.setText(rb.getString("Language"));
             }
         } catch (Exception e) {
-            System.out.println("ERROR");
+            System.out.println("ERROR" + e.getMessage());
         }
 
     }

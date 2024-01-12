@@ -94,7 +94,12 @@ public class mainMenuController {
     Parent scene;
 
     @FXML
-    void onActionAddAppointment(ActionEvent event) {
+    void onActionAddAppointment(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentCreationForm.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Appointment Creation Form");
 
     }
 

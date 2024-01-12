@@ -111,8 +111,17 @@ public class customerMenuController {
 
     }
 
+
+    //Find a way to select item from tableview and have it get modified (Look at software1 project!)
     @FXML
-    void onActionUpdateCustomer(ActionEvent event) {
+    void onActionUpdateCustomer(ActionEvent event) throws IOException {
+
+
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerModificationForm.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Customer Modification Page");
 
     }
 

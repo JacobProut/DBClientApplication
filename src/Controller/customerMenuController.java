@@ -84,9 +84,16 @@ public class customerMenuController {
     @FXML
     private Button updateCustomerButton;
 
-    @FXML
-    void onActionAddCustomer(ActionEvent event) {
+    Stage stage;
+    Parent scene;
 
+    @FXML
+    void onActionAddCustomer(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerCreationForm.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Customer Creation Page");
     }
 
     @FXML
@@ -116,15 +123,11 @@ public class customerMenuController {
 
     @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent scene;
-
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
-
     }
 
     @FXML

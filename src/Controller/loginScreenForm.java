@@ -72,7 +72,7 @@ public class loginScreenForm implements Initializable {
                 labelLanguage.setText(rbfr.getString("Language"));
             }
         } catch (Exception e ) {
-            System.out.println("Error:"); //!!!!!!!!ADD ERRORMSG HERE!!!!!!!!
+            System.out.println("ERROR OCCURRED: "); //!!!!!!!!ADD ERRORMSG HERE!!!!!!!!
         }
     }
 
@@ -117,7 +117,7 @@ public class loginScreenForm implements Initializable {
                 labelLanguage.setText(rb.getString("Language"));
             }
         } catch (Exception e) {
-            System.out.println("ERROR" + e.getMessage());
+            System.out.println("ERROR OCCURRED: " + e.getMessage());
         }
 
     }

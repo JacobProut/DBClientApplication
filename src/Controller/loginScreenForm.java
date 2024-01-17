@@ -57,7 +57,7 @@ public class loginScreenForm implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> list = FXCollections.observableArrayList("English", "French");
+        ObservableList<String> list = FXCollections.observableArrayList("English", "Français");
         languageComboBoxField.setItems(list);
         ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
 
@@ -98,7 +98,7 @@ public class loginScreenForm implements Initializable {
         languageComboBoxField.getSelectionModel().getSelectedItem();
 
         try {
-            if (languageComboBoxField.getSelectionModel().getSelectedItem().equals("French")) {
+            if (languageComboBoxField.getSelectionModel().getSelectedItem().equals("Français")) {
                 ResourceBundle rb = ResourceBundle.getBundle("LanguageBundle/language_fr");
 
                 labelUsername.setText(rb.getString("Username"));

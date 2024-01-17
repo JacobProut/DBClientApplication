@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.JDBC;
+import DAO.mainMenuControllerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -136,8 +137,12 @@ public class customerMenuController {
     }
 
     @FXML
-    void radioButtonViewAll(ActionEvent event) {
-
+    void radioButtonViewAll(ActionEvent event) throws IOException {
+        stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Appointment Scheduler");
     }
 
     @FXML

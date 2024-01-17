@@ -5,19 +5,23 @@ import DAO.mainMenuControllerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Customers;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class customerMenuController {
+public class customerMenuController implements Initializable {
 
     @FXML
     private Button addCustomerButton;
@@ -161,6 +165,12 @@ public class customerMenuController {
 
     @FXML
     void radioButtonViewByWeek(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
     }
 

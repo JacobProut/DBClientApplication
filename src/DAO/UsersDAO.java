@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 
 public class UsersDAO {
 
+
+    //NO IDEA IF THIS IS EVEN RIGHT!
     public static ObservableList<Users> getAllUsersData() {
         ObservableList<Users> usersObservableList = FXCollections.observableArrayList();
 

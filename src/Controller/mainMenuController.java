@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.JDBC;
 import DAO.mainMenuControllerDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class mainMenuController implements Initializable {
@@ -87,7 +89,17 @@ public class mainMenuController implements Initializable {
 
     @FXML
     void onActionLogout(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log out");
+        alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
+        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to go back.");
 
+        Optional<ButtonType> confirmation = alert.showAndWait();
+
+        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+            JDBC.closeConnection();
+            System.exit(0);
+        }
     }
 
     @FXML

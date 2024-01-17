@@ -1,15 +1,12 @@
 package Controller;
 
+import DAO.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Customers;
@@ -17,6 +14,7 @@ import model.Customers;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 
 public class customerMenuController {
 
@@ -105,7 +103,17 @@ public class customerMenuController {
 
     @FXML
     void onActionLogout(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log out");
+        alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
+        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to go back.");
 
+        Optional<ButtonType> confirmation = alert.showAndWait();
+
+        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+            JDBC.closeConnection();
+            System.exit(0);
+        }
     }
 
     @FXML

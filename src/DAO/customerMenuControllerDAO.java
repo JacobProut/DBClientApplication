@@ -34,7 +34,8 @@ public class customerMenuControllerDAO {
                 Customers allCustomers = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId);
                 customersObservableList.add(allCustomers);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return customersObservableList;

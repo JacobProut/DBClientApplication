@@ -33,7 +33,8 @@ public class First_Level_DivisionsDAO {
                 divisionsObservableList.add(allDivisions);
             }
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return divisionsObservableList;

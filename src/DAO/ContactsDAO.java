@@ -26,7 +26,8 @@ public static ObservableList<Contacts> getAllContacts() {
             Contacts allContacts = new Contacts(contactId, contactName, contactEmail);
             contactsObservableList.add(allContacts);
         }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e) {
         throw new RuntimeException(e);
     }
     return contactsObservableList;

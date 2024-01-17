@@ -40,7 +40,8 @@ public class mainMenuControllerDAO {
                 Appointments all = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, appointmentCreationDate, appointmentCreatedBy,lastUpdate, lastUpdatedBy, customerId, userId, contactId);
                 appointmentsObservableList.add(all);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return appointmentsObservableList;

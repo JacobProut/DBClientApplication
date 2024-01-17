@@ -32,15 +32,15 @@
       <TableView fx:id="customerTableView" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
         <columns>
           <TableColumn fx:id="tableColCustomerID" prefWidth="78.0" text="Customer_ID" />
-          <TableColumn fx:id="tableColCustomerName" prefWidth="99.0" text="Customer Name" />
+          <TableColumn fx:id="tableColCustomerName" prefWidth="99.0" text="Customer_Name" />
             <TableColumn fx:id="tableColCustomerAddress" prefWidth="122.0" text="Address" />
-            <TableColumn fx:id="tableColCustomerPostalCode" prefWidth="76.0" text="Postal Code" />
-            <TableColumn fx:id="tableColCustomerPhoneNumber" prefWidth="98.0" text="Phone Number" />
-            <TableColumn fx:id="tableColCustomerStateAndProvinces" prefWidth="105.0" text="State/Provinces" />
-            <TableColumn fx:id="tableColCustomerLastUpdated" prefWidth="88.0" text="Last Updated" />
-            <TableColumn fx:id="tableColCustomerLastUpdatedBy" prefWidth="114.0" text="Last Updated By" />
-            <TableColumn fx:id="tableColCustomerCreatedDate" prefWidth="92.0" text="Created Date" />
-            <TableColumn fx:id="tableColCustomerCreatedBy" prefWidth="77.0" text="Created By" />
+            <TableColumn fx:id="tableColCustomerPostalCode" prefWidth="76.0" text="Postal_Code" />
+            <TableColumn fx:id="tableColCustomerPhoneNumber" prefWidth="98.0" text="Phone" />
+            <TableColumn fx:id="tableColCustomerCreatedDate" prefWidth="92.0" text="Create_Date" />
+            <TableColumn fx:id="tableColCustomerCreatedBy" prefWidth="77.0" text="Created_By" />
+            <TableColumn fx:id="tableColCustomerLastUpdated" prefWidth="88.0" text="Last_Update" />
+            <TableColumn fx:id="tableColCustomerLastUpdatedBy" prefWidth="114.0" text="Last_Updated_By" />
+            <TableColumn fx:id="tableColCustomerDivisionId" prefWidth="105.0" text="Division_ID" />
         </columns>
          <opaqueInsets>
             <Insets />

@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.JDBC;
+import DAO.customerMenuControllerDAO;
 import DAO.mainMenuControllerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,13 +79,13 @@ public class customerMenuController implements Initializable {
     private TableColumn<Customers, String> tableColCustomerName;
 
     @FXML
-    private TableColumn<Customers, Integer> tableColCustomerPhoneNumber;
+    private TableColumn<Customers, String> tableColCustomerPhoneNumber;
 
     @FXML
     private TableColumn<Customers, Integer> tableColCustomerPostalCode;
 
     @FXML
-    private TableColumn<Customers, String> tableColCustomerStateAndProvinces;
+    private TableColumn<Customers, String> tableColCustomerDivisionId;
 
     @FXML
     private Button updateCustomerButton;
@@ -170,6 +171,18 @@ public class customerMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerTableView.setItems(customerMenuControllerDAO.getAllCustomers());
+        tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        tableColCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        tableColCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        tableColCustomerPostalCode.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
+        tableColCustomerPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("customerPhoneNumber"));
+        tableColCustomerCreatedDate.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        tableColCustomerCreatedBy.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        tableColCustomerLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
+        tableColCustomerLastUpdatedBy.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        tableColCustomerDivisionId.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+
 
 
     }

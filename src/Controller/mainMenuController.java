@@ -16,6 +16,7 @@ import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -149,5 +150,7 @@ public class mainMenuController implements Initializable {
         tableColEndDateAndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+        ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
     }
 }

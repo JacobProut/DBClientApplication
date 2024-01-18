@@ -1,11 +1,13 @@
 package Controller;
 
+import DAO.UsersDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,14 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.time.ZoneId;
 
 public class loginScreenForm implements Initializable {
 
@@ -52,8 +53,6 @@ public class loginScreenForm implements Initializable {
     @FXML
     private TextField usernameField;
 
-    Stage stage;
-    Parent scene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,26 +71,9 @@ public class loginScreenForm implements Initializable {
                 labelLanguage.setText(rbfr.getString("Language"));
             }
         } catch (Exception e ) {
-            System.out.println("ERROR OCCURRED: "); //!!!!!!!!ADD ERRORMSG HERE!!!!!!!!
+            System.out.println("ERROR OCCURRED: "+ e.getMessage());
         }
     }
-
-
-
-
-    //NEED to add sql login information into login.
-    //The method in here right now is strictly just to proceed to appointment scheduler page
-    @FXML
-    public void onActionLogin(ActionEvent event) throws IOException, SQLException {
-
-
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Appointment Scheduler");
-    }
-
 
     @FXML
     public void onActionLanguagePicker(ActionEvent event) {
@@ -119,6 +101,41 @@ public class loginScreenForm implements Initializable {
         } catch (Exception e) {
             System.out.println("ERROR OCCURRED: " + e.getMessage());
         }
-
     }
+
+
+    public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
+        if (!loginInfoValidation()) return;
+        boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
+        if (isLoginValid) {
+            UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
+            Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/mainMenu.fxml")));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(login);
+            stage.setTitle("Appointment Scheduler Form");
+            stage.setScene(scene);
+            stage.show();
+        }
+       }
+
+
+    public Boolean loginInfoValidation() throws SQLException {
+        if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+            errorMessages.errorMsgs.errorCodes(4);
+            return false;
+        }
+        else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
+            errorMessages.errorMsgs.errorCodes(1);
+            return false;
+        }
+        else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
+            errorMessages.errorMsgs.errorCodes(2);
+            return false;
+        }
+        else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
+            errorMessages.errorMsgs.errorCodes(3);
+        }
+        return true;
+    }
+
 }

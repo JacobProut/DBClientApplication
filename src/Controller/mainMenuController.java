@@ -91,7 +91,7 @@ public class mainMenuController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log out");
         alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
-        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to go back.");
+        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to stay on the Appointment Scheduler Form.");
 
         Optional<ButtonType> confirmation = alert.showAndWait();
 
@@ -106,8 +106,15 @@ public class mainMenuController implements Initializable {
 
     }
 
+
+    //Find a way to select object in TableView then import it into appointmentModificationForm.fxml scene.
     @FXML
-    void onActionUpdateAppointment(ActionEvent event) {
+    void onActionUpdateAppointment(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentModificationForm.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Appointment Modification Form");
 
     }
 

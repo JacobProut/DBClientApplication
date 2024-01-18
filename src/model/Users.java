@@ -81,4 +81,14 @@ public class Users {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
+
+    public Users(String userName) {
+        this.userName = userName;
+    }
+
+    public Users(int userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+    }
+
 }

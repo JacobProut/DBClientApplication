@@ -65,7 +65,7 @@ public class appointmentCreationFormController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Appointment Creation Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
-        alert.setContentText("Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back.");
+        alert.setContentText("Click 'OK' to go back to Appointment Scheduler.\r" + "Click 'Cancel' to stay on the Appointment Creation Form.");
         Optional<ButtonType> confirmation = alert.showAndWait();
         if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();

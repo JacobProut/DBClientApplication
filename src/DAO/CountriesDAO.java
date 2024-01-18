@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 public class CountriesDAO {
 
+    //No idea if this is right
     public static ObservableList<Countries> getAllCountriesData() {
         ObservableList<Countries> countriesObservableList = FXCollections.observableArrayList();
 
@@ -37,6 +38,5 @@ public class CountriesDAO {
         }
         return countriesObservableList;
     }
-
 
 }

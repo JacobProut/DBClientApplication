@@ -3,6 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,10 +13,13 @@ import model.Countries;
 import model.First_Level_Divisions;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class customerCreationFormController {
+public class customerCreationFormController implements Initializable {
 
     @FXML
     private ComboBox<Countries> countryPicker;
@@ -77,8 +81,14 @@ public class customerCreationFormController {
     }
 
     @FXML
-    void onActionSaveButton(ActionEvent event) {
+    void onActionSaveButton(ActionEvent event) throws SQLException {
+
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+    }
 }

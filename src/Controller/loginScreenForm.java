@@ -104,9 +104,11 @@ public class loginScreenForm implements Initializable {
     }
 
 
+    //FIND A WAY TO MAKE IT SO ERROR MESSAGES TURN TO FRENCH!!!!!!!!!!!!
     public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
         if (!loginInfoValidation()) return;
         boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
+
         if (isLoginValid) {
             UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
             Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/mainMenu.fxml")));
@@ -119,7 +121,7 @@ public class loginScreenForm implements Initializable {
        }
 
 
-    public Boolean loginInfoValidation() throws SQLException {
+     public Boolean loginInfoValidation() throws SQLException {
         if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
             errorMessages.errorMsgs.errorCodes(4);
             return false;

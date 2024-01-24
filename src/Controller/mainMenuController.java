@@ -134,14 +134,19 @@ public class mainMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
+
+    //Create AppointmentDAO.viewMonthAppoints() and add below -> "appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
     @FXML
     void radioButtonViewByMonth(ActionEvent event) {
 
+        //added a placeholder in the TableView for when there is nothing being displayed.
+        appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));
     }
 
     @FXML
     void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
+
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
     }

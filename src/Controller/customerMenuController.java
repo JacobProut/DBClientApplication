@@ -2,7 +2,6 @@ package Controller;
 
 import DAO.JDBC;
 import DAO.customerMenuControllerDAO;
-import DAO.mainMenuControllerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -182,9 +181,6 @@ public class customerMenuController implements Initializable {
         tableColCustomerLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
         tableColCustomerLastUpdatedBy.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
         tableColCustomerDivisionId.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
-
-
-
     }
 
 }

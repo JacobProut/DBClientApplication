@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentCreationFormController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentCreationFormController">
    <children>
       <Label layoutX="236.0" layoutY="14.0" prefHeight="30.0" prefWidth="268.0" text="Appointment Creation Form" underline="true">
          <font>
@@ -94,12 +87,12 @@
             <TextField fx:id="appointmentCreationAppointmentID" editable="false" promptText="Auto-Generated" GridPane.columnIndex="1" />
             <TextField fx:id="appointmentCreationDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="appointmentCreationLocation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="appointmentCreationContact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="appointmentCreationType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Spinner fx:id="endTimeMinuteSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
             <Spinner fx:id="startTimeMinuteSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
             <Spinner fx:id="startTimeHourSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Spinner fx:id="endTimeHourSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBoxContact" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="createAppointment" layoutX="289.0" layoutY="490.0" mnemonicParsing="false" onAction="#onActionCreateAppointment" prefHeight="37.0" prefWidth="163.0" text="Create Appointment" />

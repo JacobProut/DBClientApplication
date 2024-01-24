@@ -19,7 +19,7 @@ public class appointmentCreationFormController {
     private TextField appointmentCreationAppointmentID;
 
     @FXML
-    private TextField appointmentCreationContact;
+    private ComboBox<?> comboBoxContact;
 
     @FXML
     private TextField appointmentCreationDescription;
@@ -91,4 +91,34 @@ public class appointmentCreationFormController {
 
     }
 
+    @FXML
+    void onActionComboBoxContact(ActionEvent event) {
+
+    }
+
+
+    //add appointment empty fields. MAY REMAKE SO IT INCLUDES errorMessages.errorMsg.errorCode();
+    /*public boolean appointFieldsEmpty() {
+        if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
+            return true;
+        }
+        else if (appointmentCreationDescription.getText().isBlank() || appointmentCreationDescription.getText().isEmpty()) {
+            return true;
+        }
+        else if (appointmentCreationLocation.getText().isBlank() || appointmentCreationLocation.getText().isEmpty()) {
+            return true;
+        }
+        else if (appointmentCreationContact.getText().isBlank() || appointmentCreationContact.getText().isEmpty()) {
+            return true;
+        }
+        else if (appointmentCreationType.getText().isBlank() || appointmentCreationType.getText().isEmpty()) {
+            return true;
+        }
+        else if (startDatefxid.getValue() == null) {
+            return true;
+        }
+
+        return false;
+    }
+*/
 }

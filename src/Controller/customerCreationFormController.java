@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.CountriesDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class customerCreationFormController implements Initializable {
+    Parent scene;
+    Stage stage;
 
     @FXML
     private ComboBox<Countries> countryPicker;
@@ -51,11 +54,9 @@ public class customerCreationFormController implements Initializable {
     @FXML
     private Button saveButton;
 
-    Parent scene;
-    Stage stage;
-
     @FXML
-    void onActionCountryPicker(ActionEvent event) {
+    void onActionSaveButton(ActionEvent event) throws SQLException {
+
 
     }
 
@@ -81,14 +82,15 @@ public class customerCreationFormController implements Initializable {
     }
 
     @FXML
-    void onActionSaveButton(ActionEvent event) throws SQLException {
+    void onActionCountryPicker(ActionEvent event) throws SQLException {
 
 
     }
 
+    //No clue why it doesnt work
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        countryPicker.setItems(CountriesDAO.getAllCountries());
 
     }
 }

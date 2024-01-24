@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 
 public class mainMenuControllerDAO {
@@ -46,6 +44,25 @@ public class mainMenuControllerDAO {
         }
         return appointmentsObservableList;
     }
+
+   public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
+        String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, appointmentTitle);
+        preparedStatement.setString(2, appointmentDescription);
+        preparedStatement.setString(3, appointmentLocation);
+        preparedStatement.setString(4, appointmentType);
+        preparedStatement.setTimestamp(5, Timestamp.valueOf(startTime));
+        preparedStatement.setTimestamp(6, Timestamp.valueOf(endTime));
+        preparedStatement.setInt(7, customerId);
+        preparedStatement.setInt(8, userId);
+        preparedStatement.setInt(9, contactId);
+        preparedStatement.execute();
+
+   }
+
+
 
 
 

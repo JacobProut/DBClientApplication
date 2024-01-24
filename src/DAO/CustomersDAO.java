@@ -3,13 +3,12 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.time.LocalDateTime;
 
 
-public class customerMenuControllerDAO {
+public class CustomersDAO {
 
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
@@ -40,9 +39,5 @@ public class customerMenuControllerDAO {
         }
         return customersObservableList;
     }
-
-
-
-
 
 }

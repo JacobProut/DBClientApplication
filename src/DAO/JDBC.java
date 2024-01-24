@@ -39,7 +39,7 @@ public abstract class JDBC {
         }
     }
 
-    public static Connection getConnection() {
+    public static Connection createConnection() {
         return  connection;
     }
 }

@@ -7,29 +7,22 @@ import model.Countries;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public class CountriesDAO {
 
-    //No idea if this is right
-    public static ObservableList<Countries> getAllCountriesData() {
+    //No idea why it gives "model@------" in combobox
+    public static ObservableList<Countries> getAllCountries() {
         ObservableList<Countries> countriesObservableList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM countries";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
-            ResultSet result = preparedStatement.executeQuery();
+            String sql = "SELECT Country_ID, Country FROM countries";
+            PreparedStatement getCountry = JDBC.connection.prepareStatement(sql);
+            ResultSet result = getCountry.executeQuery();
 
             while (result.next()) {
                 int countryId = result.getInt("Country_ID");
-                String country = result.getString("Country");
-                LocalDateTime createDate = result.getTimestamp("Create_Date").toLocalDateTime();
-                String createdBy = result.getString("Created_By");
-                LocalDateTime lastUpdate = result.getTimestamp("Last_Update").toLocalDateTime();
-                String lastUpdatedBy = result.getString("Last_Updated_By");
-
-
-                Countries allCountriesData = new Countries(countryId, country, createDate, createdBy, lastUpdate, lastUpdatedBy);
+                String countryName = result.getString("Country");
+                Countries allCountriesData = new Countries(countryId, countryName);
                 countriesObservableList.add(allCountriesData);
             }
         }
@@ -38,5 +31,6 @@ public class CountriesDAO {
         }
         return countriesObservableList;
     }
+
 
 }

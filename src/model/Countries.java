@@ -1,5 +1,7 @@
 package model;
 
+import DAO.CountriesDAO;
+
 import java.time.LocalDateTime;
 
 public class Countries {
@@ -71,4 +73,12 @@ public class Countries {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
+
+
+    public Countries(int countryId, String country) {
+        this.countryId = countryId;
+        this.country = country;
+    }
+
+
 }

@@ -42,6 +42,19 @@ public class Appointments {
         this.contactId = contactId;
     }
 
+    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, int contactId, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId) {
+        this.appointmentId = appointmentId;
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentDescription = appointmentDescription;
+        this.appointmentLocation = appointmentLocation;
+        this.contactId = contactId;
+        this.appointmentType = appointmentType;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.customerId = customerId;
+        this.userId = userId;
+    }
+
 
     //Foreign key functions
     public int getCustomerId() {

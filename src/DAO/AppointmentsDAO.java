@@ -7,7 +7,7 @@ import model.Appointments;
 import java.sql.*;
 import java.time.LocalDateTime;
 
-public class mainMenuControllerDAO {
+public class AppointmentsDAO {
 
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();

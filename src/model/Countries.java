@@ -80,5 +80,8 @@ public class Countries {
         this.country = country;
     }
 
+    public String toString() {
+        return this.country;
+    }
 
 }

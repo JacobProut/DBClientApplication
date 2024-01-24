@@ -86,5 +86,9 @@ public class First_Level_Divisions {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
+    public String toString() {
+        return this.divisionName;
+    }
+
 
 }

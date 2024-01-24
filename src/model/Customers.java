@@ -113,4 +113,8 @@ public class Customers {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
+
+    public String toString() {
+        return this.customerName;
+    }
 }

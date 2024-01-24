@@ -39,4 +39,7 @@ public class Contacts {
         this.contactEmail = contactEmail;
     }
 
+    public String toString() {
+        return this.contactName;
+    }
 }

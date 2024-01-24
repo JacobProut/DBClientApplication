@@ -91,4 +91,7 @@ public class Users {
         this.userName = userName;
     }
 
+    public String toString() {
+        return this.userName;
+    }
 }

@@ -141,7 +141,9 @@ public class mainMenuController implements Initializable {
 
     @FXML
     void radioButtonViewByWeek(ActionEvent event) {
-
+        appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
+        //added a placeholder in the TableView for when there is nothing being displayed.
+        appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
     }
 
     @Override

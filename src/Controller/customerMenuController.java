@@ -1,7 +1,7 @@
 package Controller;
 
 import DAO.JDBC;
-import DAO.customerMenuControllerDAO;
+import DAO.CustomersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -170,7 +170,7 @@ public class customerMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerTableView.setItems(customerMenuControllerDAO.getAllCustomers());
+        customerTableView.setItems(CustomersDAO.getAllCustomers());
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         tableColCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));

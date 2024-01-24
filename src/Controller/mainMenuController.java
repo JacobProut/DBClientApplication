@@ -1,7 +1,7 @@
 package Controller;
 
 import DAO.JDBC;
-import DAO.mainMenuControllerDAO;
+import DAO.AppointmentsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -120,7 +120,7 @@ public class mainMenuController implements Initializable {
 
     @FXML
     void radioButtonViewAll(ActionEvent event) {
-        appointmentSchedulerTable.setItems(mainMenuControllerDAO.getAllAppointments());
+        appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
     }
 
 
@@ -146,7 +146,7 @@ public class mainMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        appointmentSchedulerTable.setItems(mainMenuControllerDAO.getAllAppointments());
+        appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
         tableColAppointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         tableColTitle.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
         tableColDescription.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));

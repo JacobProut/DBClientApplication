@@ -142,6 +142,7 @@ public class mainMenuController implements Initializable {
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));
     }
 
+    //For some odd reason, this doesn't work.
     @FXML
     void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());

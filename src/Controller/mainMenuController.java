@@ -115,12 +115,14 @@ public class mainMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Appointment Modification Form");
-
     }
 
     @FXML
     void radioButtonViewAll(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
+
+        //Added a placeholder in the TableView for when there is nothing in the database!
+        appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments in the database!"));
     }
 
 
@@ -134,10 +136,9 @@ public class mainMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
-
-    //Create AppointmentDAO.viewMonthAppoints() and add below -> "appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
     @FXML
     void radioButtonViewByMonth(ActionEvent event) {
+        appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));

@@ -59,16 +59,15 @@ public class AppointmentsDAO {
         preparedStatement.setInt(8, userId);
         preparedStatement.setInt(9, contactId);
         preparedStatement.execute();
-
    }
 
    //Unsure this works until I can add data within the current week
    public static ObservableList<Appointments> viewWeekAppoints() {
-        ObservableList<Appointments> viewWeek = FXCollections.observableArrayList();
+        ObservableList<Appointments> viewWeekList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE WEEK(Start) = WEEK(now()) ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
+            String week = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE WEEK(Start) = WEEK(now()) ORDER BY appointments.Appointment_ID";
+            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(week);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -84,14 +83,43 @@ public class AppointmentsDAO {
                 int userId = result.getInt("User_ID");
 
                 Appointments viewByWeek = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, contactId, appointmentType, startTime, endTime, customerId, userId);
-                viewWeek.add(viewByWeek);
+                viewWeekList.add(viewByWeek);
             }
         }
         catch (Exception e) {
             throw new RuntimeException(e);
         }
+       return viewWeekList;
+   }
 
-       return viewWeek;
+   public static ObservableList<Appointments> viewMonthAppoints() {
+        ObservableList<Appointments> viewMonthList = FXCollections.observableArrayList();
+
+        try {
+            String month = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE MONTH(Start) = MONTH(now()) ORDER BY appointments.Appointment_ID";
+            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(month);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                int appointmentId = result.getInt("Appointment_ID");
+                String appointmentTitle = result.getString("Title");
+                String appointmentDescription = result.getString("Description");
+                String appointmentLocation = result.getString("Location");
+                int contactId = result.getInt("Contact");
+                String appointmentType = result.getString("Type");
+                LocalDateTime startTime = result.getTimestamp("Start Date/Time").toLocalDateTime();
+                LocalDateTime endTime = result.getTimestamp("End Date/Time").toLocalDateTime();
+                int customerId = result.getInt("Customer_ID");
+                int userId = result.getInt("User_ID");
+
+                Appointments viewByMonth = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, contactId, appointmentType, startTime, endTime, customerId, userId);
+                viewMonthList.add(viewByMonth);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+       return viewMonthList;
    }
 
 

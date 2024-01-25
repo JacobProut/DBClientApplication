@@ -3,6 +3,7 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Countries;
+import model.First_Level_Divisions;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,12 +12,16 @@ import java.sql.SQLException;
 public class CountriesDAO {
 
     //No idea why it gives "model@------" in combobox
-    public static ObservableList<Countries> getAllCountries() {
+    // - FIXED: Added in model.Countries
+    //    public String toString() {
+    //        return this.country;
+    //    }
+    public static ObservableList<Countries> getAllCountriesList() {
         ObservableList<Countries> countriesObservableList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT Country_ID, Country FROM countries";
-            PreparedStatement getCountry = JDBC.connection.prepareStatement(sql);
+            String countries = "SELECT Country_ID, Country FROM countries";
+            PreparedStatement getCountry = JDBC.connection.prepareStatement(countries);
             ResultSet result = getCountry.executeQuery();
 
             while (result.next()) {
@@ -31,6 +36,7 @@ public class CountriesDAO {
         }
         return countriesObservableList;
     }
+
 
 
 }

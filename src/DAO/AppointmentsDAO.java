@@ -62,12 +62,12 @@ public class AppointmentsDAO {
 
    }
 
-   //Unsure this works until i can add data within the current week
+   //Unsure this works until I can add data within the current week
    public static ObservableList<Appointments> viewWeekAppoints() {
         ObservableList<Appointments> viewWeek = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE YEARWEEK(Start) = YEARWEEK(now()) ORDER BY appointments.Appointment_ID";
+            String sql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE WEEK(Start) = WEEK(now()) ORDER BY appointments.Appointment_ID";
             PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
             ResultSet result = preparedStatement.executeQuery();
 

@@ -106,7 +106,6 @@ public class mainMenuController implements Initializable {
 
     }
 
-
     //Find a way to select object in TableView then import it into appointmentModificationForm.fxml scene.
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
@@ -124,7 +123,6 @@ public class mainMenuController implements Initializable {
         //Added a placeholder in the TableView for when there is nothing in the database!
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments in the database!"));
     }
-
 
     //Not sure if this is right, but it switches to customerMenu GUI
     @FXML

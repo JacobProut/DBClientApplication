@@ -20,13 +20,10 @@
       </Label>
       <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
          <children>
-            <RadioButton fx:id="radioButtonViewAll" layoutX="259.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAll" selected="true" text="View All">
+            <RadioButton fx:id="radioButtonViewAllCustomers" layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
                <toggleGroup>
                   <ToggleGroup fx:id="radioButtons" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioButtonViewByMonth" layoutX="358.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewByMonth" text="View by Month" toggleGroup="$radioButtons" />
-            <RadioButton fx:id="radioButtonViewByWeek" layoutX="504.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewByWeek" text="View by Week" toggleGroup="$radioButtons" />
-            <RadioButton fx:id="radioButtonViewAllCustomers" layoutX="632.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers" toggleGroup="$radioButtons" />
          </children>
       </AnchorPane>
       <TableView fx:id="customerTableView" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
@@ -51,5 +48,6 @@
       <Button fx:id="addCustomerButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
       <Button fx:id="updateCustomerButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
       <Button fx:id="deleteCustomerButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
+      <Button fx:id="returnToAppointmentScheduler" layoutX="399.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appoint Scheduler" />
    </children>
 </Pane>

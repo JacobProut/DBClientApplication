@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.JDBC;
 import DAO.CustomersDAO;
+import DAO.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,21 +39,6 @@ public class customerMenuController implements Initializable {
     private Button logoutButton;
 
     @FXML
-    private RadioButton radioButtonViewAll;
-
-    @FXML
-    private RadioButton radioButtonViewAllCustomers;
-
-    @FXML
-    private RadioButton radioButtonViewByMonth;
-
-    @FXML
-    private RadioButton radioButtonViewByWeek;
-
-    @FXML
-    private ToggleGroup radioButtons;
-
-    @FXML
     private Button reportsButton;
 
     @FXML
@@ -88,6 +73,9 @@ public class customerMenuController implements Initializable {
 
     @FXML
     private Button updateCustomerButton;
+
+    @FXML
+    private Button returnToAppointmentScheduler;
 
     Stage stage;
     Parent scene;
@@ -141,15 +129,6 @@ public class customerMenuController implements Initializable {
     }
 
     @FXML
-    void radioButtonViewAll(ActionEvent event) throws IOException {
-        stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Appointment Scheduler");
-    }
-
-    @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
@@ -159,14 +138,14 @@ public class customerMenuController implements Initializable {
     }
 
     @FXML
-    void radioButtonViewByMonth(ActionEvent event) {
-
+    void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Appointment Scheduler");
     }
 
-    @FXML
-    void radioButtonViewByWeek(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

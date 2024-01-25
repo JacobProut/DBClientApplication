@@ -29,6 +29,12 @@ public class First_Level_Divisions {
         this.countryId = countryId;
     }
 
+    public First_Level_Divisions(int divisionId, String divisionName, int countryId) {
+        this.divisionId = divisionId;
+        this.divisionName = divisionName;
+        this.countryId = countryId;
+    }
+
     //Do i need these get/set functions for the foreign key?
     public int getCountryId() {
         return countryId;
@@ -85,7 +91,6 @@ public class First_Level_Divisions {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
-
     public String toString() {
         return this.divisionName;
     }

@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.CountriesDAO;
+import DAO.First_Level_DivisionsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,16 +82,15 @@ public class customerCreationFormController implements Initializable {
 
     }
 
+    //I believe this is completed.
     @FXML
-    void onActionCountryPicker(ActionEvent event) throws SQLException {
-
-
+    void onActionCountryPicker(ActionEvent event) {
+        Countries list = countryPicker.getValue();
+        divisionPicker.setItems(First_Level_DivisionsDAO.countryToDivision(list.getCountryId()));
     }
 
-    //No clue why it doesnt work
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        countryPicker.setItems(CountriesDAO.getAllCountries());
-
+        countryPicker.setItems(CountriesDAO.getAllCountriesList());
     }
 }

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.First_Level_Divisions;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,5 +41,27 @@ public class First_Level_DivisionsDAO {
         return divisionsObservableList;
     }
 
+    public static ObservableList<First_Level_Divisions> countryToDivision(int countryId) {
+        ObservableList<First_Level_Divisions> countryToDivisionComboBoxes = FXCollections.observableArrayList();
+
+        try {
+            String countryDivision = "SELECT * FROM first_level_divisions WHERE Country_ID = " + countryId;
+            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(countryDivision);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                int divisionId = result.getInt("Division_ID");
+                String divisionName = result.getString("Division");
+                countryId = result.getInt("Country_ID");
+
+                First_Level_Divisions countryDivisionList = new First_Level_Divisions(divisionId, divisionName, countryId);
+                countryToDivisionComboBoxes.add(countryDivisionList);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return countryToDivisionComboBoxes;
+    }
 
 }

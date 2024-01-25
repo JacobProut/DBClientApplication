@@ -80,7 +80,7 @@ public class loginScreenForm implements Initializable {
 
 
     public Boolean loginInfoValidation() throws SQLException {
-        if (usernameField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+        if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
             errorMessages.errorMsgs.errorCodes(4);
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {

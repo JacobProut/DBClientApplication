@@ -13,8 +13,6 @@ public class AppointmentsDAO {
         ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
 
         try {
-            //This is going to be needed once getting contactsDAO working
-            //*String sql = "SELECT * FROM appointments JOIN contacts ON appointments.Contacts_ID ORDER BY appointments.Appointment_ID";*//
             String sql = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
             PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
             ResultSet result = preparedStatement.executeQuery();
@@ -62,6 +60,7 @@ public class AppointmentsDAO {
    }
 
    //Unsure this works until I can add data within the current week
+    // Still doesn't work. Need to fix.
    public static ObservableList<Appointments> viewWeekAppoints() {
         ObservableList<Appointments> viewWeekList = FXCollections.observableArrayList();
 
@@ -75,10 +74,10 @@ public class AppointmentsDAO {
                 String appointmentTitle = result.getString("Title");
                 String appointmentDescription = result.getString("Description");
                 String appointmentLocation = result.getString("Location");
-                int contactId = result.getInt("Contact");
+                int contactId = result.getInt("Contact_ID");
                 String appointmentType = result.getString("Type");
-                LocalDateTime startTime = result.getTimestamp("Start Date/Time").toLocalDateTime();
-                LocalDateTime endTime = result.getTimestamp("End Date/Time").toLocalDateTime();
+                LocalDateTime startTime = result.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endTime = result.getTimestamp("End").toLocalDateTime();
                 int customerId = result.getInt("Customer_ID");
                 int userId = result.getInt("User_ID");
 
@@ -92,6 +91,7 @@ public class AppointmentsDAO {
        return viewWeekList;
    }
 
+   //works
    public static ObservableList<Appointments> viewMonthAppoints() {
         ObservableList<Appointments> viewMonthList = FXCollections.observableArrayList();
 
@@ -105,10 +105,10 @@ public class AppointmentsDAO {
                 String appointmentTitle = result.getString("Title");
                 String appointmentDescription = result.getString("Description");
                 String appointmentLocation = result.getString("Location");
-                int contactId = result.getInt("Contact");
+                int contactId = result.getInt("Contact_ID");
                 String appointmentType = result.getString("Type");
-                LocalDateTime startTime = result.getTimestamp("Start Date/Time").toLocalDateTime();
-                LocalDateTime endTime = result.getTimestamp("End Date/Time").toLocalDateTime();
+                LocalDateTime startTime = result.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endTime = result.getTimestamp("End").toLocalDateTime();
                 int customerId = result.getInt("Customer_ID");
                 int userId = result.getInt("User_ID");
 

@@ -45,8 +45,8 @@ public class UsersDAO {
         ObservableList<Users> usersObservableList = FXCollections.observableArrayList();
         try {
             connection = JDBC.createConnection();
-            String sql = "SELECT User_ID, User_Name FROM users;";
-            ResultSet result = connection.createStatement().executeQuery(sql);
+            String users = "SELECT User_ID, User_Name FROM users;";
+            ResultSet result = connection.createStatement().executeQuery(users);
             while(result.next()) {
                 Users allUsers = new Users(result.getInt("User_ID"), result.getString("User_Name"));
                 usersObservableList.add(allUsers);
@@ -59,12 +59,12 @@ public class UsersDAO {
 
     public static boolean verifyLoginInformation(String username, String password) throws SQLException {
         String checkingLogin = "SELECT * FROM users WHERE User_Name=? AND Password=?";
-        PreparedStatement preparedStatement = JDBC.createConnection().prepareStatement(checkingLogin);
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, password);
+        PreparedStatement verifyLogin = JDBC.createConnection().prepareStatement(checkingLogin);
+        verifyLogin.setString(1, username);
+        verifyLogin.setString(2, password);
         try {
-            preparedStatement.execute();
-            ResultSet result = preparedStatement.getResultSet();
+            verifyLogin.execute();
+            ResultSet result = verifyLogin.getResultSet();
             return (result.next());
         } catch (Exception e) {
             System.out.println("ERROR OCCURRED: " + e.getMessage());

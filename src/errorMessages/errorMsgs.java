@@ -77,6 +77,13 @@ public abstract class errorMsgs implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 12: //Add/Modify Customer menu: Null Division box
+                    alert.setTitle((languageBundle.getString("NullCustomerDivisionsBoxField")));
+                    alert.setContentText(languageBundle.getString("NullCustomerDivisionsBox"));
+                    alert.showAndWait();
+                    break;
+
+
             }
         }
 

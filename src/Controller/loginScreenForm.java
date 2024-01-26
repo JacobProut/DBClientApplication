@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import errorMessages.errorMsgs;
 public class loginScreenForm implements Initializable {
 
     @FXML
@@ -81,16 +82,16 @@ public class loginScreenForm implements Initializable {
 
     public Boolean loginInfoValidation() throws SQLException {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(4);
+            errorMsgs.errorCodes(4);
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(1);
+            errorMsgs.errorCodes(1);
             return false;
         } else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(2);
+            errorMsgs.errorCodes(2);
             return false;
         } else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
-            errorMessages.errorMsgs.errorCodes(3);
+            errorMsgs.errorCodes(3);
         }
         return true;
     }

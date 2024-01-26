@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static DAO.JDBC.createConnection;
+
 public class CountriesDAO {
 
     //No idea why it gives "model@------" in combobox
@@ -21,7 +23,7 @@ public class CountriesDAO {
 
         try {
             String countries = "SELECT Country_ID, Country FROM countries";
-            PreparedStatement getCountry = JDBC.connection.prepareStatement(countries);
+            PreparedStatement getCountry = createConnection().prepareStatement(countries);
             ResultSet result = getCountry.executeQuery();
 
             while (result.next()) {

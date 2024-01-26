@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+import static DAO.JDBC.createConnection;
+
 
 public class First_Level_DivisionsDAO {
 
@@ -17,7 +19,7 @@ public class First_Level_DivisionsDAO {
 
         try {
             String sql = "SELECT * FROM first_level_divisions";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = createConnection().prepareStatement(sql);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -45,7 +47,7 @@ public class First_Level_DivisionsDAO {
 
         try {
             String countryDivision = "SELECT * FROM first_level_divisions WHERE Country_ID = " + countryId;
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(countryDivision);
+            PreparedStatement preparedStatement = createConnection().prepareStatement(countryDivision);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {

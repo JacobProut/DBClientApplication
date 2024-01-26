@@ -7,6 +7,8 @@ import model.Appointments;
 import java.sql.*;
 import java.time.LocalDateTime;
 
+import static DAO.JDBC.createConnection;
+
 public class AppointmentsDAO {
 
     public static ObservableList<Appointments> getAllAppointments() {
@@ -66,7 +68,7 @@ public class AppointmentsDAO {
 
         try {
             String week = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE WEEK(Start) = WEEK(now()) ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(week);
+            PreparedStatement preparedStatement = createConnection().prepareStatement(week);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -97,7 +99,7 @@ public class AppointmentsDAO {
 
         try {
             String month = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE MONTH(Start) = MONTH(now()) ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(month);
+            PreparedStatement preparedStatement = createConnection().prepareStatement(month);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {

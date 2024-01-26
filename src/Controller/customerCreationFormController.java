@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Countries;
 import model.First_Level_Divisions;
@@ -59,14 +58,7 @@ public class customerCreationFormController implements Initializable {
     @FXML
     void onActionSaveButton(ActionEvent event) {
         try {
-            if (divisionPicker.getValue() == null) {
-                Countries countries = countryPicker.getValue();
-                if (countries == null) {
-                    errorMsgs.errorCodes(11);
-                }
-            }
-            else {
-                addAndUpdateCustomerValidation();
+            if (addAndUpdateCustomerValidation()) {
                 String customerName = creationCustomerName.getText();
                 String customerAddress = creationCustomerAddress.getText();
                 String customerPostalCode = creationCustomerPostalCode.getText();
@@ -79,11 +71,13 @@ public class customerCreationFormController implements Initializable {
                 customerMenuController.returnToCustomerAppointments(event);
             }
         } catch (Exception e) {
+            System.out.println("Must be Error with Customer Creation");
             throw new RuntimeException(e);
         }
     }
 
 
+    //NEED TO MAKE THIS METHOD HAVE (addAndUpdateCustomerValidation()) IN IT!
     /* //THIS METHOD IS TRYING TO ADD THING INTO Created_By and Last_Updated_By. NOT WORKING - Sends [admin, test] to Created_By/Last_Update_By col in mySql
     @FXML
     void onActionSaveButton(ActionEvent event) {
@@ -123,7 +117,7 @@ public class customerCreationFormController implements Initializable {
         alert.setContentText("Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back.");
         Optional<ButtonType> confirmation = alert.showAndWait();
         if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
-            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
@@ -148,30 +142,37 @@ public class customerCreationFormController implements Initializable {
         countryPicker.setItems(CountriesDAO.getAllCountriesList());
     }
 
-    public void addAndUpdateCustomerValidation() {
+    public boolean addAndUpdateCustomerValidation() {
         if (creationCustomerName.getText().isEmpty() && creationCustomerAddress.getText().isEmpty() && creationCustomerPostalCode.getText().isEmpty() && creationCustomerPhoneNumber.getText().isEmpty() && countryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
             errorMsgs.errorCodes(5);
-        }
-        else if (creationCustomerName.getText().isBlank() || creationCustomerName.getText().isEmpty()) {
+            return false;
+        } else if (creationCustomerName.getText().isBlank() || creationCustomerName.getText().isEmpty()) {
             errorMsgs.errorCodes(6);
-        }
-        else if (creationCustomerAddress.getText().isBlank() || creationCustomerAddress.getText().isEmpty()) {
+            return false;
+        } else if (creationCustomerAddress.getText().isBlank() || creationCustomerAddress.getText().isEmpty()) {
             errorMsgs.errorCodes(7);
-        }
-        else if (creationCustomerPostalCode.getText().isBlank() || creationCustomerPostalCode.getText().isEmpty()) {
+            return false;
+        } else if (creationCustomerPostalCode.getText().isBlank() || creationCustomerPostalCode.getText().isEmpty()) {
             errorMsgs.errorCodes(8);
-        }
-        else if (creationCustomerPhoneNumber.getText().isBlank() || creationCustomerPhoneNumber.getText().isEmpty()) {
+            return false;
+        } else if (creationCustomerPhoneNumber.getText().isBlank() || creationCustomerPhoneNumber.getText().isEmpty()) {
             errorMsgs.errorCodes(9);
-        }
-        /*else if (countryPicker.getSelectionModel().isEmpty()) {
+            return false;
+        } else if (countryPicker.getSelectionModel().isEmpty()) {
             errorMsgs.errorCodes(10);
-        }
-        else if (divisionPicker.getSelectionModel().isEmpty()) {
+            return false;
+        } else if (divisionPicker.getSelectionModel().isEmpty()) {
             errorMsgs.errorCodes(11);
-        }*/
+            return false;
+        } else if (divisionPicker.getValue() == null) {
+            Countries countries = countryPicker.getValue();
+            if (countries == null) {
+                errorMsgs.errorCodes(12);
+                return false;
+            }
+        }
+        return true;
     }
-
-
-
 }
+
+

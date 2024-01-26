@@ -8,15 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static DAO.JDBC.createConnection;
+
 public class ContactsDAO {
 
 public static ObservableList<Contacts> getAllContacts() {
     ObservableList<Contacts> contactsObservableList = FXCollections.observableArrayList();
 
     try {
-        String sql = "SELECT * FROM Contacts";
-        PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
-        ResultSet result = preparedStatement.executeQuery();
+        String getEveryContact = "SELECT * FROM Contacts";
+        PreparedStatement collectAllContacts = createConnection().prepareStatement(getEveryContact);
+        ResultSet result = collectAllContacts.executeQuery();
 
         while (result.next()) {
             int contactId = result.getInt("Contact_ID");

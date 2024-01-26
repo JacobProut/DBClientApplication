@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Customers;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -146,6 +148,15 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Appointment Scheduler");
     }
 
+
+    public static void returnToCustomerAppointments(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/customerMenu.fxml")));
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Customer View List");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

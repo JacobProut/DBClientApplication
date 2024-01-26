@@ -33,9 +33,6 @@ public class customerMenuController implements Initializable {
     private TableView<Customers> customerTableView;
 
     @FXML
-    private Pane customerViewPane;
-
-    @FXML
     private Button deleteCustomerButton;
 
     @FXML

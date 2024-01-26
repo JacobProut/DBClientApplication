@@ -49,9 +49,6 @@ public class customerCreationFormController implements Initializable {
     private TextField creationCustomerPostalCode;
 
     @FXML
-    private Pane customerCreationFormPane;
-
-    @FXML
     private ComboBox<First_Level_Divisions> divisionPicker;
 
     @FXML

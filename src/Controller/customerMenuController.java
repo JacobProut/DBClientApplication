@@ -18,6 +18,7 @@ import model.Customers;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,7 +93,8 @@ public class customerMenuController implements Initializable {
     }
 
     @FXML
-    void onActionDeleteCustomer(ActionEvent event) {
+    void onActionDeleteCustomer(ActionEvent event) throws SQLException {
+
 
     }
 

@@ -95,4 +95,11 @@ public class CustomersDAO {
         }
     }*/
 
+    public static void removeCustomerFromTableView(int customerId) throws SQLException {
+            String removeCustomer = "DELETE FROM customers WHERE Customer_ID = ?";
+            PreparedStatement byeByeCustomer = createConnection().prepareStatement(removeCustomer);
+            byeByeCustomer.setInt(1, customerId);
+            byeByeCustomer.execute();
+        }
+
 }

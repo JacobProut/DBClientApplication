@@ -58,7 +58,7 @@ public class customerCreationFormController implements Initializable {
     @FXML
     void onActionSaveButton(ActionEvent event) {
         try {
-            if (addAndUpdateCustomerValidation()) {
+            if (createCustomerValidation()) {
                 String customerName = creationCustomerName.getText();
                 String customerAddress = creationCustomerAddress.getText();
                 String customerPostalCode = creationCustomerPostalCode.getText();
@@ -142,7 +142,7 @@ public class customerCreationFormController implements Initializable {
         countryPicker.setItems(CountriesDAO.getAllCountriesList());
     }
 
-    public boolean addAndUpdateCustomerValidation() {
+    public boolean createCustomerValidation() {
         if (creationCustomerName.getText().isEmpty() && creationCustomerAddress.getText().isEmpty() && creationCustomerPostalCode.getText().isEmpty() && creationCustomerPhoneNumber.getText().isEmpty() && countryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
             errorMsgs.errorCodes(5);
             return false;

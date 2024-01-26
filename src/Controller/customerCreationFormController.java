@@ -1,11 +1,14 @@
 package Controller;
 
 import DAO.CountriesDAO;
+import DAO.CustomersDAO;
 import DAO.First_Level_DivisionsDAO;
+import DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,9 +20,15 @@ import model.First_Level_Divisions;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import errorMessages.errorMsgs;
+import model.Users;
+
+import javax.swing.*;
 
 public class customerCreationFormController implements Initializable {
     Parent scene;
@@ -55,11 +64,66 @@ public class customerCreationFormController implements Initializable {
     @FXML
     private Button saveButton;
 
+
+    //Working method without Created_By & Last_Updated_By
     @FXML
-    void onActionSaveButton(ActionEvent event) throws SQLException {
-
-
+    void onActionSaveButton(ActionEvent event) {
+        try {
+            if (divisionPicker.getValue() == null) {
+                Countries countries = countryPicker.getValue();
+                if (countries == null) {
+                    errorMsgs.errorCodes(11);
+                }
+            }
+            else {
+                addAndUpdateCustomerValidation();
+                String customerName = creationCustomerName.getText();
+                String customerAddress = creationCustomerAddress.getText();
+                String customerPostalCode = creationCustomerPostalCode.getText();
+                String customerPhoneNumber = creationCustomerPhoneNumber.getText();
+                LocalDateTime createDate = LocalDateTime.now();
+                LocalDateTime lastUpdated = LocalDateTime.now();
+                First_Level_Divisions customerMenuDivisionId = divisionPicker.getValue();
+                int divisionId = customerMenuDivisionId.getDivisionId();
+                CustomersDAO.createCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, lastUpdated, divisionId);
+                customerMenuController.returnToCustomerAppointments(event);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
+    /* //THIS METHOD IS TRYING TO ADD THING INTO Created_By and Last_Updated_By. NOT WORKING - Sends [admin, test] to Created_By/Last_Update_By col in mySql
+    @FXML
+    void onActionSaveButton(ActionEvent event) {
+        try {
+            if (divisionPicker.getValue() == null) {
+                Countries countries = countryPicker.getValue();
+                if (countries == null) {
+                    errorMsgs.errorCodes(11);
+                }
+            }
+            else {
+                addAndUpdateCustomerValidation();
+                String customerName = creationCustomerName.getText();
+                String customerAddress = creationCustomerAddress.getText();
+                String customerPostalCode = creationCustomerPostalCode.getText();
+                String customerPhoneNumber = creationCustomerPhoneNumber.getText();
+                LocalDateTime createDate = LocalDateTime.now();
+                String createdBy = String.valueOf(UsersDAO.getAllUsers()); //Sends [admin, test] to Created_By col in mySql | | Find a way to make it send current logged-in user
+                LocalDateTime lastUpdated = LocalDateTime.now();
+                String lastUpdatedBy = String.valueOf(UsersDAO.getAllUsers());//Sends [admin, test] to Last_Updated_By col in mySql | Find a way to make it send current logged-in user
+                First_Level_Divisions customerMenuDivisionId = divisionPicker.getValue();
+                int divisionId = customerMenuDivisionId.getDivisionId();
+                CustomersDAO.createCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy ,divisionId);
+                customerMenuController.returnToCustomerAppointments(event);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
 
     @FXML
     void onActionCreationCancel(ActionEvent event) throws IOException {
@@ -93,4 +157,31 @@ public class customerCreationFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryPicker.setItems(CountriesDAO.getAllCountriesList());
     }
+
+    public void addAndUpdateCustomerValidation() {
+        if (creationCustomerName.getText().isEmpty() && creationCustomerAddress.getText().isEmpty() && creationCustomerPostalCode.getText().isEmpty() && creationCustomerPhoneNumber.getText().isEmpty() && countryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
+            errorMsgs.errorCodes(5);
+        }
+        else if (creationCustomerName.getText().isBlank() || creationCustomerName.getText().isEmpty()) {
+            errorMsgs.errorCodes(6);
+        }
+        else if (creationCustomerAddress.getText().isBlank() || creationCustomerAddress.getText().isEmpty()) {
+            errorMsgs.errorCodes(7);
+        }
+        else if (creationCustomerPostalCode.getText().isBlank() || creationCustomerPostalCode.getText().isEmpty()) {
+            errorMsgs.errorCodes(8);
+        }
+        else if (creationCustomerPhoneNumber.getText().isBlank() || creationCustomerPhoneNumber.getText().isEmpty()) {
+            errorMsgs.errorCodes(9);
+        }
+        /*else if (countryPicker.getSelectionModel().isEmpty()) {
+            errorMsgs.errorCodes(10);
+        }
+        else if (divisionPicker.getSelectionModel().isEmpty()) {
+            errorMsgs.errorCodes(11);
+        }*/
+    }
+
+
+
 }

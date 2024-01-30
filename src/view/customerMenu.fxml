@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.customerMenuController">
+   <children>
+      <Label layoutX="416.0" layoutY="14.0" text="Customer View" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
+         <children>
+            <RadioButton fx:id="radioButtonViewAllCustomers" layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
+               </RadioButton>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="customerTableView" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
+        <columns>
+          <TableColumn fx:id="tableColCustomerID" prefWidth="78.0" text="Customer_ID" />
+          <TableColumn fx:id="tableColCustomerName" prefWidth="99.0" text="Customer_Name" />
+            <TableColumn fx:id="tableColCustomerAddress" prefWidth="122.0" text="Address" />
+            <TableColumn fx:id="tableColCustomerPostalCode" prefWidth="76.0" text="Postal_Code" />
+            <TableColumn fx:id="tableColCustomerPhoneNumber" prefWidth="98.0" text="Phone" />
+            <TableColumn fx:id="tableColCustomerCreatedDate" prefWidth="92.0" text="Create_Date" />
+            <TableColumn fx:id="tableColCustomerCreatedBy" prefWidth="77.0" text="Created_By" />
+            <TableColumn fx:id="tableColCustomerLastUpdated" prefWidth="88.0" text="Last_Update" />
+            <TableColumn fx:id="tableColCustomerLastUpdatedBy" prefWidth="114.0" text="Last_Updated_By" />
+            <TableColumn fx:id="tableColCustomerDivisionId" prefWidth="105.0" text="Division_ID" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TableView>
+      <Button fx:id="reportsButton" layoutX="14.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="25.0" prefWidth="122.0" text="Reports" />
+      <Button fx:id="logoutButton" layoutX="825.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionLogout" prefHeight="25.0" prefWidth="122.0" text="Logout" />
+      <Button fx:id="addCustomerButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
+      <Button fx:id="updateCustomerButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
+      <Button fx:id="deleteCustomerButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
+      <Button fx:id="returnToAppointmentScheduler" layoutX="386.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
+   </children>
+</Pane>

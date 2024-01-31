@@ -83,6 +83,11 @@ public abstract class errorMsgs implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 13: //customerMenuController onActionDeleteCustomer Method error
+                    alert.setTitle((languageBundle.getString("NoCustomerSelected")));
+                    alert.setContentText(languageBundle.getString("NoCustomerSelectedText"));
+                    alert.showAndWait();
+                    break;
 
             }
         }

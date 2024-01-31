@@ -77,7 +77,7 @@ public class appointmentModificationFormController {
     }
 
     @FXML
-    void onActionEndDateCalander(ActionEvent event) {
+    void onActionEndDateCalendar(ActionEvent event) {
 
     }
 
@@ -92,7 +92,7 @@ public class appointmentModificationFormController {
     }
 
     @FXML
-    void onActionStartDateCalander(ActionEvent event) {
+    void onActionStartDateCalendar(ActionEvent event) {
 
     }
 

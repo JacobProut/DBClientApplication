@@ -8,6 +8,7 @@ import model.Users;
 import java.sql.*;
 import java.time.LocalDateTime;
 
+import static DAO.JDBC.connection;
 import static DAO.JDBC.createConnection;
 
 
@@ -44,35 +45,10 @@ public class CustomersDAO {
     }
 
 
+
     //had to include lastUpdated, otherwise i would get java.sql errors
-    //NOT FINAL!!! NEED TO ADD Created_By and Last_Updated_By
-    public static void createCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, LocalDateTime lastUpdated, int divisionId) throws SQLException {
-        try {
-            String customerCreation = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Last_Update, Division_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement createCust = createConnection().prepareStatement(customerCreation);
-
-            createCust.setString(1, customerName);
-            createCust.setString(2, customerAddress);
-            createCust.setString(3, customerPostalCode);
-            createCust.setString(4, customerPhoneNumber);
-            createCust.setTimestamp(5, Timestamp.valueOf(createDate));
-            createCust.setTimestamp(6, Timestamp.valueOf(lastUpdated));
-            createCust.setInt(7, divisionId);
-
-            createCust.executeUpdate();
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-
-
-    ////THIS METHOD IS TRYING TO ADD THING INTO Created_By and Last_Updated_By. NOT WORKING - Sends [admin, test] to Created_By/Last_Update_By col in mySql
-
-    /*public static void createCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) throws SQLException {
+    //FINAL ADDED CREATED_BY & LAST_UPDATED_BY
+    public static void createCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) throws SQLException {
         try {
             String customerCreation = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement createCust = createConnection().prepareStatement(customerCreation);
@@ -93,7 +69,8 @@ public class CustomersDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }*/
+
+    }
 
     public static void removeCustomerFromTableView(int customerId) throws SQLException {
             String removeCustomer = "DELETE FROM customers WHERE Customer_ID = ?";
@@ -101,5 +78,30 @@ public class CustomersDAO {
             byeByeCustomer.setInt(1, customerId);
             byeByeCustomer.execute();
         }
+
+
+    public static void updateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) {
+        try {
+            String updateCustomer = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
+            PreparedStatement updateCustomerToDB = createConnection().prepareStatement(updateCustomer);
+
+            updateCustomerToDB.setString(1, customerName);
+            updateCustomerToDB.setString(2, customerAddress);
+            updateCustomerToDB.setString(3, customerPostalCode);
+            updateCustomerToDB.setString(4, customerPhoneNumber);
+            updateCustomerToDB.setTimestamp(5, Timestamp.valueOf(lastUpdated));
+            updateCustomerToDB.setString(6, lastUpdatedBy);
+            updateCustomerToDB.setInt(7, divisionId);
+            updateCustomerToDB.setInt(8, customerId);
+
+            updateCustomerToDB.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 }

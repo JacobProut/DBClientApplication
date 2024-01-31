@@ -54,7 +54,8 @@ public class customerCreationFormController implements Initializable {
     private Button saveButton;
 
 
-    //Working method without Created_By & Last_Updated_By
+    //Working method without Last_Updated_By | Add Last_Updated_By
+
     @FXML
     void onActionSaveButton(ActionEvent event) {
         try {
@@ -67,7 +68,9 @@ public class customerCreationFormController implements Initializable {
                 LocalDateTime lastUpdated = LocalDateTime.now();
                 First_Level_Divisions customerMenuDivisionId = divisionPicker.getValue();
                 int divisionId = customerMenuDivisionId.getDivisionId();
-                CustomersDAO.createCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, lastUpdated, divisionId);
+                String createdBy = "User";
+                String lastUpdatedBy = "User";
+                CustomersDAO.createCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId);
                 customerMenuController.returnToCustomerAppointments(event);
             }
         } catch (Exception e) {
@@ -75,38 +78,6 @@ public class customerCreationFormController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-
-    //NEED TO MAKE THIS METHOD HAVE (addAndUpdateCustomerValidation()) IN IT!
-    /* //THIS METHOD IS TRYING TO ADD THING INTO Created_By and Last_Updated_By. NOT WORKING - Sends [admin, test] to Created_By/Last_Update_By col in mySql
-    @FXML
-    void onActionSaveButton(ActionEvent event) {
-        try {
-            if (divisionPicker.getValue() == null) {
-                Countries countries = countryPicker.getValue();
-                if (countries == null) {
-                    errorMsgs.errorCodes(11);
-                }
-            }
-            else {
-                addAndUpdateCustomerValidation();
-                String customerName = creationCustomerName.getText();
-                String customerAddress = creationCustomerAddress.getText();
-                String customerPostalCode = creationCustomerPostalCode.getText();
-                String customerPhoneNumber = creationCustomerPhoneNumber.getText();
-                LocalDateTime createDate = LocalDateTime.now();
-                String createdBy = String.valueOf(UsersDAO.getAllUsers()); //Sends [admin, test] to Created_By col in mySql | | Find a way to make it send current logged-in user
-                LocalDateTime lastUpdated = LocalDateTime.now();
-                String lastUpdatedBy = String.valueOf(UsersDAO.getAllUsers());//Sends [admin, test] to Last_Updated_By col in mySql | Find a way to make it send current logged-in user
-                First_Level_Divisions customerMenuDivisionId = divisionPicker.getValue();
-                int divisionId = customerMenuDivisionId.getDivisionId();
-                CustomersDAO.createCustomer(customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy ,divisionId);
-                customerMenuController.returnToCustomerAppointments(event);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 
 
     @FXML

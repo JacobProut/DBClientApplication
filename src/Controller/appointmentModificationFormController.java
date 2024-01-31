@@ -20,9 +20,6 @@ public class appointmentModificationFormController {
     private TextField appointmentModificationAppointmentID;
 
     @FXML
-    private TextField appointmentModificationContact;
-
-    @FXML
     private TextField appointmentModificationDescription;
 
     @FXML
@@ -38,25 +35,23 @@ public class appointmentModificationFormController {
     private Button cancelAppointmentModification;
 
     @FXML
-    private DatePicker endDatefxid;
+    private ComboBox<?> comboBoxContact;
 
     @FXML
-    private Spinner<?> endTimeHourSpinner;
+    private ComboBox<?> comboBoxEndTime;
 
     @FXML
-    private Spinner<?> endTimeMinuteSpinner;
+    private ComboBox<?> comboBoxStartTime;
 
     @FXML
-    private Button modificationAppointment;
+    private Button confirmAppointmentModification;
 
     @FXML
-    private DatePicker startDatefxid;
+    private DatePicker endDateCalander;
 
     @FXML
-    private Spinner<?> startTimeHourSpinner;
+    private DatePicker startDateCalander;
 
-    @FXML
-    private Spinner<?> startTimeMinuteSpinner;
 
     @FXML
     void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
@@ -75,8 +70,19 @@ public class appointmentModificationFormController {
         }
     }
 
+
     @FXML
-    void onActionEndDate(ActionEvent event) {
+    void onActionComboBoxContact(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionEndDateCalander(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionEndTime(ActionEvent event) {
 
     }
 
@@ -86,8 +92,12 @@ public class appointmentModificationFormController {
     }
 
     @FXML
-    void onActionStartDate(ActionEvent event) {
+    void onActionStartDateCalander(ActionEvent event) {
 
     }
 
+    @FXML
+    void onActionStartTime(ActionEvent event) {
+
+    }
 }

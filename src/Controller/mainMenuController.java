@@ -29,8 +29,6 @@ public class mainMenuController implements Initializable {
 
     @FXML private Button addAppointmentButton;
 
-    @FXML private DatePicker dateSearchField;
-
     @FXML private Button deleteAppointmentButton;
 
     @FXML private Button logoutButton;
@@ -109,6 +107,8 @@ public class mainMenuController implements Initializable {
     //Find a way to select object in TableView then import it into appointmentModificationForm.fxml scene.
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
+
+
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentModificationForm.fxml")));
         stage.setScene(new Scene(scene));
@@ -124,7 +124,6 @@ public class mainMenuController implements Initializable {
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments in the database!"));
     }
 
-    //Not sure if this is right, but it switches to customerMenu GUI
     @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
@@ -153,6 +152,7 @@ public class mainMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
         appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
         tableColAppointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         tableColTitle.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
@@ -164,7 +164,5 @@ public class mainMenuController implements Initializable {
         tableColEndDateAndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
-
-        ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
     }
 }

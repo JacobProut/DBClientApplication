@@ -2,6 +2,8 @@ package Controller;
 
 import DAO.CustomersDAO;
 import DAO.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Customers;
 
 import javax.swing.*;
@@ -89,8 +92,23 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Customer Creation Page");
     }
 
+
+    //Make this method give an error on delete if customer has appointments
+    ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws SQLException {
+        ObservableList<Appointments> getAllAppointments = FXCollections.observableArrayList();
+        Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer == null) {
+            errorMessages.errorMsgs.errorCodes(13);
+            return;
+        }
+
+        CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
+        allCustomers = CustomersDAO.getAllCustomers();
+        customerTableView.setItems(allCustomers);
+        customerTableView.refresh();
 
 
     }
@@ -115,8 +133,19 @@ public class customerMenuController implements Initializable {
 
     }
 
+    @FXML
+    void onActionUpdateCustomer(ActionEvent event) throws  IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerModificationForm.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Customer Modification Page");
 
-    //Find a way to select item from tableview and have it get modified (Look at software1 project!)
+    }
+
+
+    //DEFAULT METHOD [DELETE WHEN NEW WORKING METHOD IS IN PLACE]
+    /*//Find a way to select item from tableview and have it get modified (Look at software1 project!)
     @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
 
@@ -127,7 +156,24 @@ public class customerMenuController implements Initializable {
         stage.show();
         stage.setTitle("Customer Modification Page");
 
-    }
+    }*/
+
+
+    //Method used in customerModificationFormController.java  - customerSelection method
+   /*@FXML
+    void onActionUpdateCustomer(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        FXMLLoader loadupper = new FXMLLoader(getClass().getResource("/view/customerModificationForm.fxml"));
+        scene = loadupper.load();
+        Customers customerSelection = customerTableView.getSelectionModel().getSelectedItem();
+        customerModificationFormController controller = loadupper.getController();
+        controller.customerSelection(customerTableView.getSelectionModel().getSelectedIndex(), customerSelection);
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Customer Modification Page");
+
+    }*/
+
 
     @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {

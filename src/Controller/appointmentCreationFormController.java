@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import javax.naming.PartialResultException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,6 +21,12 @@ public class appointmentCreationFormController {
 
     @FXML
     private ComboBox<?> comboBoxContact;
+
+    @FXML
+    private ComboBox<?> comboBoxStartTime;
+
+    @FXML
+    private ComboBox<?> comboBoxEndTime;
 
     @FXML
     private TextField appointmentCreationDescription;
@@ -40,22 +47,12 @@ public class appointmentCreationFormController {
     private Button createAppointment;
 
     @FXML
-    private DatePicker endDatefxid;
+    private DatePicker endDateCalendar;
+
 
     @FXML
-    private Spinner<?> endTimeHourSpinner;
+    private DatePicker startDateCalendar;
 
-    @FXML
-    private Spinner<?> endTimeMinuteSpinner;
-
-    @FXML
-    private DatePicker startDatefxid;
-
-    @FXML
-    private Spinner<?> startTimeHourSpinner;
-
-    @FXML
-    private Spinner<?> startTimeMinuteSpinner;
 
     Parent scene;
     Stage stage;
@@ -93,6 +90,16 @@ public class appointmentCreationFormController {
 
     @FXML
     void onActionComboBoxContact(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionStartTime(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionEndTime(ActionEvent event) {
 
     }
 

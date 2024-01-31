@@ -16,8 +16,8 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="108.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="207.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="90.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="0.0" prefWidth="93.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="217.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="0.0" prefWidth="158.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="152.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -70,7 +70,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="startDatefxid" editable="false" onAction="#onActionStartDate" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="startDateCalendar" editable="false" onAction="#onActionStartDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="End Date:" GridPane.rowIndex="7">
                <font>
                   <Font size="14.0" />
@@ -81,21 +81,18 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="endDatefxid" editable="false" onAction="#onActionEndDate" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Spinner prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <DatePicker fx:id="endDateCalendar" editable="false" onAction="#onActionEndDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="appointmentCreationTitle" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="appointmentCreationAppointmentID" editable="false" promptText="Auto-Generated" GridPane.columnIndex="1" />
+            <TextField fx:id="appointmentCreationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
             <TextField fx:id="appointmentCreationDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="appointmentCreationLocation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="appointmentCreationType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Spinner fx:id="endTimeMinuteSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <Spinner fx:id="startTimeMinuteSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Spinner fx:id="startTimeHourSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Spinner fx:id="endTimeHourSpinner" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <ComboBox fx:id="comboBoxContact" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBoxStartTime" onAction="#onActionStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBoxEndTime" onAction="#onActionEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
          </children>
       </GridPane>
       <Button fx:id="createAppointment" layoutX="289.0" layoutY="490.0" mnemonicParsing="false" onAction="#onActionCreateAppointment" prefHeight="37.0" prefWidth="163.0" text="Create Appointment" />
-      <Button fx:id="cancelAppointment" layoutX="597.0" layoutY="539.0" mnemonicParsing="false" onAction="#onActionCancelAppointment" text="Cancel Appointment " />
+      <Button fx:id="cancelAppointment" layoutX="552.0" layoutY="539.0" mnemonicParsing="false" onAction="#onActionCancelAppointment" text="Cancel Appointment Creation" />
    </children>
 </Pane>

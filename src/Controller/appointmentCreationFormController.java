@@ -7,52 +7,40 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Contacts;
 
 import javax.naming.PartialResultException;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
 
 public class appointmentCreationFormController {
 
-    @FXML
-    private TextField appointmentCreationAppointmentID;
+    @FXML private TextField appointmentCreationAppointmentID;
 
-    @FXML
-    private ComboBox<?> comboBoxContact;
+    @FXML private ComboBox<Contacts> comboBoxContact;
 
-    @FXML
-    private ComboBox<?> comboBoxStartTime;
+    @FXML private ComboBox<LocalTime> comboBoxStartTime;
 
-    @FXML
-    private ComboBox<?> comboBoxEndTime;
+    @FXML private ComboBox<LocalTime> comboBoxEndTime;
 
-    @FXML
-    private TextField appointmentCreationDescription;
+    @FXML private TextField appointmentCreationDescription;
 
-    @FXML
-    private TextField appointmentCreationLocation;
+    @FXML private TextField appointmentCreationLocation;
 
-    @FXML
-    private TextField appointmentCreationTitle;
+    @FXML private TextField appointmentCreationTitle;
 
-    @FXML
-    private TextField appointmentCreationType;
+    @FXML private TextField appointmentCreationType;
 
-    @FXML
-    private Button cancelAppointment;
+    @FXML private Button cancelAppointment;
 
-    @FXML
-    private Button createAppointment;
+    @FXML private Button createAppointment;
 
-    @FXML
-    private DatePicker endDateCalendar;
+    @FXML private DatePicker endDateCalendar;
 
-
-    @FXML
-    private DatePicker startDateCalendar;
-
+    @FXML private DatePicker startDateCalendar;
 
     Parent scene;
     Stage stage;

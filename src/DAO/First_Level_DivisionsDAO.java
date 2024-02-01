@@ -65,4 +65,27 @@ public class First_Level_DivisionsDAO {
         return countryToDivisionComboBoxes;
     }
 
+    //Method used in customerModificationFormController.java  - customerSelection method
+    public static First_Level_Divisions getSelectedCustomerDivisionLevel(int divisionId) {
+
+        try {
+            String selectedCustomerDivisionId = "SELECT Division_ID, Division FROM first_level_divisions WHERE Division_ID = ?";
+            PreparedStatement selectedDivision = createConnection().prepareStatement(selectedCustomerDivisionId);
+
+            selectedDivision.setInt(1, divisionId);
+            selectedDivision.execute();
+
+            ResultSet selectedResults = selectedDivision.getResultSet();
+            selectedResults.next();
+
+            int selectedDivId = selectedResults.getInt("Division_ID");
+            String selectedDivName = selectedResults.getString("Division");
+            return new First_Level_Divisions(selectedDivId, selectedDivName);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

@@ -35,6 +35,11 @@ public class First_Level_Divisions {
         this.countryId = countryId;
     }
 
+    public First_Level_Divisions(int selectedDivId, String selectedDivName) {
+        this.divisionId = selectedDivId;
+        this.divisionName = selectedDivName;
+    }
+
     //Do i need these get/set functions for the foreign key?
     public int getCountryId() {
         return countryId;

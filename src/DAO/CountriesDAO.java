@@ -39,6 +39,25 @@ public class CountriesDAO {
         return countriesObservableList;
     }
 
+    //Method used in customerModificationFormController.java  - customerSelection method
+    public static Countries getSelectedCustomerCountry(int countryId) {
+        try {
+            String selectedCustomerCountryId = "SELECT Country_ID, Country FROM countries WHERE Country_ID = ?";
+            PreparedStatement selectedCountry = createConnection().prepareStatement(selectedCustomerCountryId);
 
+            selectedCountry.setInt(1, countryId);
+            selectedCountry.execute();
+
+            ResultSet selectedResults = selectedCountry.getResultSet();
+            selectedResults.next();
+
+            int selectedCountryId = selectedResults.getInt("Country_ID");
+            String selectedCountryName = selectedResults.getString("Country");
+            return new Countries(selectedCountryId, selectedCountryName);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

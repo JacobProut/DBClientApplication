@@ -8,6 +8,8 @@ public class Customers {
 
     //Foreign Key
     private int divisionId;
+    private int countryId;
+    private String countryName;
 
 
     private String customerName;
@@ -20,7 +22,7 @@ public class Customers {
     private String lastUpdatedBy;
 
     //Not sure if I need to put divisionId in here
-    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) {
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId, int countryId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -32,6 +34,7 @@ public class Customers {
         this.lastUpdatedBy = lastUpdatedBy;
         //idk if i need divisionId in here
         this.divisionId = divisionId;
+        this.countryId = countryId;
     }
 
     //Do i need these get/set functions for foreign key?
@@ -40,6 +43,13 @@ public class Customers {
     }
     public void setDivisionId(int divisionId) {
         this.divisionId = divisionId;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public int getCustomerId() {

@@ -2,7 +2,9 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Countries;
 import model.Customers;
+import model.First_Level_Divisions;
 import model.Users;
 
 import java.sql.*;
@@ -17,8 +19,8 @@ public class CustomersDAO {
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
         try {
-            //may need to add more In this "String sql = "Select * FROM Customers" Statement"!!!
-            String getAllCustomerData = "SELECT * FROM Customers";
+            String getAllCustomerData = "SELECT *, first_level_divisions.Division, first_level_divisions.Country_ID, countries.Country FROM customers JOIN first_level_divisions ON customers.Division_ID = first_level_divisions.Division_ID JOIN countries ON countries.Country_ID = first_level_divisions.Country_ID ORDER BY customers.Customer_ID";
+            //String getAllCustomerData = "SELECT * FROM Customers";
             PreparedStatement getCust = createConnection().prepareStatement(getAllCustomerData);
             ResultSet result = getCust.executeQuery();
 
@@ -33,8 +35,9 @@ public class CustomersDAO {
                 LocalDateTime lastUpdated = result.getTimestamp("Last_Update").toLocalDateTime();
                 String lastUpdatedBy = result.getString("Last_Updated_By");
                 int divisionId = result.getInt("Division_ID");
+                int countryId = result.getInt("Country_ID");
 
-                Customers allCustomers = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId);
+                Customers allCustomers = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId, countryId);
                 customersObservableList.add(allCustomers);
             }
         }
@@ -100,8 +103,6 @@ public class CustomersDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
 }

@@ -133,17 +133,6 @@ public class customerMenuController implements Initializable {
 
     }
 
-    @FXML
-    void onActionUpdateCustomer(ActionEvent event) throws  IOException {
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerModificationForm.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Customer Modification Page");
-
-    }
-
-
     //DEFAULT METHOD [DELETE WHEN NEW WORKING METHOD IS IN PLACE]
     /*//Find a way to select item from tableview and have it get modified (Look at software1 project!)
     @FXML
@@ -158,9 +147,9 @@ public class customerMenuController implements Initializable {
 
     }*/
 
-
     //Method used in customerModificationFormController.java  - customerSelection method
-   /*@FXML
+    //ADD A NULL STATEMENT IN HERE!!!!! WITH ALERTS
+   @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         FXMLLoader loadupper = new FXMLLoader(getClass().getResource("/view/customerModificationForm.fxml"));
@@ -172,7 +161,7 @@ public class customerMenuController implements Initializable {
         stage.show();
         stage.setTitle("Customer Modification Page");
 
-    }*/
+    }
 
 
     @FXML

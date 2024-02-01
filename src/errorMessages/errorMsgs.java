@@ -89,6 +89,12 @@ public abstract class errorMsgs implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 14: // customerModificationFormController onActionUpdateCustomer/ updateCustomerValidation Incorrect division for country
+                    alert.setTitle((languageBundle.getString("IncorrectDivisionPicker")));
+                    alert.setContentText(languageBundle.getString("IncorrectDivisionPickerValue"));
+                    alert.showAndWait();
+                    break;
+
             }
         }
 

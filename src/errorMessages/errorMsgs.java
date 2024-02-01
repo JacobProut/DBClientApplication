@@ -95,6 +95,13 @@ public abstract class errorMsgs implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 15: // No customer view table selection
+                    alert.setTitle((languageBundle.getString("PleaseSelectACustomer")));
+                    alert.setContentText(languageBundle.getString("PleaseSelectACustomerDescription"));
+                    alert.showAndWait();
+                    break;
+
+
             }
         }
 

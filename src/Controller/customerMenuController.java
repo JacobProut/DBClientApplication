@@ -13,12 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Customers;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -133,36 +131,25 @@ public class customerMenuController implements Initializable {
 
     }
 
-    //DEFAULT METHOD [DELETE WHEN NEW WORKING METHOD IS IN PLACE]
-    /*//Find a way to select item from tableview and have it get modified (Look at software1 project!)
-    @FXML
-    void onActionUpdateCustomer(ActionEvent event) throws IOException {
-
-
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerModificationForm.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Customer Modification Page");
-
-    }*/
-
     //Method used in customerModificationFormController.java  - customerSelection method
-    //ADD A NULL STATEMENT IN HERE!!!!! WITH ALERTS
    @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        FXMLLoader loadupper = new FXMLLoader(getClass().getResource("/view/customerModificationForm.fxml"));
-        scene = loadupper.load();
-        Customers customerSelection = customerTableView.getSelectionModel().getSelectedItem();
-        customerModificationFormController controller = loadupper.getController();
-        controller.customerSelection(customerTableView.getSelectionModel().getSelectedIndex(), customerSelection);
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Customer Modification Page");
 
+       if (customerTableView.getSelectionModel().isEmpty()) {
+           errorMessages.errorMsgs.errorCodes(15);
+       }
+       else {
+           stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+           FXMLLoader loadupper = new FXMLLoader(getClass().getResource("/view/customerModificationForm.fxml"));
+           scene = loadupper.load();
+           Customers customerSelection = customerTableView.getSelectionModel().getSelectedItem();
+           customerModificationFormController controller = loadupper.getController();
+           controller.customerSelection(customerTableView.getSelectionModel().getSelectedIndex(), customerSelection);
+           stage.setScene(new Scene(scene));
+           stage.show();
+           stage.setTitle("Customer Modification Page");
+       }
     }
-
 
     @FXML
     void radioButtonViewAllCustomers(ActionEvent event) throws IOException {

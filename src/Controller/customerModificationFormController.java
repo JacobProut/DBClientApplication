@@ -29,13 +29,7 @@ import java.util.ResourceBundle;
 public class customerModificationFormController implements Initializable {
 
     @FXML
-    private Pane customerModificationFormPane;
-
-    @FXML
     private ComboBox<First_Level_Divisions> divisionPicker;
-
-    @FXML
-    private Button modificationCancelButton;
 
     @FXML
     private TextField modificationCustomerAddress;
@@ -54,9 +48,6 @@ public class customerModificationFormController implements Initializable {
 
     @FXML
     private ComboBox<Countries> modificationCountryPicker;
-
-    @FXML
-    private Button updateCustomerButton;
 
     Parent scene;
     Stage stage;

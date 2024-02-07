@@ -76,6 +76,7 @@ public class loginScreenForm implements Initializable {
             stage.setTitle("Appointment Scheduler Form");
             stage.setScene(scene);
             stage.show();
+            System.out.println("Successfully Logged in: Loading Appointment Scheduler.");
         }
     }
 
@@ -83,15 +84,19 @@ public class loginScreenForm implements Initializable {
     public Boolean loginInfoValidation() throws SQLException {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
             errorMsgs.errorCodes(4);
+            System.out.println("Failed Login Attempt: Blank User/Password");
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
             errorMsgs.errorCodes(1);
+            System.out.println("Failed Login Attempt: Blank or incorrect Username");
             return false;
         } else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
             errorMsgs.errorCodes(2);
+            System.out.println("Failed Login Attempt: Blank or incorrect Password");
             return false;
         } else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
             errorMsgs.errorCodes(3);
+            System.out.println("Failed Login Attempt: Incorrect username or password");
         }
         return true;
     }

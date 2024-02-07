@@ -1,30 +1,40 @@
 package Controller;
 
+import DAO.ContactsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Contacts;
+import model.Customers;
+import model.Users;
 
 import javax.naming.PartialResultException;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class appointmentCreationFormController {
+public class appointmentCreationFormController implements Initializable {
 
     @FXML private TextField appointmentCreationAppointmentID;
-
-    @FXML private ComboBox<Contacts> comboBoxContact;
 
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
 
     @FXML private ComboBox<LocalTime> comboBoxEndTime;
+
+    @FXML private ComboBox<Users> userComboBox;
+
+    @FXML private ComboBox<Customers> customerComboBox;
+
+    @FXML private ComboBox<Contacts> contactComboBox;
 
     @FXML private TextField appointmentCreationDescription;
 
@@ -63,6 +73,9 @@ public class appointmentCreationFormController {
 
     @FXML
     void onActionCreateAppointment(ActionEvent event) {
+        String title = appointmentCreationTitle.getText();
+        String description = appointmentCreationDescription.getText();
+        String location = appointmentCreationLocation.getText();
 
     }
 
@@ -90,6 +103,23 @@ public class appointmentCreationFormController {
     void onActionEndTime(ActionEvent event) {
 
     }
+
+    @FXML
+    void onActionComboBoxCustomer(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    void onActionComboBoxUser(ActionEvent actionEvent) {
+
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        contactComboBox.setItems(ContactsDAO.getAllContacts());
+    }
+
 
 
     //add appointment empty fields. MAY REMAKE SO IT INCLUDES errorMessages.errorMsg.errorCode();

@@ -1,14 +1,14 @@
-package errorMessages;
+package utility;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import java.util.ResourceBundle;
 
-public abstract class errorMsgs implements Initializable {
+public abstract class errorMessages implements Initializable {
     static ResourceBundle languageBundle = ResourceBundle.getBundle("LanguageBundle/language");
 
-    public static void errorCodes(int codes) {
+    public static void errorCode(int codes) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
             switch (codes) {
                 case 1: //Empty username field

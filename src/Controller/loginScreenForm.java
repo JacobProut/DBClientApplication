@@ -21,7 +21,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import errorMessages.errorMsgs;
+import utility.errorMessages;
 public class loginScreenForm implements Initializable {
 
     @FXML
@@ -83,19 +83,19 @@ public class loginScreenForm implements Initializable {
 
     public Boolean loginInfoValidation() throws SQLException {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
-            errorMsgs.errorCodes(4);
+            errorMessages.errorCode(4);
             System.out.println("Failed Login Attempt: Blank User/Password");
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
-            errorMsgs.errorCodes(1);
+            errorMessages.errorCode(1);
             System.out.println("Failed Login Attempt: Blank or incorrect Username");
             return false;
         } else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
-            errorMsgs.errorCodes(2);
+            errorMessages.errorCode(2);
             System.out.println("Failed Login Attempt: Blank or incorrect Password");
             return false;
         } else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
-            errorMsgs.errorCodes(3);
+            errorMessages.errorCode(3);
             System.out.println("Failed Login Attempt: Incorrect username or password");
         }
         return true;

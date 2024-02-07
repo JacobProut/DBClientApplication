@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import model.Contacts;
 import model.Customers;
 import model.Users;
+import utility.TimeManipulations;
+import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -128,8 +130,11 @@ public class appointmentCreationFormController implements Initializable {
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
 
         //Not sure if this is correct yet
-        comboBoxStartTime.setItems(mainMenuController.timeIntervals());
-        comboBoxEndTime.setItems(mainMenuController.timeIntervals());
+        comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
+
+        //Not sure if ill use this lambdas expression
+        //comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
     }
 
 
@@ -137,51 +142,51 @@ public class appointmentCreationFormController implements Initializable {
     //add appointment empty fields.
     public boolean appointFieldsEmpty() {
         if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(16);
+            errorMessages.errorCode(16);
             return false;
         }
         else if (appointmentCreationDescription.getText().isBlank() || appointmentCreationDescription.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(17);
+            errorMessages.errorCode(17);
             return false;
         }
         else if (appointmentCreationLocation.getText().isBlank() || appointmentCreationLocation.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(18);
+            errorMessages.errorCode(18);
             return false;
         }
         else if (appointmentCreationType.getText().isBlank() || appointmentCreationType.getText().isEmpty()) {
-            errorMessages.errorMsgs.errorCodes(19);
+            errorMessages.errorCode(19);
             return false;
         }
         else if (startDateCalendar.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(20);
+            errorMessages.errorCode(20);
             return false;
         }
 
         //not sure if comboBoxStartTime works properly
         else if (comboBoxStartTime.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(21);
+            errorMessages.errorCode(21);
             return false;
         }
         else if (endDateCalendar.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(22);
+            errorMessages.errorCode(22);
             return false;
         }
 
         //not sure if comboBoxEndTime works properly
         else if (comboBoxEndTime.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(23);
+            errorMessages.errorCode(23);
             return false;
         }
         else if (customerComboBox.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(24);
+            errorMessages.errorCode(24);
             return false;
         }
         else if (userComboBox.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(25);
+            errorMessages.errorCode(25);
             return false;
         }
         else if (contactComboBox.getValue() == null) {
-            errorMessages.errorMsgs.errorCodes(26);
+            errorMessages.errorCode(26);
             return false;
         }
         return true;

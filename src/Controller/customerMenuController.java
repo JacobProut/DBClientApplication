@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Customers;
+import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -99,7 +100,7 @@ public class customerMenuController implements Initializable {
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer == null) {
-            errorMessages.errorMsgs.errorCodes(13);
+            errorMessages.errorCode(13);
             return;
         }
 
@@ -136,7 +137,7 @@ public class customerMenuController implements Initializable {
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
 
        if (customerTableView.getSelectionModel().isEmpty()) {
-           errorMessages.errorMsgs.errorCodes(15);
+           errorMessages.errorCode(15);
        }
        else {
            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();

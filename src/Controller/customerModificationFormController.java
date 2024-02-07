@@ -3,7 +3,7 @@ package Controller;
 import DAO.CountriesDAO;
 import DAO.CustomersDAO;
 import DAO.First_Level_DivisionsDAO;
-import errorMessages.errorMsgs;
+import utility.errorMessages;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Countries;
 import model.Customers;
@@ -19,8 +18,6 @@ import model.First_Level_Divisions;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -123,30 +120,30 @@ public class customerModificationFormController implements Initializable {
 
     public boolean updateCustomerValidation() {
         if (modificationCustomerID.getText().isEmpty() && modificationCustomerAddress.getText().isEmpty() && modificationCustomerPostalCode.getText().isEmpty() && modificationCustomerPhoneNumber.getText().isEmpty() && modificationCountryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
-            errorMsgs.errorCodes(5);
+            errorMessages.errorCode(5);
             return false;
         } else if (modificationCustomerName.getText().isBlank() || modificationCustomerName.getText().isEmpty()) {
-            errorMsgs.errorCodes(6);
+            errorMessages.errorCode(6);
             return false;
         } else if (modificationCustomerAddress.getText().isBlank() || modificationCustomerAddress.getText().isEmpty()) {
-            errorMsgs.errorCodes(7);
+            errorMessages.errorCode(7);
             return false;
         } else if (modificationCustomerPostalCode.getText().isBlank() || modificationCustomerPostalCode.getText().isEmpty()) {
-            errorMsgs.errorCodes(8);
+            errorMessages.errorCode(8);
             return false;
         } else if (modificationCustomerPhoneNumber.getText().isBlank() || modificationCustomerPhoneNumber.getText().isEmpty()) {
-            errorMsgs.errorCodes(9);
+            errorMessages.errorCode(9);
             return false;
         } else if (modificationCountryPicker.getValue() == null) {
-            errorMsgs.errorCodes(10);
+            errorMessages.errorCode(10);
             return false;
         } else if (divisionPicker.getValue() == null) {
-            errorMsgs.errorCodes(12);
+            errorMessages.errorCode(12);
             return false;
         } else if (divisionPicker.getValue() == null) {
             Countries countries = modificationCountryPicker.getValue();
             if (countries == null) {
-                errorMsgs.errorCodes(14);
+                errorMessages.errorCode(14);
                 return false;
             }
         }

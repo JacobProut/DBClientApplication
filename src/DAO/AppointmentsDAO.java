@@ -27,6 +27,37 @@ public class AppointmentsDAO {
                 String appointmentType = result.getString("Type");
                 LocalDateTime startTime = result.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime endTime = result.getTimestamp("End").toLocalDateTime();
+                int customerId = result.getInt("Customer_ID");
+                int userId = result.getInt("User_ID");
+                int contactId = result.getInt("Contact_ID");
+
+                Appointments all = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, customerId, userId, contactId);
+                appointmentsObservableList.add(all);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentsObservableList;
+    }
+
+
+    /*public static ObservableList<Appointments> getAllAppointments() {
+        ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
+            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                int appointmentId = result.getInt("Appointment_ID");
+                String appointmentTitle = result.getString("Title");
+                String appointmentDescription = result.getString("Description");
+                String appointmentLocation = result.getString("Location");
+                String appointmentType = result.getString("Type");
+                LocalDateTime startTime = result.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endTime = result.getTimestamp("End").toLocalDateTime();
                 LocalDateTime appointmentCreationDate = result.getTimestamp("Create_date").toLocalDateTime();
                 String appointmentCreatedBy = result.getString("Created_By");
                 LocalDateTime lastUpdate = result.getTimestamp("Last_Update").toLocalDateTime();
@@ -44,7 +75,7 @@ public class AppointmentsDAO {
         }
         return appointmentsObservableList;
     }
-
+*/
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);

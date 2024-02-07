@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -148,6 +149,15 @@ public class mainMenuController implements Initializable {
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
+    }
+
+    public static void returnToAppointments(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/mainMenu.fxml")));
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Appointment Scheduler Form");
     }
 
     @Override

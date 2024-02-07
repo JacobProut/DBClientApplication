@@ -101,6 +101,73 @@ public abstract class errorMsgs implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 16: //Appointment Creation/Modification Forms: Empty Title
+                    alert.setTitle((languageBundle.getString("appointmentEmptyTitle")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyTitleDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 17: //Appointment Creation/Modification Forms: Empty Description
+                    alert.setTitle((languageBundle.getString("appointmentEmptyDescription")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyDescriptionDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 18: //Appointment Creation/Modification Forms: Empty Location
+                    alert.setTitle((languageBundle.getString("appointmentEmptyLocation")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyLocationDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 19: //Appointment Creation/Modification Forms: Empty Type
+                    alert.setTitle((languageBundle.getString("appointmentEmptyType")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyTypeDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 20: //Appointment Creation/Modification Forms: Empty Start Date
+                    alert.setTitle((languageBundle.getString("appointmentEmptyStartDate")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyStartDateDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 21: //Appointment Creation/Modification Forms: Empty Start Time
+                    alert.setTitle((languageBundle.getString("appointmentEmptyStartTime")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyStartTimeDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 22: //Appointment Creation/Modification Forms: Empty End Date
+                    alert.setTitle((languageBundle.getString("appointmentEmptyEndDate")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyEndDateDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 23: //Appointment Creation/Modification Forms: Empty End Time
+                    alert.setTitle((languageBundle.getString("appointmentEmptyEndTime")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyEndTimeDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 24: //Appointment Creation/Modification Forms: Empty Customer ComboBox Field
+                    alert.setTitle((languageBundle.getString("appointmentEmptyCustomerComboBox")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyCustomerComboBoxDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 25: //Appointment Creation/Modification Forms: Empty User ComboBox Field
+                    alert.setTitle((languageBundle.getString("appointmentEmptyUserComboBox")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyUserComboBoxDescription"));
+                    alert.showAndWait();
+                    break;
+
+                case 26: //Appointment Creation/Modification Forms: Empty Contact ComboBox Field
+                    alert.setTitle((languageBundle.getString("appointmentEmptyContactComboBox")));
+                    alert.setContentText(languageBundle.getString("appointmentEmptyContactComboBoxDescription"));
+                    alert.showAndWait();
+                    break;
+
+
 
             }
         }

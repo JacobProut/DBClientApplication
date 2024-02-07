@@ -2,6 +2,8 @@ package Controller;
 
 import DAO.JDBC;
 import DAO.AppointmentsDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
@@ -123,6 +126,7 @@ public class mainMenuController implements Initializable {
 
         //Added a placeholder in the TableView for when there is nothing in the database!
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments in the database!"));
+        System.out.println("Viewing All Appointments");
     }
 
     @FXML
@@ -132,6 +136,7 @@ public class mainMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
+        System.out.println("Switching to Customer View List");
     }
 
     @FXML
@@ -140,6 +145,7 @@ public class mainMenuController implements Initializable {
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));
+        System.out.println("Viewing Appointments by Month");
     }
 
     //For some odd reason, this doesn't work.
@@ -149,6 +155,7 @@ public class mainMenuController implements Initializable {
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
+        System.out.println("Viewing Appointments by Week");
     }
 
     public static void returnToAppointments(ActionEvent event) throws IOException {
@@ -158,6 +165,21 @@ public class mainMenuController implements Initializable {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Appointment Scheduler Form");
+    }
+
+
+    //idk if this is correct to fill start/end time comboboxes
+    //Currently it allows selection from 8:00am to 22:00[10Pm]
+    public static ObservableList<LocalTime> timeIntervals() {
+        ObservableList<LocalTime> listOfTimesAvailable = FXCollections.observableArrayList();
+        LocalTime startTime = LocalTime.of(8,00);
+        LocalTime endTime = LocalTime.MIDNIGHT.minusHours(2);
+
+        while (startTime.isBefore(endTime.plusSeconds(1))) {
+            listOfTimesAvailable.add(startTime);
+            startTime = startTime.plusMinutes(15);
+        }
+        return listOfTimesAvailable;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package Controller;
 
-import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
 import DAO.CustomersDAO;
 import DAO.UsersDAO;
@@ -18,7 +17,6 @@ import model.Users;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -138,11 +136,15 @@ public class appointmentCreationFormController implements Initializable {
         contactComboBox.setItems(ContactsDAO.getAllContacts());
         userComboBox.setItems(UsersDAO.getAllUsers());
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
+
+        //Not sure if this is correct yet
+        comboBoxStartTime.setItems(mainMenuController.timeIntervals());
+        comboBoxEndTime.setItems(mainMenuController.timeIntervals());
     }
 
 
 
-    //add appointment empty fields. MAY REMAKE SO IT INCLUDES errorMessages.errorMsg.errorCode();
+    //add appointment empty fields.
     public boolean appointFieldsEmpty() {
         if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
             errorMessages.errorMsgs.errorCodes(16);
@@ -165,17 +167,21 @@ public class appointmentCreationFormController implements Initializable {
             return false;
         }
 
-        //ADD ERROR FOR START TIME COMBOBOX BEING NULL
-        // errorCode(21)
-
+        //not sure if comboBoxStartTime works properly
+        else if (comboBoxStartTime.getValue() == null) {
+            errorMessages.errorMsgs.errorCodes(21);
+            return false;
+        }
         else if (endDateCalendar.getValue() == null) {
             errorMessages.errorMsgs.errorCodes(22);
             return false;
         }
 
-        //ADD ERROR FOR END TIME COMBOBOX BEING NULL
-        // errorCode(23)
-
+        //not sure if comboBoxEndTime works properly
+        else if (comboBoxEndTime.getValue() == null) {
+            errorMessages.errorMsgs.errorCodes(23);
+            return false;
+        }
         else if (customerComboBox.getValue() == null) {
             errorMessages.errorMsgs.errorCodes(24);
             return false;
@@ -188,7 +194,6 @@ public class appointmentCreationFormController implements Initializable {
             errorMessages.errorMsgs.errorCodes(26);
             return false;
         }
-
         return true;
     }
 

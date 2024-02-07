@@ -7,14 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Contacts;
+import model.Customers;
+import model.Users;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
 
 public class appointmentModificationFormController {
-    Stage stage;
-    Parent scene;
 
     @FXML
     private TextField appointmentModificationAppointmentID;
@@ -35,41 +37,47 @@ public class appointmentModificationFormController {
     private Button cancelAppointmentModification;
 
     @FXML
-    private ComboBox<?> comboBoxContact;
+    private ComboBox<LocalTime> comboBoxEndTime;
 
     @FXML
-    private ComboBox<?> comboBoxEndTime;
-
-    @FXML
-    private ComboBox<?> comboBoxStartTime;
+    private ComboBox<LocalTime> comboBoxStartTime;
 
     @FXML
     private Button confirmAppointmentModification;
 
     @FXML
-    private DatePicker endDateCalander;
+    private ComboBox<Contacts> contactComboBox;
 
     @FXML
-    private DatePicker startDateCalander;
+    private ComboBox<Customers> customerComboBox;
 
+    @FXML
+    private DatePicker endDateCalendar;
+
+    @FXML
+    private DatePicker startDateCalendar;
+
+    @FXML
+    private ComboBox<Users> userComboBox;
+
+    Parent scene;
+    Stage stage;
 
     @FXML
     void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Appointment Modification Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
-        alert.setContentText("Click 'OK' to go back to Appointment Scheduler.\r" + "Click 'Cancel' to stay on the Appointment Modification Form");
+        alert.setContentText("Click 'OK' to go back to Appointment Scheduler.\r" + "Click 'Cancel' to stay on the Appointment Modification Form.");
         Optional<ButtonType> confirmation = alert.showAndWait();
         if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
             stage.setTitle("Appointment Scheduler");
-
         }
     }
-
 
     @FXML
     void onActionComboBoxContact(ActionEvent event) {
@@ -77,7 +85,17 @@ public class appointmentModificationFormController {
     }
 
     @FXML
-    void onActionEndDateCalendar(ActionEvent event) {
+    void onActionComboBoxCustomer(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionComboBoxUser(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionEndDate(ActionEvent event) {
 
     }
 
@@ -92,7 +110,7 @@ public class appointmentModificationFormController {
     }
 
     @FXML
-    void onActionStartDateCalendar(ActionEvent event) {
+    void onActionStartDate(ActionEvent event) {
 
     }
 
@@ -100,4 +118,5 @@ public class appointmentModificationFormController {
     void onActionStartTime(ActionEvent event) {
 
     }
+
 }

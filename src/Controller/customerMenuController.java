@@ -167,7 +167,7 @@ public class customerMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Appointment Scheduler");
-        System.out.println("Switching back to Appointment Scheduler");
+        System.out.println("Returning to Appointment Scheduler.");
     }
 
 

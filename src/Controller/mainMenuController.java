@@ -126,7 +126,7 @@ public class mainMenuController implements Initializable {
 
         //Added a placeholder in the TableView for when there is nothing in the database!
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments in the database!"));
-        System.out.println("Viewing All Appointments");
+        System.out.println("Viewing All Appointments.");
     }
 
     @FXML
@@ -136,7 +136,7 @@ public class mainMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
-        System.out.println("Switching to Customer View List");
+        System.out.println("Switching to Customer View List.");
     }
 
     @FXML
@@ -145,7 +145,7 @@ public class mainMenuController implements Initializable {
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));
-        System.out.println("Viewing Appointments by Month");
+        System.out.println("Viewing Appointments by Month.");
     }
 
     //For some odd reason, this doesn't work.
@@ -155,7 +155,7 @@ public class mainMenuController implements Initializable {
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
-        System.out.println("Viewing Appointments by Week");
+        System.out.println("Viewing Appointments by Week.");
     }
 
     public static void returnToAppointments(ActionEvent event) throws IOException {

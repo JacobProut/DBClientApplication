@@ -79,7 +79,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="startDateCalendar" editable="false" onAction="#onActionStartDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="startDateCalendar" editable="false" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="End Date:" GridPane.rowIndex="6">
                <font>
                   <Font size="14.0" />
@@ -90,7 +90,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="endDateCalendar" editable="false" onAction="#onActionEndDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="endDateCalendar" editable="false" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="appointmentCreationTitle" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="appointmentCreationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
             <TextField fx:id="appointmentCreationDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />

@@ -96,16 +96,6 @@ public class appointmentCreationFormController implements Initializable {
     }
 
     @FXML
-    void onActionEndDate(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionStartDate(ActionEvent event) {
-
-    }
-
-    @FXML
     void onActionComboBoxContact(ActionEvent event) {
 
     }

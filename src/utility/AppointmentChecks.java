@@ -1,6 +1,8 @@
 package utility;
 
+import DAO.AppointmentsDAO;
 import javafx.collections.ObservableList;
+import model.Appointments;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -26,12 +28,32 @@ public class AppointmentChecks {
 
     }
 
-   /* public static boolean doTimesOverLap(int customerId, LocalDateTime startTime, LocalDateTime endTime) {
+    public static boolean doTimesOverLap(int customerId, LocalDateTime startTime, LocalDateTime endTime) {
         LocalDateTime appointmentStartTime;
         LocalDateTime appointmentEndTime;
 
-    }*/
+        ObservableList<Appointments> appointmentsObservableList = AppointmentsDAO.getAllAppointments();
+        for (Appointments overlap : appointmentsObservableList) {
+            appointmentStartTime = overlap.getStartTime();
+            appointmentEndTime = overlap.getEndTime();
 
+            if (customerId != overlap.getCustomerId()) {
 
+            }
+            else if (startTime.isBefore(appointmentEndTime) && (startTime.isAfter(appointmentStartTime))) {
+                warningMessages.warningCode(3);
+                return true;
+            }
+            else if (endTime.isBefore(appointmentEndTime) && (endTime.isAfter(appointmentStartTime))) {
+                warningMessages.warningCode(4);
+                return true;
+            }
+            else if (appointmentEndTime.isEqual(startTime) || appointmentStartTime.isEqual(startTime)){
+                warningMessages.warningCode(2);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

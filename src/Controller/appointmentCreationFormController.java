@@ -78,7 +78,7 @@ public class appointmentCreationFormController implements Initializable {
         }
     }
 
-    //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
+    /*//Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
     @FXML
     void onActionCreateAppointment(ActionEvent event) {
         try {
@@ -115,6 +115,50 @@ public class appointmentCreationFormController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+*/
+
+    //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
+    @FXML
+    void onActionCreateAppointment(ActionEvent event) {
+        try {
+            if (appointFieldsEmpty()) {
+                String title = appointmentCreationTitle.getText();
+                String description = appointmentCreationDescription.getText();
+                String location = appointmentCreationLocation.getText();
+                String type = appointmentCreationType.getText();
+                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
+                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
+                int customerId = customerComboBox.getValue().getCustomerId();
+                int userId = userComboBox.getValue().getUserId();
+                int contactId = contactComboBox.getValue().getContactId();
+
+
+                if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
+                }
+                else if (startDateCalendar.getValue().isAfter(endDateCalendar.getValue()) || endDateCalendar.getValue().isBefore(startDateCalendar.getValue())) {
+                    System.out.println("End date comes before Start date");
+                    errorMessages.errorCode(29);
+                }
+                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue())) {
+                    System.out.println("Start time is after end time");
+                    errorMessages.errorCode(27);
+                }
+                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue())) {
+                    System.out.println("Start and End time CANNOT be the same!");
+                    errorMessages.errorCode(28);
+                }
+                else if (AppointmentChecks.doTimesOverLap(customerId,startOfAppointment,endOfAppointment)) {
+                }
+                else {
+                    AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
+                    mainMenuController.returnToAppointments(event);
+                }
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @FXML
     void onActionComboBoxContact(ActionEvent event) {

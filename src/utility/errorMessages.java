@@ -184,6 +184,13 @@ public abstract class errorMessages implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 29: //appointmentCreationFormController: Start and End time cannot be the same
+                    alert.setTitle("ERROR: Invalid start/end date");
+                    alert.setHeaderText("The Start date MUST come before the End date!");
+                    alert.setContentText("Please make sure the START date comes BEFORE the END date!");
+                    alert.showAndWait();
+                    break;
+
             }
         }
 

@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Contacts;
-import model.Customers;
-import model.Users;
+import model.*;
+import utility.TimeManipulations;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -121,6 +123,23 @@ public class appointmentModificationFormController implements Initializable {
     @FXML
     void onActionStartTime(ActionEvent event) {
 
+    }
+
+    public void appointmentSelection(Appointments selectedAppointment) throws SQLException {
+       appointmentModificationAppointmentID.setText(Integer.toString(selectedAppointment.getAppointmentId()));
+       appointmentModificationTitle.setText(selectedAppointment.getAppointmentTitle());
+       appointmentModificationDescription.setText(selectedAppointment.getAppointmentDescription());
+       appointmentModificationLocation.setText(selectedAppointment.getAppointmentLocation());
+       appointmentModificationType.setText(selectedAppointment.getAppointmentType());
+       startDateCalendar.setValue(selectedAppointment.getStartTime().toLocalDate());
+       endDateCalendar.setValue(selectedAppointment.getEndTime().toLocalDate());
+       comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
+       comboBoxStartTime.setValue(selectedAppointment.getStartTime().toLocalTime());
+       comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
+       comboBoxEndTime.setValue(selectedAppointment.getEndTime().toLocalTime());
+       customerComboBox.setValue(CustomersDAO.getAllCustomersById(selectedAppointment.getCustomerId()));
+       userComboBox.setValue(UsersDAO.getAllUsersById(selectedAppointment.getUserId()));
+       contactComboBox.setValue(ContactsDAO.getAllContactsById(selectedAppointment.getContactId()));
     }
 
     @Override

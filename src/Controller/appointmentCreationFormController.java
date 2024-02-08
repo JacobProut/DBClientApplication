@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
 import DAO.CustomersDAO;
 import DAO.UsersDAO;
@@ -19,6 +20,7 @@ import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -74,6 +76,30 @@ public class appointmentCreationFormController implements Initializable {
         }
     }
 
+    /*@FXML
+    void onActionCreateAppointment(ActionEvent event) {
+        try {
+
+            if (appointFieldsEmpty()) {
+                String title = appointmentCreationTitle.getText();
+                String description = appointmentCreationDescription.getText();
+                String location = appointmentCreationLocation.getText();
+                String type = appointmentCreationType.getText();
+                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
+                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
+                int customerId = customerComboBox.getValue().getCustomerId();
+                int userId = userComboBox.getValue().getUserId();
+                int contactId = contactComboBox.getValue().getContactId();
+
+                AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
+                mainMenuController.returnToAppointments(event);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
     @FXML
     void onActionCreateAppointment(ActionEvent event) {
         try {
@@ -88,11 +114,21 @@ public class appointmentCreationFormController implements Initializable {
                 int userId = userComboBox.getValue().getUserId();
                 int contactId = contactComboBox.getValue().getContactId();
 
-                //AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
-                //mainMenuController.returnToAppointments(event);
+
+                if (TimeManipulations.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
+
+                }
+                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue()) || (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue()))) {
+                    System.out.println("Start time is after end time");
+                    errorMessages.errorCode(28);
+                }
+                else {
+                        AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
+                        mainMenuController.returnToAppointments(event);
+                }
+
             }
-        }
-        catch (Exception e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -134,7 +170,7 @@ public class appointmentCreationFormController implements Initializable {
         comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
 
         //Not sure if ill use this lambdas expression
-        //comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
+        comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
     }
 
 

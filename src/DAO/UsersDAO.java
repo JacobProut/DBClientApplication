@@ -2,6 +2,7 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Customers;
 import model.Users;
 
 import java.sql.Connection;
@@ -9,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+
+import static DAO.JDBC.createConnection;
 
 public class UsersDAO {
 
@@ -55,6 +58,28 @@ public class UsersDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static Users getAllUsersById(int userId) throws SQLException {
+        try {
+            String getUserId = "SELECT * FROM users WHERE User_ID = ?";
+            PreparedStatement selectedUserId = createConnection().prepareStatement(getUserId);
+
+            selectedUserId.setInt(1, userId);
+            selectedUserId.execute();
+
+            ResultSet results = selectedUserId.executeQuery();
+
+            while (results.next()) {
+                int collectedId = results.getInt("User_ID");
+                String collectedName = results.getString("User_Name");
+
+                return new Users(collectedId, collectedName);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     public static boolean verifyLoginInformation(String username, String password) throws SQLException {

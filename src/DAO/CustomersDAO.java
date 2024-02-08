@@ -105,4 +105,25 @@ public class CustomersDAO {
         }
     }
 
+    public static Customers getAllCustomersById(int customerId) throws SQLException {
+        try {
+            String getCustomerId = "SELECT * FROM customers WHERE Customer_ID = ?";
+            PreparedStatement selectedCustomerId = createConnection().prepareStatement(getCustomerId);
+
+            selectedCustomerId.setInt(1, customerId);
+            selectedCustomerId.execute();
+
+            ResultSet results = selectedCustomerId.executeQuery();
+
+            while (results.next()) {
+                int collectedId = results.getInt("Customer_ID");
+                String collectedName = results.getString("Customer_Name");
+
+                return new Customers(collectedId, collectedName);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

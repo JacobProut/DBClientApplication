@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -150,6 +151,9 @@ public class appointmentModificationFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerComboBox.setItems(CustomersDAO.getAllCustomers());
+        userComboBox.setItems(UsersDAO.getAllUsers());
+        contactComboBox.setItems(ContactsDAO.getAllContacts());
 
     }
 }

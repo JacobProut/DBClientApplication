@@ -16,8 +16,8 @@ public class AppointmentsDAO {
 
         try {
             String sql = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
-            ResultSet result = preparedStatement.executeQuery();
+            PreparedStatement getAllAppointmentData = JDBC.connection.prepareStatement(sql);
+            ResultSet result = getAllAppointmentData.executeQuery();
 
             while (result.next()) {
                 int appointmentId = result.getInt("Appointment_ID");
@@ -78,26 +78,26 @@ public class AppointmentsDAO {
 */
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
+        PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);
 
-        preparedStatement.setString(1, appointmentTitle);
-        preparedStatement.setString(2, appointmentDescription);
-        preparedStatement.setString(3, appointmentLocation);
-        preparedStatement.setString(4, appointmentType);
-        preparedStatement.setTimestamp(5, Timestamp.valueOf(startTime));
-        preparedStatement.setTimestamp(6, Timestamp.valueOf(endTime));
-        preparedStatement.setInt(7, customerId);
-        preparedStatement.setInt(8, userId);
-        preparedStatement.setInt(9, contactId);
-        preparedStatement.execute();
+        createAppointment.setString(1, appointmentTitle);
+        createAppointment.setString(2, appointmentDescription);
+        createAppointment.setString(3, appointmentLocation);
+        createAppointment.setString(4, appointmentType);
+        createAppointment.setTimestamp(5, Timestamp.valueOf(startTime));
+        createAppointment.setTimestamp(6, Timestamp.valueOf(endTime));
+        createAppointment.setInt(7, customerId);
+        createAppointment.setInt(8, userId);
+        createAppointment.setInt(9, contactId);
+        createAppointment.execute();
    }
 
    public static void removeAppointment(int appointmentId) throws SQLException {
        String deleteAppointment = "DELETE FROM appointments WHERE Appointment_ID = ?";
-       PreparedStatement preparedStatement = createConnection().prepareStatement(deleteAppointment);
+       PreparedStatement removeAppointment = createConnection().prepareStatement(deleteAppointment);
 
-       preparedStatement.setInt(1, appointmentId);
-       preparedStatement.execute();
+       removeAppointment.setInt(1, appointmentId);
+       removeAppointment.execute();
    }
 
    //Unsure this works until I can add data within the current week
@@ -107,8 +107,8 @@ public class AppointmentsDAO {
 
         try {
             String week = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE WEEK(Start) = WEEK(now()) ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = createConnection().prepareStatement(week);
-            ResultSet result = preparedStatement.executeQuery();
+            PreparedStatement viewWeekAppointments = createConnection().prepareStatement(week);
+            ResultSet result = viewWeekAppointments.executeQuery();
 
             while (result.next()) {
                 int appointmentId = result.getInt("Appointment_ID");
@@ -138,8 +138,8 @@ public class AppointmentsDAO {
 
         try {
             String month = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, contacts.Contact_ID, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.User_ID, appointments.Contact_ID FROM appointments INNER JOIN contacts on appointments.Contact_ID = contacts.Contact_ID WHERE MONTH(Start) = MONTH(now()) ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = createConnection().prepareStatement(month);
-            ResultSet result = preparedStatement.executeQuery();
+            PreparedStatement viewMonthAppointments = createConnection().prepareStatement(month);
+            ResultSet result = viewMonthAppointments.executeQuery();
 
             while (result.next()) {
                 int appointmentId = result.getInt("Appointment_ID");

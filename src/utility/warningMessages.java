@@ -19,8 +19,23 @@ public class warningMessages {
                 break;
 
             case 2:
-                alert.setTitle("");
-                alert.setContentText("");
+                alert.setTitle("Overlap Warning");
+                alert.setHeaderText("Selected times are overlapping other customers");
+                alert.setContentText("Appointment cannot start or end during the same time as another customers appointment!");
+                alert.showAndWait();
+                break;
+
+            case 3:
+                alert.setTitle("Overlap Warning");
+                alert.setHeaderText("Start time Overlapping");
+                alert.setContentText("The start time cannot be during another customers appointment time!");
+                alert.showAndWait();
+                break;
+
+            case 4:
+                alert.setTitle("Overlap Warning");
+                alert.setHeaderText("End time Overlapping");
+                alert.setContentText("The end time cannot be during another customers appointment time!");
                 alert.showAndWait();
                 break;
         }

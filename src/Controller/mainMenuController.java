@@ -81,6 +81,7 @@ public class mainMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Appointment Creation Form");
+        System.out.println("Switching to Appointment Creation Form.");
     }
 
     @FXML
@@ -99,6 +100,7 @@ public class mainMenuController implements Initializable {
 
         if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
             JDBC.closeConnection();
+            System.out.println("Shutting down Application.");
             System.exit(0);
         }
     }
@@ -118,6 +120,7 @@ public class mainMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Appointment Modification Form");
+        System.out.println("Switching to Appointment Modification Form.");
     }
 
     @FXML

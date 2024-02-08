@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
@@ -27,6 +28,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
+import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.ButtonType.*;
 
 public class customerMenuController implements Initializable {
@@ -92,6 +95,7 @@ public class customerMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer Creation Page");
+        System.out.println("Switching to Customer Creation Form.");
     }
 
     //Working method!
@@ -118,7 +122,7 @@ public class customerMenuController implements Initializable {
         }
 
         if (numberOfCustomerAppointments == 0) {
-            Alert deletion = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert deletion = new Alert(CONFIRMATION);
             deletion.setTitle("Confirm Removal of Customer");
             deletion.setHeaderText("You are about to remove a Customer named [" + customerName + "] with a Customer_ID of [" + customerId + "]!");
             deletion.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back to Customer View Form.");
@@ -126,6 +130,7 @@ public class customerMenuController implements Initializable {
 
             if (deletion.getResult() == OK) {
                 CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
+                System.out.println("Selected Customer has been deleted!");
                 allCustomers = CustomersDAO.getAllCustomers();
                 customerTableView.setItems(allCustomers);
                 customerTableView.refresh();
@@ -133,7 +138,7 @@ public class customerMenuController implements Initializable {
         }
 
         if (numberOfCustomerAppointments >= 1) {
-            Alert appointmentLinked = new Alert(Alert.AlertType.WARNING);
+            Alert appointmentLinked = new Alert(WARNING);
             appointmentLinked.setTitle("Removing Customer with Appointments");
             appointmentLinked.setHeaderText("Attempting to remove a Customer named [" + customerName + "] with a Customer_ID of [" + customerId + "] that has '" + numberOfCustomerAppointments + "' appointment(s)!");
             appointmentLinked.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion of selected Customer and their Appointments.\r" + "Click 'Cancel' to go back to Customer View Form.");
@@ -147,6 +152,7 @@ public class customerMenuController implements Initializable {
                     }
                 }
                 CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
+                System.out.println("Selected Customer and their Appointments have been deleted!");
                 allCustomers = CustomersDAO.getAllCustomers();
                 customerTableView.setItems(allCustomers);
                 customerTableView.refresh();
@@ -156,7 +162,7 @@ public class customerMenuController implements Initializable {
 
     @FXML
     void onActionLogout(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Log out");
         alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
         alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to go back.");
@@ -165,6 +171,7 @@ public class customerMenuController implements Initializable {
 
         if (confirmation.isPresent() && confirmation.get() == OK) {
             JDBC.closeConnection();
+            System.out.println("Shutting down Application.");
             System.exit(0);
         }
     }
@@ -191,6 +198,7 @@ public class customerMenuController implements Initializable {
            stage.setScene(new Scene(scene));
            stage.show();
            stage.setTitle("Customer Modification Page");
+           System.out.println("Switching to Customer Modification Form.");
        }
     }
 

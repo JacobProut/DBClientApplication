@@ -73,6 +73,7 @@ public class appointmentCreationFormController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
             stage.setTitle("Appointment Scheduler");
+            System.out.println("Returning to Appointment Scheduler.");
         }
     }
 

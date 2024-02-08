@@ -93,6 +93,7 @@ public class customerCreationFormController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
             stage.setTitle("Customer View List");
+            System.out.println("Returning to Customer View List.");
         }
     }
 

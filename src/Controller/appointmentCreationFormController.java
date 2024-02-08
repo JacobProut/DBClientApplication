@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import model.Contacts;
 import model.Customers;
 import model.Users;
+import utility.AppointmentChecks;
 import utility.TimeManipulations;
 import utility.errorMessages;
 
@@ -116,12 +117,12 @@ public class appointmentCreationFormController implements Initializable {
                 int contactId = contactComboBox.getValue().getContactId();
 
 
-                if (TimeManipulations.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
+                if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
 
                 }
                 else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue()) || (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue()))) {
-                    System.out.println("Start time is after end time");
-                    errorMessages.errorCode(28);
+                    System.out.println("Start time is after end time or Times are the same");
+                    errorMessages.errorCode(27);
                 }
                 else {
                         AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);

@@ -37,6 +37,11 @@ public class Customers {
         this.countryId = countryId;
     }
 
+    public Customers(int collectedId, String collectedName) {
+        this.customerId = collectedId;
+        this.customerName = collectedName;
+    }
+
     //Do i need these get/set functions for foreign key?
     public int getDivisionId() {
         return divisionId;

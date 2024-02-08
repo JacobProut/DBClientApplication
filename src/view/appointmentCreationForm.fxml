@@ -96,9 +96,9 @@
             <TextField fx:id="appointmentCreationDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="appointmentCreationLocation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="appointmentCreationType" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="contactComboBox" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <ComboBox fx:id="comboBoxStartTime" onAction="#onActionStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <ComboBox fx:id="comboBoxEndTime" onAction="#onActionEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <ComboBox fx:id="comboBoxStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Label text="User:" GridPane.rowIndex="8">
                <font>
                   <Font size="14.0" />
@@ -109,8 +109,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="userComboBox" onAction="#onActionComboBoxUser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="customerComboBox" onAction="#onActionComboBoxCustomer" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
       <Button fx:id="createAppointment" layoutX="290.0" layoutY="547.0" mnemonicParsing="false" onAction="#onActionCreateAppointment" prefHeight="37.0" prefWidth="163.0" text="Create Appointment" />

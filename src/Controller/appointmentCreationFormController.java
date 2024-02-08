@@ -30,8 +30,6 @@ import java.util.ResourceBundle;
 
 public class appointmentCreationFormController implements Initializable {
 
-    @FXML private TextField appointmentCreationAppointmentID;
-
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
 
     @FXML private ComboBox<LocalTime> comboBoxEndTime;
@@ -49,10 +47,6 @@ public class appointmentCreationFormController implements Initializable {
     @FXML private TextField appointmentCreationTitle;
 
     @FXML private TextField appointmentCreationType;
-
-    @FXML private Button cancelAppointment;
-
-    @FXML private Button createAppointment;
 
     @FXML private DatePicker endDateCalendar;
 
@@ -77,45 +71,6 @@ public class appointmentCreationFormController implements Initializable {
             System.out.println("Returning to Appointment Scheduler.");
         }
     }
-
-    /*//Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
-    @FXML
-    void onActionCreateAppointment(ActionEvent event) {
-        try {
-            if (appointFieldsEmpty()) {
-                String title = appointmentCreationTitle.getText();
-                String description = appointmentCreationDescription.getText();
-                String location = appointmentCreationLocation.getText();
-                String type = appointmentCreationType.getText();
-                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
-                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
-                int customerId = customerComboBox.getValue().getCustomerId();
-                int userId = userComboBox.getValue().getUserId();
-                int contactId = contactComboBox.getValue().getContactId();
-
-
-                if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
-                }
-                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue())) {
-                    System.out.println("Start time is after end time");
-                    errorMessages.errorCode(27);
-                }
-                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue())) {
-                    System.out.println("Start and End time CANNOT be the same!");
-                    errorMessages.errorCode(28);
-                }
-                else if (AppointmentChecks.doTimesOverLap(customerId,startOfAppointment,endOfAppointment)) {
-                }
-                else {
-                    AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
-                    mainMenuController.returnToAppointments(event);
-                }
-            }
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-*/
 
     //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
     @FXML
@@ -159,33 +114,6 @@ public class appointmentCreationFormController implements Initializable {
         }
     }
 
-
-    @FXML
-    void onActionComboBoxContact(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionStartTime(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionEndTime(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionComboBoxCustomer(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    void onActionComboBoxUser(ActionEvent actionEvent) {
-
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(ContactsDAO.getAllContacts());
@@ -224,8 +152,6 @@ public class appointmentCreationFormController implements Initializable {
             errorMessages.errorCode(20);
             return false;
         }
-
-        //not sure if comboBoxStartTime works properly
         else if (comboBoxStartTime.getValue() == null) {
             errorMessages.errorCode(21);
             return false;
@@ -234,8 +160,6 @@ public class appointmentCreationFormController implements Initializable {
             errorMessages.errorCode(22);
             return false;
         }
-
-        //not sure if comboBoxEndTime works properly
         else if (comboBoxEndTime.getValue() == null) {
             errorMessages.errorCode(23);
             return false;

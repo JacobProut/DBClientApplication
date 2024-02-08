@@ -98,7 +98,6 @@ public class customerMenuController implements Initializable {
     ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws SQLException {
-        ObservableList<Appointments> appointmentsCustomerList = AppointmentsDAO.getAllAppointments();
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
             errorMessages.errorCode(13);
@@ -107,11 +106,13 @@ public class customerMenuController implements Initializable {
 
         //Used to count amount of appointments
         int numberOfCustomerAppointments = 0;
-        int customerSelection = customerTableView.getSelectionModel().getSelectedItem().getCustomerId();
+        int customerId = customerTableView.getSelectionModel().getSelectedItem().getCustomerId();
+        String customerName = customerTableView.getSelectionModel().getSelectedItem().getCustomerName();
+        ObservableList<Appointments> appointmentsCustomerList = AppointmentsDAO.getAllAppointments();
 
         for (Appointments appointments : appointmentsCustomerList) {
             int selectedAppointmentCustomerId = appointments.getCustomerId();
-            if (selectedAppointmentCustomerId == customerSelection) {
+            if (selectedAppointmentCustomerId == customerId) {
                 numberOfCustomerAppointments++;
             }
         }
@@ -119,7 +120,7 @@ public class customerMenuController implements Initializable {
         if (numberOfCustomerAppointments == 0) {
             Alert deletion = new Alert(Alert.AlertType.CONFIRMATION);
             deletion.setTitle("Confirm Removal of Customer");
-            deletion.setHeaderText("You are about to remove the selected customer!");
+            deletion.setHeaderText("You are about to remove a Customer named [" + customerName + "] with a Customer_ID of [" + customerId + "]!");
             deletion.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back to Customer View Form.");
             deletion.showAndWait();
 
@@ -134,14 +135,14 @@ public class customerMenuController implements Initializable {
         if (numberOfCustomerAppointments >= 1) {
             Alert appointmentLinked = new Alert(Alert.AlertType.WARNING);
             appointmentLinked.setTitle("Removing Customer with Appointments");
-            appointmentLinked.setHeaderText("Attempting to Remove a Customer that has " + numberOfCustomerAppointments + " appointments!");
+            appointmentLinked.setHeaderText("Attempting to remove a Customer named [" + customerName + "] with a Customer_ID of [" + customerId + "] that has '" + numberOfCustomerAppointments + "' appointment(s)!");
             appointmentLinked.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion of selected Customer and their Appointments.\r" + "Click 'Cancel' to go back to Customer View Form.");
             appointmentLinked.getButtonTypes().add(CANCEL);
             appointmentLinked.showAndWait();
 
             if (appointmentLinked.getResult() == OK) {
                 for (Appointments appointments : appointmentsCustomerList) {
-                    if (appointments.getCustomerId() == customerSelection) {
+                    if (appointments.getCustomerId() == customerId) {
                         AppointmentsDAO.removeAppointment(appointments.getAppointmentId());
                     }
                 }

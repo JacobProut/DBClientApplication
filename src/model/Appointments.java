@@ -25,7 +25,7 @@ public class Appointments {
     private int contactId;
 
     //Do you need foreign keys in here?
-    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime appointmentCreationDate, String appointmentCreatedBy, LocalDateTime lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.appointmentTitle = appointmentTitle;
         this.appointmentDescription = appointmentDescription;
@@ -33,10 +33,6 @@ public class Appointments {
         this.appointmentType = appointmentType;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.appointmentCreationDate = appointmentCreationDate;
-        this.appointmentCreatedBy = appointmentCreatedBy;
-        this.lastUpdate = lastUpdate;
-        this.lastUpdatedBy = lastUpdatedBy;
         this.customerId = customerId;
         this.userId = userId;
         this.contactId = contactId;

@@ -92,6 +92,14 @@ public class AppointmentsDAO {
         preparedStatement.execute();
    }
 
+   public static void removeAppointment(int appointmentId) throws SQLException {
+       String deleteAppointment = "DELETE FROM appointments WHERE Appointment_ID = ?";
+       PreparedStatement preparedStatement = createConnection().prepareStatement(deleteAppointment);
+
+       preparedStatement.setInt(1, appointmentId);
+       preparedStatement.execute();
+   }
+
    //Unsure this works until I can add data within the current week
     // Still doesn't work. Need to fix.
    public static ObservableList<Appointments> viewWeekAppoints() {
@@ -154,11 +162,5 @@ public class AppointmentsDAO {
         }
        return viewMonthList;
    }
-
-
-
-
-
-
 
 }

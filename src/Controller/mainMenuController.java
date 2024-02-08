@@ -15,9 +15,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Customers;
+import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -111,7 +114,7 @@ public class mainMenuController implements Initializable {
     }
 
     //Find a way to select object in TableView then import it into appointmentModificationForm.fxml scene.
-    @FXML
+   /* @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException {
 
 
@@ -121,6 +124,26 @@ public class mainMenuController implements Initializable {
         stage.show();
         stage.setTitle("Appointment Modification Form");
         System.out.println("Switching to Appointment Modification Form.");
+    }*/
+
+    @FXML
+    void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
+        if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
+           // errorMessages.errorCode();
+        }
+        else {
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            FXMLLoader loadupper = new FXMLLoader(getClass().getResource("/view/appointmentModificationForm.fxml"));
+            scene = loadupper.load();
+            Appointments appointmentSelection = appointmentSchedulerTable.getSelectionModel().getSelectedItem();
+            appointmentModificationFormController controller = loadupper.getController();
+            controller.appointmentSelection(appointmentSchedulerTable.getSelectionModel().getSelectedIndex(), appointmentSelection);
+            stage.setScene(new Scene(scene));
+            stage.show();
+            stage.setTitle("Customer Modification Page");
+            System.out.println("Switching to Customer Modification Form.");
+        }
+
     }
 
     @FXML

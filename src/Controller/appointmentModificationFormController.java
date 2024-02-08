@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -125,21 +126,26 @@ public class appointmentModificationFormController implements Initializable {
 
     }
 
-    public void appointmentSelection(Appointments selectedAppointment) throws SQLException {
-       appointmentModificationAppointmentID.setText(Integer.toString(selectedAppointment.getAppointmentId()));
-       appointmentModificationTitle.setText(selectedAppointment.getAppointmentTitle());
-       appointmentModificationDescription.setText(selectedAppointment.getAppointmentDescription());
-       appointmentModificationLocation.setText(selectedAppointment.getAppointmentLocation());
-       appointmentModificationType.setText(selectedAppointment.getAppointmentType());
-       startDateCalendar.setValue(selectedAppointment.getStartTime().toLocalDate());
-       endDateCalendar.setValue(selectedAppointment.getEndTime().toLocalDate());
-       comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
-       comboBoxStartTime.setValue(selectedAppointment.getStartTime().toLocalTime());
-       comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
-       comboBoxEndTime.setValue(selectedAppointment.getEndTime().toLocalTime());
-       customerComboBox.setValue(CustomersDAO.getAllCustomersById(selectedAppointment.getCustomerId()));
-       userComboBox.setValue(UsersDAO.getAllUsersById(selectedAppointment.getUserId()));
-       contactComboBox.setValue(ContactsDAO.getAllContactsById(selectedAppointment.getContactId()));
+    Appointments selectedAppointment = new Appointments(1, "title", "desc", "location", "type", LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
+    public int selectedIndex;
+
+    public void appointmentSelection(int index, Appointments selectedAppointment) throws SQLException {
+        this.selectedIndex = index;
+        this.selectedAppointment = selectedAppointment;
+        appointmentModificationAppointmentID.setText(Integer.toString(selectedAppointment.getAppointmentId()));
+        appointmentModificationTitle.setText(selectedAppointment.getAppointmentTitle());
+        appointmentModificationDescription.setText(selectedAppointment.getAppointmentDescription());
+        appointmentModificationLocation.setText(selectedAppointment.getAppointmentLocation());
+        appointmentModificationType.setText(selectedAppointment.getAppointmentType());
+        startDateCalendar.setValue(selectedAppointment.getStartTime().toLocalDate());
+        endDateCalendar.setValue(selectedAppointment.getEndTime().toLocalDate());
+        comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxStartTime.setValue(selectedAppointment.getStartTime().toLocalTime());
+        comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxEndTime.setValue(selectedAppointment.getEndTime().toLocalTime());
+        customerComboBox.setValue(CustomersDAO.getAllCustomersById(selectedAppointment.getCustomerId()));
+        userComboBox.setValue(UsersDAO.getAllUsersById(selectedAppointment.getUserId()));
+        contactComboBox.setValue(ContactsDAO.getAllContactsById(selectedAppointment.getContactId()));
     }
 
     @Override

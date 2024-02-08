@@ -24,26 +24,6 @@ public class TimeManipulations {
         return listOfTimesAvailable;
     }
 
-    public static boolean openHoursForBusiness(LocalDateTime startTime, LocalDateTime endTime) {
-        ZoneId locationEST = ZoneId.of("America/New_York");
-        ZoneId locationLocal = ZoneId.systemDefault();
-
-        LocalDateTime appointmentEstStart = startTime.atZone(locationLocal).withZoneSameInstant(locationEST).toLocalDateTime();
-        LocalDateTime businessEstStartTime = appointmentEstStart.withHour(8).withMinute(0);
-        LocalDateTime appointmentEstEnd = endTime.atZone(locationLocal).withZoneSameInstant(locationEST).toLocalDateTime();
-        LocalDateTime businessEstEndTime = appointmentEstEnd.withHour(22).withMinute(0);
-
-        if (appointmentEstEnd.isAfter(businessEstEndTime) || appointmentEstStart.isBefore(businessEstStartTime)) {
-            errorMessages.errorCode(27);
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-
-
     public static LocalTime establishLocalStartingTime() {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();

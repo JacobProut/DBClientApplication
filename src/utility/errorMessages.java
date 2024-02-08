@@ -169,11 +169,18 @@ public abstract class errorMessages implements Initializable {
                     alert.showAndWait();
                     break;
 
-
                 case 27: //appointmentCreationFormController: Incorrect Times
-                    alert.setTitle("Incorrect Times");
-                    alert.setHeaderText("IMPORTANT MESSAGE");
-                    alert.setContentText("Please make sure the END time is AFTER the START time.\r" + "& ALSO,\r" + "The start and end time CANNOT be the same!");
+                    alert.setTitle("ERROR: Start time is after the End time");
+                    alert.setHeaderText("The End time CANNOT come before the Start time!");
+                    //alert.setContentText("Please make sure the END time is AFTER the START time.\r" + "& ALSO,\r" + "The start and end time CANNOT be the same!");
+                    alert.setContentText("Please make sure the END time is scheduled AFTER the START time!");
+                    alert.showAndWait();
+                    break;
+
+                case 28: //appointmentCreationFormController: Start and End time cannot be the same
+                    alert.setTitle("ERROR: Start and end time are the same!");
+                    alert.setHeaderText("The start and end time CANNOT be the same!");
+                    alert.setContentText("Please make sure the START time comes BEFORE the END time!");
                     alert.showAndWait();
                     break;
 

@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.AppointmentsDAO;
 import DAO.CustomersDAO;
 import DAO.JDBC;
 import javafx.collections.FXCollections;
@@ -25,6 +26,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.ButtonType.*;
 
 public class customerMenuController implements Initializable {
 
@@ -84,32 +87,70 @@ public class customerMenuController implements Initializable {
 
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerCreationForm.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer Creation Page");
     }
 
-
-    //Make this method give an error on delete if customer has appointments
+    //Working method!
     ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws SQLException {
-        ObservableList<Appointments> getAllAppointments = FXCollections.observableArrayList();
+        ObservableList<Appointments> appointmentsCustomerList = AppointmentsDAO.getAllAppointments();
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
-
         if (selectedCustomer == null) {
             errorMessages.errorCode(13);
             return;
         }
 
-        CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
-        allCustomers = CustomersDAO.getAllCustomers();
-        customerTableView.setItems(allCustomers);
-        customerTableView.refresh();
+        //Used to count amount of appointments
+        int numberOfCustomerAppointments = 0;
+        int customerSelection = customerTableView.getSelectionModel().getSelectedItem().getCustomerId();
 
+        for (Appointments appointments : appointmentsCustomerList) {
+            int selectedAppointmentCustomerId = appointments.getCustomerId();
+            if (selectedAppointmentCustomerId == customerSelection) {
+                numberOfCustomerAppointments++;
+            }
+        }
 
+        if (numberOfCustomerAppointments == 0) {
+            Alert deletion = new Alert(Alert.AlertType.CONFIRMATION);
+            deletion.setTitle("Confirm Removal of Customer");
+            deletion.setHeaderText("You are about to remove the selected customer!");
+            deletion.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion.\r" + "Click 'Cancel' to go back to Customer View Form.");
+            deletion.showAndWait();
+
+            if (deletion.getResult() == OK) {
+                CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
+                allCustomers = CustomersDAO.getAllCustomers();
+                customerTableView.setItems(allCustomers);
+                customerTableView.refresh();
+            }
+        }
+
+        if (numberOfCustomerAppointments >= 1) {
+            Alert appointmentLinked = new Alert(Alert.AlertType.WARNING);
+            appointmentLinked.setTitle("Removing Customer with Appointments");
+            appointmentLinked.setHeaderText("Attempting to Remove a Customer that has " + numberOfCustomerAppointments + " appointments!");
+            appointmentLinked.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion of selected Customer and their Appointments.\r" + "Click 'Cancel' to go back to Customer View Form.");
+            appointmentLinked.getButtonTypes().add(CANCEL);
+            appointmentLinked.showAndWait();
+
+            if (appointmentLinked.getResult() == OK) {
+                for (Appointments appointments : appointmentsCustomerList) {
+                    if (appointments.getCustomerId() == customerSelection) {
+                        AppointmentsDAO.removeAppointment(appointments.getAppointmentId());
+                    }
+                }
+                CustomersDAO.removeCustomerFromTableView(customerTableView.getSelectionModel().getSelectedItem().getCustomerId());
+                allCustomers = CustomersDAO.getAllCustomers();
+                customerTableView.setItems(allCustomers);
+                customerTableView.refresh();
+            }
+        }
     }
 
     @FXML
@@ -121,7 +162,7 @@ public class customerMenuController implements Initializable {
 
         Optional<ButtonType> confirmation = alert.showAndWait();
 
-        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+        if (confirmation.isPresent() && confirmation.get() == OK) {
             JDBC.closeConnection();
             System.exit(0);
         }

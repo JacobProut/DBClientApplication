@@ -78,63 +78,7 @@ public class appointmentCreationFormController implements Initializable {
         }
     }
 
-    /*@FXML
-    void onActionCreateAppointment(ActionEvent event) {
-        try {
-
-            if (appointFieldsEmpty()) {
-                String title = appointmentCreationTitle.getText();
-                String description = appointmentCreationDescription.getText();
-                String location = appointmentCreationLocation.getText();
-                String type = appointmentCreationType.getText();
-                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
-                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
-                int customerId = customerComboBox.getValue().getCustomerId();
-                int userId = userComboBox.getValue().getUserId();
-                int contactId = contactComboBox.getValue().getContactId();
-
-                AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
-                mainMenuController.returnToAppointments(event);
-            }
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
-    /*@FXML
-    void onActionCreateAppointment(ActionEvent event) {
-        try {
-            if (appointFieldsEmpty()) {
-                String title = appointmentCreationTitle.getText();
-                String description = appointmentCreationDescription.getText();
-                String location = appointmentCreationLocation.getText();
-                String type = appointmentCreationType.getText();
-                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
-                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
-                int customerId = customerComboBox.getValue().getCustomerId();
-                int userId = userComboBox.getValue().getUserId();
-                int contactId = contactComboBox.getValue().getContactId();
-
-
-                if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
-
-                }
-                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue()) || (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue()))) {
-                    System.out.println("Start time is after end time or Times are the same");
-                    errorMessages.errorCode(27);
-                }
-                else {
-                        AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
-                        mainMenuController.returnToAppointments(event);
-                }
-
-            }
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
+    //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
     @FXML
     void onActionCreateAppointment(ActionEvent event) {
         try {
@@ -151,7 +95,6 @@ public class appointmentCreationFormController implements Initializable {
 
 
                 if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
-
                 }
                 else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue())) {
                     System.out.println("Start time is after end time");
@@ -161,11 +104,12 @@ public class appointmentCreationFormController implements Initializable {
                     System.out.println("Start and End time CANNOT be the same!");
                     errorMessages.errorCode(28);
                 }
+                else if (AppointmentChecks.doTimesOverLap(customerId,startOfAppointment,endOfAppointment)) {
+                }
                 else {
                     AppointmentsDAO.createAppointments(title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
                     mainMenuController.returnToAppointments(event);
                 }
-
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);

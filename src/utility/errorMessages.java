@@ -87,7 +87,8 @@ public abstract class errorMessages implements Initializable {
 
                 case 13: //customerMenuController onActionDeleteCustomer Method error
                     alert.setTitle((languageBundle.getString("NoCustomerSelected")));
-                    alert.setContentText(languageBundle.getString("NoCustomerSelectedText"));
+                    alert.setHeaderText((languageBundle.getString("NoCustomerSelectedHeaderText")));
+                    alert.setContentText(languageBundle.getString("NoCustomerSelectedContentText"));
                     alert.showAndWait();
                     break;
 
@@ -97,8 +98,9 @@ public abstract class errorMessages implements Initializable {
                     alert.showAndWait();
                     break;
 
-                case 15: // No customer view table update selection
+                case 15: //customerMenuController No customer view table update selection
                     alert.setTitle((languageBundle.getString("PleaseSelectACustomer")));
+                    alert.setHeaderText((languageBundle.getString("PleaseSelectACustomerHeader")));
                     alert.setContentText(languageBundle.getString("PleaseSelectACustomerDescription"));
                     alert.showAndWait();
                     break;

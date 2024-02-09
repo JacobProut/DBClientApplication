@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
+import utility.AppointmentChecks;
 import utility.TimeManipulations;
+import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -114,6 +116,44 @@ public class appointmentModificationFormController implements Initializable {
 
     @FXML
     void onActionModificationAppointment(ActionEvent event) {
+        try {
+            if (appointFieldsEmpty()) {
+                int id = Integer.parseInt(appointmentModificationAppointmentID.getText());
+                String title = appointmentModificationTitle.getText();
+                String description = appointmentModificationDescription.getText();
+                String location = appointmentModificationLocation.getText();
+                String type = appointmentModificationType.getText();
+                LocalDateTime startOfAppointment = LocalDateTime.of(startDateCalendar.getValue(), comboBoxStartTime.getValue());
+                LocalDateTime endOfAppointment = LocalDateTime.of(endDateCalendar.getValue(), comboBoxEndTime.getValue());
+                int customerId = customerComboBox.getValue().getCustomerId();
+                int userId = userComboBox.getValue().getUserId();
+                int contactId = contactComboBox.getValue().getContactId();
+
+
+                if (AppointmentChecks.openHoursForBusiness(startOfAppointment, endOfAppointment)) {
+                }
+                else if (startDateCalendar.getValue().isAfter(endDateCalendar.getValue()) || endDateCalendar.getValue().isBefore(startDateCalendar.getValue())) {
+                    System.out.println("End date comes before Start date");
+                    errorMessages.errorCode(29);
+                }
+                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue())) {
+                    System.out.println("Start time is after end time");
+                    errorMessages.errorCode(27);
+                }
+                else if (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue())) {
+                    System.out.println("Start and End time CANNOT be the same!");
+                    errorMessages.errorCode(28);
+                }
+                else if (AppointmentChecks.doTimesOverLap(customerId,startOfAppointment,endOfAppointment)) {
+                }
+                else {
+                    AppointmentsDAO.updateAppointments(id, title, description, location, type, startOfAppointment, endOfAppointment, customerId, userId, contactId);
+                    mainMenuController.returnToAppointments(event);
+                }
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -127,9 +167,8 @@ public class appointmentModificationFormController implements Initializable {
 
     }
 
-    Appointments selectedAppointment = new Appointments(1, "title", "desc", "location", "type", LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
     public int selectedIndex;
-
+    Appointments selectedAppointment = new Appointments(1, "title", "desc", "location", "type", LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
     public void appointmentSelection(int index, Appointments selectedAppointment) throws SQLException {
         this.selectedIndex = index;
         this.selectedAppointment = selectedAppointment;
@@ -154,6 +193,53 @@ public class appointmentModificationFormController implements Initializable {
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
         userComboBox.setItems(UsersDAO.getAllUsers());
         contactComboBox.setItems(ContactsDAO.getAllContacts());
+    }
 
+    public boolean appointFieldsEmpty() {
+        if (appointmentModificationTitle.getText().isBlank() || appointmentModificationTitle.getText().isEmpty()) {
+            errorMessages.errorCode(16);
+            return false;
+        }
+        else if (appointmentModificationDescription.getText().isBlank() || appointmentModificationDescription.getText().isEmpty()) {
+            errorMessages.errorCode(17);
+            return false;
+        }
+        else if (appointmentModificationLocation.getText().isBlank() || appointmentModificationLocation.getText().isEmpty()) {
+            errorMessages.errorCode(18);
+            return false;
+        }
+        else if (appointmentModificationType.getText().isBlank() || appointmentModificationType.getText().isEmpty()) {
+            errorMessages.errorCode(19);
+            return false;
+        }
+        else if (startDateCalendar.getValue() == null) {
+            errorMessages.errorCode(20);
+            return false;
+        }
+        else if (comboBoxStartTime.getValue() == null) {
+            errorMessages.errorCode(21);
+            return false;
+        }
+        else if (endDateCalendar.getValue() == null) {
+            errorMessages.errorCode(22);
+            return false;
+        }
+        else if (comboBoxEndTime.getValue() == null) {
+            errorMessages.errorCode(23);
+            return false;
+        }
+        else if (customerComboBox.getValue() == null) {
+            errorMessages.errorCode(24);
+            return false;
+        }
+        else if (userComboBox.getValue() == null) {
+            errorMessages.errorCode(25);
+            return false;
+        }
+        else if (contactComboBox.getValue() == null) {
+            errorMessages.errorCode(26);
+            return false;
+        }
+        return true;
     }
 }

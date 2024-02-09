@@ -87,8 +87,12 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Appointment Creation Form.");
     }
 
+    //ADD DELETE METHOD
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
+        if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
+            errorMessages.errorCode(31);
+        }
 
     }
 
@@ -113,23 +117,10 @@ public class mainMenuController implements Initializable {
 
     }
 
-    //Find a way to select object in TableView then import it into appointmentModificationForm.fxml scene.
-   /* @FXML
-    void onActionUpdateAppointment(ActionEvent event) throws IOException {
-
-
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentModificationForm.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Appointment Modification Form");
-        System.out.println("Switching to Appointment Modification Form.");
-    }*/
-
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
-           // errorMessages.errorCode();
+            errorMessages.errorCode(30);
         }
         else {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -140,8 +131,8 @@ public class mainMenuController implements Initializable {
             controller.appointmentSelection(appointmentSchedulerTable.getSelectionModel().getSelectedIndex(), appointmentSelection);
             stage.setScene(new Scene(scene));
             stage.show();
-            stage.setTitle("Customer Modification Page");
-            System.out.println("Switching to Customer Modification Form.");
+            stage.setTitle("Appointment Modification Page");
+            System.out.println("Switching to Appointment Modification Form.");
         }
 
     }
@@ -180,7 +171,7 @@ public class mainMenuController implements Initializable {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
 
         //added a placeholder in the TableView for when there is nothing being displayed.
-        appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming 7 days!"));
+        appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this week!"));
         System.out.println("Viewing Appointments by Week.");
     }
 

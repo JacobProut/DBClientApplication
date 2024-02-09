@@ -172,7 +172,6 @@ public abstract class errorMessages implements Initializable {
                 case 27: //appointmentCreationFormController: Incorrect Times
                     alert.setTitle("ERROR: Start time is after the End time");
                     alert.setHeaderText("The End time CANNOT come before the Start time!");
-                    //alert.setContentText("Please make sure the END time is AFTER the START time.\r" + "& ALSO,\r" + "The start and end time CANNOT be the same!");
                     alert.setContentText("Please make sure the END time is scheduled AFTER the START time!");
                     alert.showAndWait();
                     break;
@@ -188,6 +187,20 @@ public abstract class errorMessages implements Initializable {
                     alert.setTitle("ERROR: Invalid start/end date");
                     alert.setHeaderText("The Start date MUST come before the End date!");
                     alert.setContentText("Please make sure the START date comes BEFORE the END date!");
+                    alert.showAndWait();
+                    break;
+
+                case 30: //appointmentModificationFormController: onActionModificationAppointment null selection error code
+                    alert.setTitle("Null Selection");
+                    alert.setHeaderText("No Appointment has been selected.");
+                    alert.setContentText("Select an appointment then try clicking 'Update Appointment' again.");
+                    alert.showAndWait();
+                    break;
+
+                case 31: //appointmentModificationFormController: onActionDeleteAppointment null selection error code
+                    alert.setTitle("Null Selection");
+                    alert.setHeaderText("No Appointment has been selected.");
+                    alert.setContentText("Select an appointment then try clicking 'Delete Appointment' again.");
                     alert.showAndWait();
                     break;
 

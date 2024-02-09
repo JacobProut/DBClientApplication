@@ -41,41 +41,6 @@ public class AppointmentsDAO {
         return appointmentsObservableList;
     }
 
-
-    /*public static ObservableList<Appointments> getAllAppointments() {
-        ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
-
-        try {
-            String sql = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
-            PreparedStatement preparedStatement = JDBC.connection.prepareStatement(sql);
-            ResultSet result = preparedStatement.executeQuery();
-
-            while (result.next()) {
-                int appointmentId = result.getInt("Appointment_ID");
-                String appointmentTitle = result.getString("Title");
-                String appointmentDescription = result.getString("Description");
-                String appointmentLocation = result.getString("Location");
-                String appointmentType = result.getString("Type");
-                LocalDateTime startTime = result.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime endTime = result.getTimestamp("End").toLocalDateTime();
-                LocalDateTime appointmentCreationDate = result.getTimestamp("Create_date").toLocalDateTime();
-                String appointmentCreatedBy = result.getString("Created_By");
-                LocalDateTime lastUpdate = result.getTimestamp("Last_Update").toLocalDateTime();
-                String lastUpdatedBy = result.getString("Last_Updated_By");
-                int customerId = result.getInt("Customer_ID");
-                int userId = result.getInt("User_ID");
-                int contactId = result.getInt("Contact_ID");
-
-                Appointments all = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, appointmentCreationDate, appointmentCreatedBy,lastUpdate, lastUpdatedBy, customerId, userId, contactId);
-                appointmentsObservableList.add(all);
-            }
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return appointmentsObservableList;
-    }
-*/
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);
@@ -162,5 +127,23 @@ public class AppointmentsDAO {
         }
        return viewMonthList;
    }
+
+    public static void updateAppointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
+            String updateAppointment = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
+            PreparedStatement updateAppointmentToDB = createConnection().prepareStatement(updateAppointment);
+
+            updateAppointmentToDB.setString(1, appointmentTitle);
+            updateAppointmentToDB.setString(2, appointmentDescription);
+            updateAppointmentToDB.setString(3, appointmentLocation);
+            updateAppointmentToDB.setString(4, appointmentType);
+            updateAppointmentToDB.setTimestamp(5, Timestamp.valueOf(startTime));
+            updateAppointmentToDB.setTimestamp(6, Timestamp.valueOf(endTime));
+            updateAppointmentToDB.setInt(7, customerId);
+            updateAppointmentToDB.setInt(8, userId);
+            updateAppointmentToDB.setInt(9, contactId);
+            updateAppointmentToDB.setInt(10, appointmentId);
+            updateAppointmentToDB.execute();
+
+    }
 
 }

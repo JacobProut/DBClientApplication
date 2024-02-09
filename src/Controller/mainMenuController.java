@@ -28,6 +28,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static javafx.scene.control.ButtonType.CANCEL;
+
 public class mainMenuController implements Initializable {
     Stage stage;
     Parent scene;
@@ -92,12 +94,14 @@ public class mainMenuController implements Initializable {
     void onActionDeleteAppointment(ActionEvent event) {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorMessages.errorCode(31);
+            System.out.println("Null Selection while trying to Delete an Appointment.");
         }
 
     }
 
     @FXML
     void onActionLogout(ActionEvent event) {
+        System.out.println("Logout Button Selected.");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log out");
         alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
@@ -110,6 +114,9 @@ public class mainMenuController implements Initializable {
             System.out.println("Shutting down Application.");
             System.exit(0);
         }
+        if (confirmation.isPresent() && confirmation.get() == CANCEL) {
+            System.out.println("Logout canceled.");
+        }
     }
 
     @FXML
@@ -121,6 +128,7 @@ public class mainMenuController implements Initializable {
     void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorMessages.errorCode(30);
+            System.out.println("Null Selection while trying to Update an Appointment.");
         }
         else {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();

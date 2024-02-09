@@ -105,6 +105,7 @@ public class customerMenuController implements Initializable {
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
             errorMessages.errorCode(13);
+            System.out.println("Null Selection while trying to Delete a Customer.");
             return;
         }
 
@@ -162,6 +163,7 @@ public class customerMenuController implements Initializable {
 
     @FXML
     void onActionLogout(ActionEvent event) {
+        System.out.println("Logout Button Selected.");
         Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Log out");
         alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
@@ -173,6 +175,9 @@ public class customerMenuController implements Initializable {
             JDBC.closeConnection();
             System.out.println("Shutting down Application.");
             System.exit(0);
+        }
+        if (confirmation.isPresent() && confirmation.get() == CANCEL) {
+            System.out.println("Logout canceled.");
         }
     }
 
@@ -187,6 +192,7 @@ public class customerMenuController implements Initializable {
 
        if (customerTableView.getSelectionModel().isEmpty()) {
            errorMessages.errorCode(15);
+           System.out.println("Null Selection while trying to Update a Customer.");
        }
        else {
            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();

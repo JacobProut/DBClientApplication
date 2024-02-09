@@ -170,37 +170,37 @@ public abstract class errorMessages implements Initializable {
                     break;
 
                 case 27: //appointmentCreationFormController: Incorrect Times
-                    alert.setTitle("ERROR: Start time is after the End time");
-                    alert.setHeaderText("The End time CANNOT come before the Start time!");
-                    alert.setContentText("Please make sure the END time is scheduled AFTER the START time!");
+                    alert.setTitle((languageBundle.getString("appointmentCreationFormControllerIncorrectTimesTitle")));
+                    alert.setHeaderText(languageBundle.getString("appointmentCreationFormControllerIncorrectTimesHeaderText"));
+                    alert.setContentText(languageBundle.getString("appointmentCreationFormControllerIncorrectTimesContentText"));
                     alert.showAndWait();
                     break;
 
                 case 28: //appointmentCreationFormController: Start and End time cannot be the same
-                    alert.setTitle("ERROR: Start and end time are the same!");
-                    alert.setHeaderText("The start and end time CANNOT be the same!");
-                    alert.setContentText("Please make sure the START time comes BEFORE the END time!");
+                    alert.setTitle((languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndTimesTitle")));
+                    alert.setHeaderText(languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndTimesHeaderText"));
+                    alert.setContentText(languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndTimesContentText"));
                     alert.showAndWait();
                     break;
 
-                case 29: //appointmentCreationFormController: Start and End time cannot be the same
-                    alert.setTitle("ERROR: Invalid start/end date");
-                    alert.setHeaderText("The Start date MUST come before the End date!");
-                    alert.setContentText("Please make sure the START date comes BEFORE the END date!");
+                case 29: //appointmentCreationFormController: Start and End dates cannot be the same
+                    alert.setTitle((languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndCANNOTBESAMETimesTitle")));
+                    alert.setHeaderText(languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndCANNOTBESAMETimesHeaderText"));
+                    alert.setContentText(languageBundle.getString("appointmentCreationFormControllerIncorrectStartEndCANNOTBESAMETimesContentText"));
                     alert.showAndWait();
                     break;
 
                 case 30: //appointmentModificationFormController: onActionModificationAppointment null selection error code
-                    alert.setTitle("Null Selection");
-                    alert.setHeaderText("No Appointment has been selected.");
-                    alert.setContentText("Select an appointment then try clicking 'Update Appointment' again.");
+                    alert.setTitle((languageBundle.getString("appointmentModificationFormControllerNullTableSelectionTitle")));
+                    alert.setHeaderText(languageBundle.getString("appointmentModificationFormControllerNullTableSelectionHeader"));
+                    alert.setContentText(languageBundle.getString("appointmentModificationFormControllerNullTableSelectionContent"));
                     alert.showAndWait();
                     break;
 
                 case 31: //appointmentModificationFormController: onActionDeleteAppointment null selection error code
-                    alert.setTitle("Null Selection");
-                    alert.setHeaderText("No Appointment has been selected.");
-                    alert.setContentText("Select an appointment then try clicking 'Delete Appointment' again.");
+                    alert.setTitle((languageBundle.getString("appointmentModificationFormControllerNullTableSelectionDeleteTitle")));
+                    alert.setHeaderText(languageBundle.getString("appointmentModificationFormControllerNullTableSelectionDeleteHeader"));
+                    alert.setContentText(languageBundle.getString("appointmentModificationFormControllerNullTableSelectionDeleteContent"));
                     alert.showAndWait();
                     break;
 

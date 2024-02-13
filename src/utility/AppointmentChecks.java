@@ -9,14 +9,15 @@ import java.time.ZoneId;
 
 public class AppointmentChecks {
 
+    //Changed computers timezone to EST and looked at what the ZoneId.systemDefault() was to get "ZoneId.of("America/New_York")"
     public static boolean openHoursForBusiness(LocalDateTime startTime, LocalDateTime endTime) {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();
 
         LocalDateTime appointmentEstStart = startTime.atZone(locationLocal).withZoneSameInstant(locationEST).toLocalDateTime();
-        LocalDateTime businessEstStartTime = appointmentEstStart.withHour(8).withMinute(0);
+        LocalDateTime businessEstStartTime = appointmentEstStart.withHour(8).withMinute(0).withSecond(0);
         LocalDateTime appointmentEstEnd = endTime.atZone(locationLocal).withZoneSameInstant(locationEST).toLocalDateTime();
-        LocalDateTime businessEstEndTime = appointmentEstEnd.withHour(22).withMinute(0);
+        LocalDateTime businessEstEndTime = appointmentEstEnd.withHour(22).withMinute(0).withSecond(0);
 
         if (appointmentEstEnd.isAfter(businessEstEndTime) || appointmentEstStart.isBefore(businessEstStartTime)) {
             warningMessages.warningCode(1);

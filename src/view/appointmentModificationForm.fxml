@@ -103,12 +103,12 @@
             <ComboBox fx:id="userComboBox" onAction="#onActionComboBoxUser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ComboBox fx:id="contactComboBox" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <TextField fx:id="appointmentModificationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
-            <Label text="Start time must be in business hours of 8AM EST" underline="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Label prefHeight="43.0" prefWidth="318.0" text="Start time must be in business hours of 8AM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label text="End time must be in business hours of 10PM EST" underline="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <Label text="End time must be in business hours of 10PM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <font>
                   <Font size="13.0" />
                </font>

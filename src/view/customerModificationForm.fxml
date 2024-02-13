@@ -52,26 +52,26 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="modificationCountryPicker" onAction="#onActionModificationCountryPicker" prefHeight="25.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="divisionPicker" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Label prefHeight="20.0" prefWidth="99.0" text="     Division:" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="modificationCustomerID" editable="false" promptText="Auto Gen-Disabled" GridPane.columnIndex="1" />
             <TextField fx:id="modificationCustomerName" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="modificationCustomerAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="modificationCustomerPostalCode" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="modificationCustomerPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="modificationCountryPicker" onAction="#onActionModificationCountryPicker" prefHeight="25.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="divisionPicker" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <TextField fx:id="modificationCustomerID" editable="false" promptText="Auto Gen-Disabled" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Button layoutX="189.0" layoutY="408.0" mnemonicParsing="false" onAction="#onActionUpdateCustomerButton" prefHeight="35.0" prefWidth="158.0" text="Update Customer" />
+      <Button layoutX="341.0" layoutY="468.0" mnemonicParsing="false" onAction="#onActionModificationCancel" prefHeight="25.0" prefWidth="178.0" text="Cancel Customer Modification" />
       <Label layoutX="152.0" layoutY="14.0" text="Customer Modification Form" underline="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="189.0" layoutY="408.0" mnemonicParsing="false" onAction="#onActionUpdateCustomerButton" prefHeight="35.0" prefWidth="158.0" text="Update Customer" />
-      <Button layoutX="341.0" layoutY="468.0" mnemonicParsing="false" onAction="#onActionModificationCancel" prefHeight="25.0" prefWidth="178.0" text="Cancel Customer Modification" />
    </children>
 </Pane>

@@ -9,7 +9,7 @@ import java.time.ZoneId;
 
 public class AppointmentChecks {
 
-    //Changed computers timezone to EST and looked at what the ZoneId.systemDefault() was to get "ZoneId.of("America/New_York")"
+    //Changed computers timezone to EST and looked at what the ZoneId.systemDefault() was to get EST Timezone of: "ZoneId.of("America/New_York")".
     public static boolean openHoursForBusiness(LocalDateTime startTime, LocalDateTime endTime) {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();
@@ -38,6 +38,7 @@ public class AppointmentChecks {
             appointmentStartTime = overlap.getStartTime();
             appointmentEndTime = overlap.getEndTime();
 
+            //Empty body statement otherwise I get an error?
             if (customerId != overlap.getCustomerId()) {
 
             }

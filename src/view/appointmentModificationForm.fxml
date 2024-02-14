@@ -113,14 +113,14 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label text=" Current TimeZone:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label fx:id="zoneID" text="zoneID" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Label text=" Current TimeZone:" GridPane.columnIndex="2" />
+            <Label fx:id="zoneID" text="zoneID" GridPane.columnIndex="3">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label text="    Current Time:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="timeLabel" text="Time" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Label text="    Current Time:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="timeLabel" text="Time" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="13.0" />
                </font>

@@ -21,11 +21,14 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class appointmentModificationFormController implements Initializable {
+
+    @FXML private Label zoneID;
 
     @FXML
     private TextField appointmentModificationAppointmentID;
@@ -190,6 +193,7 @@ public class appointmentModificationFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        zoneID.setText(String.valueOf(ZoneId.systemDefault()));
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
         userComboBox.setItems(UsersDAO.getAllUsers());
         contactComboBox.setItems(ContactsDAO.getAllContacts());

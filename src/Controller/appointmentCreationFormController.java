@@ -24,11 +24,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class appointmentCreationFormController implements Initializable {
+
+    @FXML private Label zoneID;
 
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
 
@@ -116,6 +119,7 @@ public class appointmentCreationFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        zoneID.setText(String.valueOf(ZoneId.systemDefault()));
         contactComboBox.setItems(ContactsDAO.getAllContacts());
         userComboBox.setItems(UsersDAO.getAllUsers());
         customerComboBox.setItems(CustomersDAO.getAllCustomers());

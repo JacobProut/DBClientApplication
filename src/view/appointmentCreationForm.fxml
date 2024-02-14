@@ -15,7 +15,7 @@
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="108.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="211.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="103.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="109.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="0.0" prefWidth="282.0" />
         </columnConstraints>
         <rowConstraints>
@@ -109,6 +109,12 @@
                </font>
             </Label>
             <Label prefHeight="43.0" prefWidth="310.0" text="End time must be in business hours of 10PM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label text=" Current TimeZone:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="zoneID" text="zoneID" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="13.0" />
                </font>

@@ -9,7 +9,7 @@ public class warningMessages {
     public static void warningCode(int code) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         switch (code) {
-            case 1:
+            case 1: //Used in AppointmentChecks.openHoursForBusiness()
                 LocalTime start = TimeManipulations.establishLocalStartingTime();
                 LocalTime end = TimeManipulations.establishLocalEndingTime();
                 alert.setTitle("Incorrect Hours Selected!");
@@ -18,26 +18,27 @@ public class warningMessages {
                 alert.showAndWait();
                 break;
 
-            case 2:
-                alert.setTitle("Overlap Warning");
-                alert.setHeaderText("Selected times are overlapping other customers");
-                alert.setContentText("Appointment cannot start or end during the same time as another customers appointment!");
-                alert.showAndWait();
-                break;
-
-            case 3:
+            case 2: //Used in AppointmentChecks.doTimesOverLap()
                 alert.setTitle("Overlap Warning");
                 alert.setHeaderText("Start time Overlapping");
                 alert.setContentText("The start time cannot be during another customers appointment time!");
                 alert.showAndWait();
                 break;
 
-            case 4:
+            case 3: //Used in AppointmentChecks.doTimesOverLap()
                 alert.setTitle("Overlap Warning");
                 alert.setHeaderText("End time Overlapping");
                 alert.setContentText("The end time cannot be during another customers appointment time!");
                 alert.showAndWait();
                 break;
+
+            case 4: //Used in AppointmentChecks.doTimesOverLap()
+                alert.setTitle("Overlap Warning");
+                alert.setHeaderText("Selected times are overlapping other customers");
+                alert.setContentText("Appointment cannot start or end during the same time as another customers appointment!");
+                alert.showAndWait();
+                break;
+
         }
     }
 }

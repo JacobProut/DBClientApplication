@@ -26,22 +26,15 @@ public class customerCreationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
+    //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private ComboBox<Countries> countryPicker;
-
     @FXML private Button creationCancelButton;
-
     @FXML private TextField creationCustomerAddress;
-
     @FXML private TextField creationCustomerID;
-
     @FXML private TextField creationCustomerName;
-
     @FXML private TextField creationCustomerPhoneNumber;
-
     @FXML private TextField creationCustomerPostalCode;
-
     @FXML private ComboBox<First_Level_Divisions> divisionPicker;
-
     @FXML private Button saveButton;
 
     //Working method without Last_Updated_By | Add Last_Updated_By

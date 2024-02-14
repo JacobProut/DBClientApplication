@@ -39,29 +39,17 @@ public class appointmentCreationFormController implements Initializable {
     Stage stage;
 
     @FXML private Label zoneID;
-
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
-
     @FXML private ComboBox<LocalTime> comboBoxEndTime;
-
     @FXML private ComboBox<Users> userComboBox;
-
     @FXML private ComboBox<Customers> customerComboBox;
-
     @FXML private ComboBox<Contacts> contactComboBox;
-
     @FXML private TextField appointmentCreationDescription;
-
     @FXML private TextField appointmentCreationLocation;
-
     @FXML private TextField appointmentCreationTitle;
-
     @FXML private TextField appointmentCreationType;
-
     @FXML private DatePicker endDateCalendar;
-
     @FXML private DatePicker startDateCalendar;
-
     @FXML private Label timeLabel;
     private final boolean timeStopped = false;
 

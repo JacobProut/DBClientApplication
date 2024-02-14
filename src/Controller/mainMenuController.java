@@ -34,50 +34,29 @@ public class mainMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
+    //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private Label ZoneID;
-
     @FXML private Button addAppointmentButton;
-
     @FXML private Button deleteAppointmentButton;
-
     @FXML private Button logoutButton;
-
     @FXML private RadioButton radioButtonViewAll;
-
     @FXML private RadioButton radioButtonViewAllCustomers;
-
     @FXML private RadioButton radioButtonViewByMonth;
-
     @FXML private RadioButton radioButtonViewByWeek;
-
     @FXML private ToggleGroup radioButtons;
-
     @FXML private Button reportsButton;
-
     @FXML private TableView<Appointments> appointmentSchedulerTable;
-
     @FXML private TableColumn<Appointments, Integer> tableColAppointmentID;
-
     @FXML private TableColumn<Appointments, Integer> tableColContact;
-
     @FXML private TableColumn<Appointments, Integer> tableColCustomerID;
-
     @FXML private TableColumn<Appointments, String> tableColDescription;
-
     @FXML private TableColumn<Appointments, Timestamp> tableColEndDateAndTime;
-
     @FXML private TableColumn<Appointments, String> tableColLocation;
-
     @FXML private TableColumn<Appointments, Timestamp> tableColStartDateAndTime;
-
     @FXML private TableColumn<Appointments, String> tableColTitle;
-
     @FXML private TableColumn<Appointments, String> tableColType;
-
     @FXML private TableColumn<Appointments, Integer> tableColUserID;
-
     @FXML private Button updateAppointmentButton;
-
     @FXML private Label timeLabel;
     private final boolean timeStopped = false;
 

@@ -28,17 +28,11 @@ public class customerModificationFormController implements Initializable {
     Stage stage;
 
     @FXML private ComboBox<First_Level_Divisions> divisionPicker;
-
     @FXML private TextField modificationCustomerAddress;
-
     @FXML private TextField modificationCustomerID;
-
     @FXML private TextField modificationCustomerName;
-
     @FXML private TextField modificationCustomerPhoneNumber;
-
     @FXML private TextField modificationCustomerPostalCode;
-
     @FXML private ComboBox<Countries> modificationCountryPicker;
 
     @FXML

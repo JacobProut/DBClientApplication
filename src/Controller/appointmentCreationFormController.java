@@ -193,7 +193,7 @@ public class appointmentCreationFormController implements Initializable {
 
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+            SimpleDateFormat simpleFormat = new SimpleDateFormat("hh:mm:ss a");
 
             while(!timeStopped) {
                 try {
@@ -203,7 +203,7 @@ public class appointmentCreationFormController implements Initializable {
                 catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                final String showCurrentTime = sdf.format(new Date());
+                final String showCurrentTime = simpleFormat.format(new Date());
                 Platform.runLater(()->{
                     timeLabel.setText(showCurrentTime);
                 });

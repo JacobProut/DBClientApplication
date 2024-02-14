@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,6 +34,8 @@ import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.ButtonType.*;
 
 public class customerMenuController implements Initializable {
+
+    @FXML private Label zoneID;
 
     @FXML
     private Button addCustomerButton;
@@ -239,6 +242,7 @@ public class customerMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        zoneID.setText(String.valueOf(ZoneId.systemDefault()));
         customerTableView.setItems(CustomersDAO.getAllCustomers());
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));

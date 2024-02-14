@@ -14,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
@@ -35,7 +34,8 @@ import java.util.ResourceBundle;
 import static java.lang.Thread.sleep;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 import static javafx.scene.control.Alert.AlertType.WARNING;
-import static javafx.scene.control.ButtonType.*;
+import static javafx.scene.control.ButtonType.CANCEL;
+import static javafx.scene.control.ButtonType.OK;
 
 public class customerMenuController implements Initializable {
     Stage stage;
@@ -76,6 +76,9 @@ public class customerMenuController implements Initializable {
     @FXML private Button updateCustomerButton;
 
     @FXML private Button returnToAppointmentScheduler;
+
+    @FXML private Label timeLabel;
+    private final boolean timeStopped = false;
 
     @FXML
     void onActionAddCustomer(ActionEvent event) throws IOException {
@@ -244,8 +247,6 @@ public class customerMenuController implements Initializable {
     }
 
     //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
-    @FXML private Label timeLabel;
-    private final boolean timeStopped = false;
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");

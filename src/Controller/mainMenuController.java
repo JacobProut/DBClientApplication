@@ -78,6 +78,9 @@ public class mainMenuController implements Initializable {
 
     @FXML private Button updateAppointmentButton;
 
+    @FXML private Label timeLabel;
+    private final boolean timeStopped = false;
+
 
     @FXML
     void onActionAddAppointment(ActionEvent event) throws IOException {
@@ -213,8 +216,6 @@ public class mainMenuController implements Initializable {
 
 
     //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
-    @FXML private Label timeLabel;
-    private final boolean timeStopped = false;
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");

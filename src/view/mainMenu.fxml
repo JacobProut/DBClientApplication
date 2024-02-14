@@ -45,7 +45,9 @@
       <Button fx:id="addAppointmentButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="25.0" prefWidth="122.0" text="Add Appointment" />
       <Button fx:id="updateAppointmentButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="25.0" prefWidth="139.0" text="Update Appointment" />
       <Button fx:id="deleteAppointmentButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="25.0" prefWidth="139.0" text="Delete Appointment" />
-      <Label layoutX="378.0" layoutY="86.0" text="Current Time Zone:" />
-      <Label fx:id="ZoneID" layoutX="514.0" layoutY="86.0" text="ZoneId" />
+      <Label layoutX="378.0" layoutY="78.0" text="Current Time Zone:" />
+      <Label fx:id="ZoneID" layoutX="514.0" layoutY="78.0" text="ZoneId" />
+      <Label fx:id="timeLabel" layoutX="514.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Time" />
+      <Label layoutX="378.0" layoutY="95.0" text="Current Time:" />
    </children>
 </Pane>

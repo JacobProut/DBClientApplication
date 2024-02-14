@@ -2,8 +2,7 @@ package Controller;
 
 import DAO.JDBC;
 import DAO.AppointmentsDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,19 +14,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Customers;
 import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static java.lang.Thread.sleep;
 import static javafx.scene.control.ButtonType.CANCEL;
 
 public class mainMenuController implements Initializable {
@@ -206,5 +206,35 @@ public class mainMenuController implements Initializable {
         tableColEndDateAndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        timeLabel.setText(displayCurrentTime());
     }
+
+
+
+
+    //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
+    @FXML private Label timeLabel;
+    private final boolean timeStopped = false;
+    private String displayCurrentTime() {
+        Thread currentTime = new Thread(() -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+
+            while(!timeStopped) {
+                try {
+                    sleep(1);
+                    //Needed this for time to render properly.
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                final String showCurrentTime = sdf.format(new Date());
+                Platform.runLater(()->{
+                    timeLabel.setText(showCurrentTime);
+                });
+            }
+        });
+        currentTime.start();
+        return null;
+    }
+
 }

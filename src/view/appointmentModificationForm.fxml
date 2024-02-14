@@ -14,9 +14,9 @@
       <GridPane layoutX="15.0" layoutY="66.0" prefHeight="468.0" prefWidth="712.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="108.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="213.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="211.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="109.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="0.0" prefWidth="281.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="0.0" prefWidth="283.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
@@ -103,7 +103,7 @@
             <ComboBox fx:id="userComboBox" onAction="#onActionComboBoxUser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ComboBox fx:id="contactComboBox" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <TextField fx:id="appointmentModificationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
-            <Label prefHeight="43.0" prefWidth="318.0" text="Start time must be in business hours of 8AM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Label prefHeight="43.0" prefWidth="302.0" text="Start time must be in business hours of 8AM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="13.0" />
                </font>

@@ -24,26 +24,19 @@ import java.util.ResourceBundle;
 import utility.errorMessages;
 public class loginScreenForm implements Initializable {
 
-    @FXML
-    private Button LoginButton;
+    @FXML private Button LoginButton;
 
-    @FXML
-    private Label ZoneID;
+    @FXML private Label ZoneID;
 
-    @FXML
-    private Label labelPassword;
+    @FXML private Label labelPassword;
 
-    @FXML
-    private Label labelTimezone;
+    @FXML private Label labelTimezone;
 
-    @FXML
-    private Label labelUsername;
+    @FXML private Label labelUsername;
 
-    @FXML
-    private TextField passwordField;
+    @FXML private TextField passwordField;
 
-    @FXML
-    private TextField usernameField;
+    @FXML private TextField usernameField;
 
 
     @Override

@@ -24,30 +24,22 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class customerModificationFormController implements Initializable {
-
-    @FXML
-    private ComboBox<First_Level_Divisions> divisionPicker;
-
-    @FXML
-    private TextField modificationCustomerAddress;
-
-    @FXML
-    private TextField modificationCustomerID;
-
-    @FXML
-    private TextField modificationCustomerName;
-
-    @FXML
-    private TextField modificationCustomerPhoneNumber;
-
-    @FXML
-    private TextField modificationCustomerPostalCode;
-
-    @FXML
-    private ComboBox<Countries> modificationCountryPicker;
-
     Parent scene;
     Stage stage;
+
+    @FXML private ComboBox<First_Level_Divisions> divisionPicker;
+
+    @FXML private TextField modificationCustomerAddress;
+
+    @FXML private TextField modificationCustomerID;
+
+    @FXML private TextField modificationCustomerName;
+
+    @FXML private TextField modificationCustomerPhoneNumber;
+
+    @FXML private TextField modificationCustomerPostalCode;
+
+    @FXML private ComboBox<Countries> modificationCountryPicker;
 
     @FXML
     void onActionModificationCancel(ActionEvent event) throws IOException {

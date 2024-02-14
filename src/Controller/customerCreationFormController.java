@@ -26,36 +26,25 @@ public class customerCreationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
-    @FXML
-    private ComboBox<Countries> countryPicker;
+    @FXML private ComboBox<Countries> countryPicker;
 
-    @FXML
-    private Button creationCancelButton;
+    @FXML private Button creationCancelButton;
 
-    @FXML
-    private TextField creationCustomerAddress;
+    @FXML private TextField creationCustomerAddress;
 
-    @FXML
-    private TextField creationCustomerID;
+    @FXML private TextField creationCustomerID;
 
-    @FXML
-    private TextField creationCustomerName;
+    @FXML private TextField creationCustomerName;
 
-    @FXML
-    private TextField creationCustomerPhoneNumber;
+    @FXML private TextField creationCustomerPhoneNumber;
 
-    @FXML
-    private TextField creationCustomerPostalCode;
+    @FXML private TextField creationCustomerPostalCode;
 
-    @FXML
-    private ComboBox<First_Level_Divisions> divisionPicker;
+    @FXML private ComboBox<First_Level_Divisions> divisionPicker;
 
-    @FXML
-    private Button saveButton;
-
+    @FXML private Button saveButton;
 
     //Working method without Last_Updated_By | Add Last_Updated_By
-
     @FXML
     void onActionSaveButton(ActionEvent event) {
         try {
@@ -78,7 +67,6 @@ public class customerCreationFormController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 
     @FXML
     void onActionCreationCancel(ActionEvent event) throws IOException {

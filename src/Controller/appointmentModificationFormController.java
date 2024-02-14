@@ -30,47 +30,33 @@ public class appointmentModificationFormController implements Initializable {
 
     @FXML private Label zoneID;
 
-    @FXML
-    private TextField appointmentModificationAppointmentID;
+    @FXML private TextField appointmentModificationAppointmentID;
 
-    @FXML
-    private TextField appointmentModificationDescription;
+    @FXML private TextField appointmentModificationDescription;
 
-    @FXML
-    private TextField appointmentModificationLocation;
+    @FXML private TextField appointmentModificationLocation;
 
-    @FXML
-    private TextField appointmentModificationTitle;
+    @FXML private TextField appointmentModificationTitle;
 
-    @FXML
-    private TextField appointmentModificationType;
+    @FXML private TextField appointmentModificationType;
 
-    @FXML
-    private Button cancelAppointmentModification;
+    @FXML private Button cancelAppointmentModification;
 
-    @FXML
-    private ComboBox<LocalTime> comboBoxEndTime;
+    @FXML private ComboBox<LocalTime> comboBoxEndTime;
 
-    @FXML
-    private ComboBox<LocalTime> comboBoxStartTime;
+    @FXML private ComboBox<LocalTime> comboBoxStartTime;
 
-    @FXML
-    private Button confirmAppointmentModification;
+    @FXML private Button confirmAppointmentModification;
 
-    @FXML
-    private ComboBox<Contacts> contactComboBox;
+    @FXML private ComboBox<Contacts> contactComboBox;
 
-    @FXML
-    private ComboBox<Customers> customerComboBox;
+    @FXML private ComboBox<Customers> customerComboBox;
 
-    @FXML
-    private DatePicker endDateCalendar;
+    @FXML private DatePicker endDateCalendar;
 
-    @FXML
-    private DatePicker startDateCalendar;
+    @FXML private DatePicker startDateCalendar;
 
-    @FXML
-    private ComboBox<Users> userComboBox;
+    @FXML private ComboBox<Users> userComboBox;
 
     Parent scene;
     Stage stage;

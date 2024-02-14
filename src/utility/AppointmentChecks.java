@@ -20,7 +20,9 @@ public class AppointmentChecks {
         LocalDateTime businessEstEndTime = appointmentEstEnd.withHour(22).withMinute(0).withSecond(0);
 
         if (appointmentEstEnd.isAfter(businessEstEndTime) || appointmentEstStart.isBefore(businessEstStartTime)) {
+            //Uses TimeManipulations.establishLocalStartingTime() & TimeManipulations.establishLocalEndingTime()
             warningMessages.warningCode(1);
+            System.out.println("!Appointment is NOT within Business Hours!");
             return true;
         }
         else {
@@ -44,14 +46,17 @@ public class AppointmentChecks {
             }
             else if (startTime.isBefore(appointmentEndTime) && (startTime.isAfter(appointmentStartTime))) {
                 warningMessages.warningCode(3);
+                System.out.println("!Appointment Start time cannot be during another customers appointment time!");
                 return true;
             }
             else if (endTime.isBefore(appointmentEndTime) && (endTime.isAfter(appointmentStartTime))) {
                 warningMessages.warningCode(4);
+                System.out.println("!Appointment End time cannot be during another customers appointment time!");
                 return true;
             }
             else if (appointmentEndTime.isEqual(startTime) || appointmentStartTime.isEqual(startTime)){
                 warningMessages.warningCode(2);
+                System.out.println("!Appointment start/end times cannot be during the same time as another customers appointments!");
                 return true;
             }
         }

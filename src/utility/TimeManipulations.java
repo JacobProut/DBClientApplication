@@ -29,6 +29,7 @@ public class TimeManipulations {
         return listOfTimesAvailable;
     }
 
+    //This method sets the starting time in AppointmentChecks.openHoursForBusiness()
     public static LocalTime establishLocalStartingTime() {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();
@@ -40,6 +41,7 @@ public class TimeManipulations {
         return businessLocationLocal.toLocalTime();
     }
 
+    //This method sets the ending time in AppointmentChecks.openHoursForBusiness()
     public static LocalTime establishLocalEndingTime() {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();

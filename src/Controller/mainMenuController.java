@@ -206,6 +206,7 @@ public class mainMenuController implements Initializable {
                     //Needed this for time to render properly.
                 }
                 catch (Exception e) {
+                    System.out.println("Cannot Display time!");
                     throw new RuntimeException(e);
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());

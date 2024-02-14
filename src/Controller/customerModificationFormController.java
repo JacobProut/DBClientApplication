@@ -3,7 +3,6 @@ package Controller;
 import DAO.CountriesDAO;
 import DAO.CustomersDAO;
 import DAO.First_Level_DivisionsDAO;
-import utility.errorMessages;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +21,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static utility.errorMessages.errorCode;
 
 public class customerModificationFormController implements Initializable {
     Parent scene;
@@ -107,30 +108,30 @@ public class customerModificationFormController implements Initializable {
 
     public boolean updateCustomerValidation() {
         if (modificationCustomerID.getText().isEmpty() && modificationCustomerAddress.getText().isEmpty() && modificationCustomerPostalCode.getText().isEmpty() && modificationCustomerPhoneNumber.getText().isEmpty() && modificationCountryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
-            errorMessages.errorCode(5);
+            errorCode(5);
             return false;
         } else if (modificationCustomerName.getText().isBlank() || modificationCustomerName.getText().isEmpty()) {
-            errorMessages.errorCode(6);
+            errorCode(6);
             return false;
         } else if (modificationCustomerAddress.getText().isBlank() || modificationCustomerAddress.getText().isEmpty()) {
-            errorMessages.errorCode(7);
+            errorCode(7);
             return false;
         } else if (modificationCustomerPostalCode.getText().isBlank() || modificationCustomerPostalCode.getText().isEmpty()) {
-            errorMessages.errorCode(8);
+            errorCode(8);
             return false;
         } else if (modificationCustomerPhoneNumber.getText().isBlank() || modificationCustomerPhoneNumber.getText().isEmpty()) {
-            errorMessages.errorCode(9);
+            errorCode(9);
             return false;
         } else if (modificationCountryPicker.getValue() == null) {
-            errorMessages.errorCode(10);
+            errorCode(10);
             return false;
         } else if (divisionPicker.getValue() == null) {
-            errorMessages.errorCode(12);
+            errorCode(12);
             return false;
         } else if (divisionPicker.getValue() == null) {
             Countries countries = modificationCountryPicker.getValue();
             if (countries == null) {
-                errorMessages.errorCode(14);
+                errorCode(14);
                 return false;
             }
         }

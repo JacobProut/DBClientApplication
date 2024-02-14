@@ -18,7 +18,6 @@ import model.Customers;
 import model.Users;
 import utility.AppointmentChecks;
 import utility.TimeManipulations;
-import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +32,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
+import static utility.errorMessages.errorCode;
 
 public class appointmentCreationFormController implements Initializable {
     Parent scene;
@@ -90,15 +90,15 @@ public class appointmentCreationFormController implements Initializable {
                 }
                 else if (startDateCalendar.getValue().isAfter(endDateCalendar.getValue()) || endDateCalendar.getValue().isBefore(startDateCalendar.getValue())) {
                     System.out.println("End date comes before Start date");
-                    errorMessages.errorCode(29);
+                    errorCode(29);
                 }
                 else if (comboBoxStartTime.getSelectionModel().getSelectedItem().isAfter(comboBoxEndTime.getValue()) || comboBoxEndTime.getSelectionModel().getSelectedItem().isBefore(comboBoxStartTime.getValue())) {
                     System.out.println("Start time is after end time");
-                    errorMessages.errorCode(27);
+                    errorCode(27);
                 }
                 else if (comboBoxStartTime.getSelectionModel().getSelectedItem().equals(comboBoxEndTime.getValue())) {
                     System.out.println("Start and End time CANNOT be the same!");
-                    errorMessages.errorCode(28);
+                    errorCode(28);
                 }
                 else if (AppointmentChecks.doTimesOverLap(customerId,startOfAppointment,endOfAppointment)) {
                 }
@@ -133,47 +133,47 @@ public class appointmentCreationFormController implements Initializable {
     //add appointment empty fields.
     public boolean appointFieldsEmpty() {
         if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
-            errorMessages.errorCode(16);
+            errorCode(16);
             return false;
         }
         else if (appointmentCreationDescription.getText().isBlank() || appointmentCreationDescription.getText().isEmpty()) {
-            errorMessages.errorCode(17);
+            errorCode(17);
             return false;
         }
         else if (appointmentCreationLocation.getText().isBlank() || appointmentCreationLocation.getText().isEmpty()) {
-            errorMessages.errorCode(18);
+            errorCode(18);
             return false;
         }
         else if (appointmentCreationType.getText().isBlank() || appointmentCreationType.getText().isEmpty()) {
-            errorMessages.errorCode(19);
+            errorCode(19);
             return false;
         }
         else if (startDateCalendar.getValue() == null) {
-            errorMessages.errorCode(20);
+            errorCode(20);
             return false;
         }
         else if (comboBoxStartTime.getValue() == null) {
-            errorMessages.errorCode(21);
+            errorCode(21);
             return false;
         }
         else if (endDateCalendar.getValue() == null) {
-            errorMessages.errorCode(22);
+            errorCode(22);
             return false;
         }
         else if (comboBoxEndTime.getValue() == null) {
-            errorMessages.errorCode(23);
+            errorCode(23);
             return false;
         }
         else if (customerComboBox.getValue() == null) {
-            errorMessages.errorCode(24);
+            errorCode(24);
             return false;
         }
         else if (userComboBox.getValue() == null) {
-            errorMessages.errorCode(25);
+            errorCode(25);
             return false;
         }
         else if (contactComboBox.getValue() == null) {
-            errorMessages.errorCode(26);
+            errorCode(26);
             return false;
         }
         return true;

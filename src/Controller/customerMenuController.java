@@ -18,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Customers;
-import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,6 +35,7 @@ import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.ButtonType.CANCEL;
 import static javafx.scene.control.ButtonType.OK;
+import static utility.errorMessages.errorCode;
 
 public class customerMenuController implements Initializable {
     Stage stage;
@@ -79,7 +79,7 @@ public class customerMenuController implements Initializable {
     void onActionDeleteCustomer(ActionEvent event) throws SQLException {
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
-            errorMessages.errorCode(13);
+            errorCode(13);
             System.out.println("Null Selection while trying to Delete a Customer.");
             return;
         }
@@ -166,7 +166,7 @@ public class customerMenuController implements Initializable {
     void onActionUpdateCustomer(ActionEvent event) throws IOException {
 
        if (customerTableView.getSelectionModel().isEmpty()) {
-           errorMessages.errorCode(15);
+           errorCode(15);
            System.out.println("Null Selection while trying to Update a Customer.");
        }
        else {

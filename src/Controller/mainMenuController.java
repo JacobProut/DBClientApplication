@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
 import static javafx.scene.control.ButtonType.CANCEL;
+import static utility.errorMessages.*;
 
 public class mainMenuController implements Initializable {
     Stage stage;
@@ -75,7 +76,7 @@ public class mainMenuController implements Initializable {
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
-            errorMessages.errorCode(31);
+            errorCode(31);
             System.out.println("Null Selection while trying to Delete an Appointment.");
         }
 
@@ -109,7 +110,7 @@ public class mainMenuController implements Initializable {
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
-            errorMessages.errorCode(30);
+            errorCode(30);
             System.out.println("Null Selection while trying to Update an Appointment.");
         }
         else {

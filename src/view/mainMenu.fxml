@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.mainMenuController">
@@ -12,7 +13,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
+      <AnchorPane layoutX="-1.0" layoutY="35.0" prefHeight="30.0" prefWidth="966.0">
          <children>
             <RadioButton fx:id="radioButtonViewAll" layoutX="259.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAll" selected="true" text="View All">
                <toggleGroup>
@@ -45,9 +46,10 @@
       <Button fx:id="addAppointmentButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="25.0" prefWidth="122.0" text="Add Appointment" />
       <Button fx:id="updateAppointmentButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="25.0" prefWidth="139.0" text="Update Appointment" />
       <Button fx:id="deleteAppointmentButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="25.0" prefWidth="139.0" text="Delete Appointment" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="370.0" layoutY="74.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
       <Label layoutX="378.0" layoutY="78.0" text="Current Time Zone:" />
-      <Label fx:id="ZoneID" layoutX="514.0" layoutY="78.0" text="ZoneId" />
       <Label fx:id="timeLabel" layoutX="514.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Time" />
+      <Label fx:id="ZoneID" layoutX="514.0" layoutY="78.0" text="ZoneId" />
       <Label layoutX="378.0" layoutY="95.0" text="Current Time:" />
    </children>
 </Pane>

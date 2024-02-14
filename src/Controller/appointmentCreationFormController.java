@@ -4,6 +4,7 @@ import DAO.AppointmentsDAO;
 import DAO.ContactsDAO;
 import DAO.CustomersDAO;
 import DAO.UsersDAO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,12 +23,16 @@ import utility.errorMessages;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static java.lang.Thread.sleep;
 
 public class appointmentCreationFormController implements Initializable {
     Parent scene;
@@ -56,6 +61,9 @@ public class appointmentCreationFormController implements Initializable {
     @FXML private DatePicker endDateCalendar;
 
     @FXML private DatePicker startDateCalendar;
+
+    @FXML private Label timeLabel;
+    private final boolean timeStopped = false;
 
     @FXML
     void onActionCancelAppointment(ActionEvent event) throws IOException {
@@ -119,6 +127,7 @@ public class appointmentCreationFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         zoneID.setText(String.valueOf(ZoneId.systemDefault()));
+        timeLabel.setText(displayCurrentTime());
         contactComboBox.setItems(ContactsDAO.getAllContacts());
         userComboBox.setItems(UsersDAO.getAllUsers());
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
@@ -180,6 +189,28 @@ public class appointmentCreationFormController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    private String displayCurrentTime() {
+        Thread currentTime = new Thread(() -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+
+            while(!timeStopped) {
+                try {
+                    sleep(1);
+                    //Needed this for time to render properly.
+                }
+                catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                final String showCurrentTime = sdf.format(new Date());
+                Platform.runLater(()->{
+                    timeLabel.setText(showCurrentTime);
+                });
+            }
+        });
+        currentTime.start();
+        return null;
     }
 
 }

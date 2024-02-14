@@ -34,6 +34,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class appointmentModificationFormController implements Initializable {
     Parent scene;
@@ -60,9 +61,9 @@ public class appointmentModificationFormController implements Initializable {
 
     @FXML
     void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Close Appointment Modification Page");
-        alert.setHeaderText("Are you sure you want to leave without saving?");
+        alert.setHeaderText("You are about to cancel an Appointment with a Appointment_ID of [" + appointmentModificationAppointmentID.getText() + "] and with a Appointment Type of [" + appointmentModificationType.getText() + "].\r" + "Are you sure you want to continue?");
         alert.setContentText("Click 'OK' to go back to Appointment Scheduler.\r" + "Click 'Cancel' to stay on the Appointment Modification Form.");
         Optional<ButtonType> confirmation = alert.showAndWait();
         if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
@@ -241,6 +242,7 @@ public class appointmentModificationFormController implements Initializable {
                     //Needed this for time to render properly.
                 }
                 catch (Exception e) {
+                    System.out.println("Cannot Display time!");
                     throw new RuntimeException(e);
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());

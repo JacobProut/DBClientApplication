@@ -30,6 +30,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class appointmentCreationFormController implements Initializable {
+    Parent scene;
+    Stage stage;
 
     @FXML private Label zoneID;
 
@@ -54,9 +56,6 @@ public class appointmentCreationFormController implements Initializable {
     @FXML private DatePicker endDateCalendar;
 
     @FXML private DatePicker startDateCalendar;
-
-    Parent scene;
-    Stage stage;
 
     @FXML
     void onActionCancelAppointment(ActionEvent event) throws IOException {

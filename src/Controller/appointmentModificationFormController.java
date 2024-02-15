@@ -257,9 +257,7 @@ public class appointmentModificationFormController implements Initializable {
                     throw new RuntimeException(e);
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());
-                Platform.runLater(()->{
-                    timeLabel.setText(showCurrentTime);
-                });
+                Platform.runLater(()-> timeLabel.setText(showCurrentTime));
             }
         });
         currentTime.start();

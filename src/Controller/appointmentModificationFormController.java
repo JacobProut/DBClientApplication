@@ -57,6 +57,8 @@ public class appointmentModificationFormController implements Initializable {
     @FXML private DatePicker startDateCalendar;
     @FXML private ComboBox<Users> userComboBox;
     @FXML private Label timeLabel;
+
+    //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
     @FXML
@@ -177,11 +179,20 @@ public class appointmentModificationFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TimeZone & Time Setters
         zoneID.setText(String.valueOf(ZoneId.systemDefault()));
+        timeLabel.setText(displayCurrentTime());
+
+        //Sets Contact, User, Customer ComboBoxes with getAll functions
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
         userComboBox.setItems(UsersDAO.getAllUsers());
         contactComboBox.setItems(ContactsDAO.getAllContacts());
-        timeLabel.setText(displayCurrentTime());
+
+        //!!!Lambdas Expressions!!!
+        //Sets comboBoxEndTime to comboBoxStartTime plus 1 hour
+        comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
+        //Sets endDateCalendar to the same as startDateCalendar
+        startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
     }
 
     public boolean appointFieldsEmpty() {

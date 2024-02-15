@@ -59,6 +59,8 @@ public class mainMenuController implements Initializable {
     @FXML private TableColumn<Appointments, Integer> tableColUserID;
     @FXML private Button updateAppointmentButton;
     @FXML private Label timeLabel;
+
+    //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
 
@@ -177,7 +179,11 @@ public class mainMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TimeZone & Time Setters
         ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
+        timeLabel.setText(displayCurrentTime());
+
+        //Populates TableView
         appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
         tableColAppointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         tableColTitle.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
@@ -189,7 +195,6 @@ public class mainMenuController implements Initializable {
         tableColEndDateAndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        timeLabel.setText(displayCurrentTime());
     }
 
 

@@ -51,6 +51,8 @@ public class appointmentCreationFormController implements Initializable {
     @FXML private DatePicker endDateCalendar;
     @FXML private DatePicker startDateCalendar;
     @FXML private Label timeLabel;
+
+    //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
     @FXML
@@ -114,23 +116,29 @@ public class appointmentCreationFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TimeZone & Time Setters
         zoneID.setText(String.valueOf(ZoneId.systemDefault()));
         timeLabel.setText(displayCurrentTime());
+
+        //Sets times for comboBoxes
+        comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
+
+        //Sets Contact, User, Customer ComboBoxes with getAll functions
         contactComboBox.setItems(ContactsDAO.getAllContacts());
         userComboBox.setItems(UsersDAO.getAllUsers());
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
 
-        //Not sure if this is correct yet
-        comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
-        comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
-
-        //Not sure if ill use this lambdas expression
+        //!!!Lambdas Expressions!!!
+        //Sets comboBoxEndTime to comboBoxStartTime plus 1 hour
         comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
+        //Sets endDateCalendar to the same as startDateCalendar
+        startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
+
+
     }
 
-
-
-    //add appointment empty fields.
+    //Add appointment empty fields.
     public boolean appointFieldsEmpty() {
         if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
             errorCode(16);

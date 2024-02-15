@@ -61,6 +61,8 @@ public class customerMenuController implements Initializable {
     @FXML private Button updateCustomerButton;
     @FXML private Button returnToAppointmentScheduler;
     @FXML private Label timeLabel;
+
+    //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
     @FXML
@@ -202,7 +204,6 @@ public class customerMenuController implements Initializable {
         System.out.println("Returning to Appointment Scheduler.");
     }
 
-
     public static void returnToCustomerAppointments(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/customerMenu.fxml")));
@@ -214,7 +215,11 @@ public class customerMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TimeZone & Time Setters
         zoneID.setText(String.valueOf(ZoneId.systemDefault()));
+        timeLabel.setText(displayCurrentTime());
+
+        //Populates TableView
         customerTableView.setItems(CustomersDAO.getAllCustomers());
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
@@ -226,7 +231,6 @@ public class customerMenuController implements Initializable {
         tableColCustomerLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
         tableColCustomerLastUpdatedBy.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
         tableColCustomerDivisionId.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
-        timeLabel.setText(displayCurrentTime());
     }
 
     //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
@@ -252,6 +256,4 @@ public class customerMenuController implements Initializable {
         currentTime.start();
         return null;
     }
-
-
 }

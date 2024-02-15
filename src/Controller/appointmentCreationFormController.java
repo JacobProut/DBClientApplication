@@ -122,18 +122,24 @@ public class appointmentCreationFormController implements Initializable {
 
         //Sets times for comboBoxes
         comboBoxStartTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxStartTime.setPromptText("Select a Start Time");
         comboBoxEndTime.setItems(TimeManipulations.timeIntervals());
+        comboBoxEndTime.setPromptText("Select a End Time");
 
-        //Sets Contact, User, Customer ComboBoxes with getAll functions
+        //Sets Contact, User, Customer ComboBoxes with getAll functions / setPromptText
         contactComboBox.setItems(ContactsDAO.getAllContacts());
+        contactComboBox.setPromptText("Select a Contact");
         userComboBox.setItems(UsersDAO.getAllUsers());
+        userComboBox.setPromptText("Select a User");
         customerComboBox.setItems(CustomersDAO.getAllCustomers());
+        customerComboBox.setPromptText("Select a Customer");
 
         //!!!Lambdas Expressions!!!
         //Sets comboBoxEndTime to comboBoxStartTime plus 1 hour
         comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
         //Sets endDateCalendar to the same as startDateCalendar
         startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
+
 
 
     }

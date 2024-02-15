@@ -94,6 +94,8 @@ public class customerCreationFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryPicker.setItems(CountriesDAO.getAllCountriesList());
+        countryPicker.setPromptText("Select a Country");
+        divisionPicker.setPromptText("Select a Division");
     }
 
     public boolean createCustomerValidation() {

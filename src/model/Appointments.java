@@ -18,6 +18,7 @@ public class Appointments {
     private String appointmentCreatedBy;
     private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
+    private int typeCountTotal;
 
     //Foreign Keys
     private int customerId;
@@ -50,6 +51,17 @@ public class Appointments {
         this.customerId = customerId;
         this.userId = userId;
     }
+
+    //Used in AppointmentsDAO - getAppointmentTypeTotal()
+    public Appointments(String appointmentType, int typeCountTotal) {
+        this.appointmentType = appointmentType;
+        this.typeCountTotal = typeCountTotal;
+    }
+    //Needed this getTypeTotal Function so getAppointmentTypeTotal Would work
+    public int getTypeCountTotal() {
+        return typeCountTotal;
+    }
+
 
 
     //Foreign key functions

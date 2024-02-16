@@ -97,27 +97,55 @@ public class AppointmentsDAO {
        return viewWeekList;
    }
 
+   //Start of Reports menu DAO
    public static ObservableList<Appointments> getAppointmentTypeTotal() throws SQLException {
         ObservableList<Appointments> totalAppointmentTypeList = FXCollections.observableArrayList();
+
         try {
+            //GROUP BY must be added otherwise I get a SQLSyntaxError
             String type = "SELECT Type, COUNT(*) AS COUNTEDTYPENUMBER FROM appointments GROUP BY Type";
             PreparedStatement typeListStatement = createConnection().prepareStatement(type);
 
             ResultSet listResult = typeListStatement.executeQuery();
             while (listResult.next()) {
-                String appointmentType = listResult.getString("Type");
+                String typeOfAppointment = listResult.getString("Type");
                 int typeCountTotal = listResult.getInt("COUNTEDTYPENUMBER");
 
-                Appointments typeResult = new Appointments(appointmentType, typeCountTotal);
+                Appointments typeResult = new Appointments(typeOfAppointment, typeCountTotal);
                 totalAppointmentTypeList.add(typeResult);
             }
         }
         catch (SQLException e) {
-            System.out.println("Error with getting Appointment Type Total");
+            System.out.println("Error with getting Appointment Type or Type Total");
             throw new RuntimeException(e);
         }
        return totalAppointmentTypeList;
    }
+
+   public static ObservableList<Appointments> getAppointmentMonthTotal() throws SQLException {
+        ObservableList<Appointments> totalAppointmentMonthList = FXCollections.observableArrayList();
+
+        try {
+            //GROUP BY must be added otherwise I get a SQLSyntaxError
+            String month = "SELECT (MONTHNAME(Start)) AS Month, COUNT(*) AS COUNTEDMONTHNUMBER FROM appointments GROUP BY Month";
+            PreparedStatement monthListStatement = createConnection().prepareStatement(month);
+
+            ResultSet monthResult = monthListStatement.executeQuery();
+            while (monthResult.next()) {
+                String appointmentMonth = monthResult.getString("Month");
+                int monthCountTotal = monthResult.getInt("COUNTEDMONTHNUMBER");
+
+                Appointments monthCountResult = new Appointments(appointmentMonth, monthCountTotal);
+                totalAppointmentMonthList.add(monthCountResult);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Error with getting Appointment Month or Month Total");
+            throw new RuntimeException(e);
+        }
+       return totalAppointmentMonthList;
+   }
+   //End of Report menu DAO
 
 
 

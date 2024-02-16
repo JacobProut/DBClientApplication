@@ -3,6 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -58,5 +59,15 @@ public class reportsMenuController {
             stage.setTitle("Appointment Scheduler");
             System.out.println("Returning to Appointment Scheduler.");
         }
+    }
+
+    public static void returnToReportsMenu(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(reportsMenuController.class.getResource("/view/reportsMenu.fxml")));
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Reports Menu");
+        System.out.println("Returning to Reports Menu.");
     }
 }

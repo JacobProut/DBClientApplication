@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentsDAO.getAppointmentMonthTotal;
 import static DAO.AppointmentsDAO.getAppointmentTypeTotal;
 
 public class reportsMenuTotalTypeAndMonthController implements Initializable {
@@ -49,14 +50,17 @@ public class reportsMenuTotalTypeAndMonthController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableViewAppointmentType.setPlaceholder(new Label("NONTHING"));
         try {
             tableViewAppointmentType.setItems(getAppointmentTypeTotal());
+            tableViewAppointmentMonth.setItems(getAppointmentMonthTotal());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        tableViewAppointmentType.setPlaceholder(new Label("There is no available 'Type' Data in our database!"));
+        tableViewAppointmentMonth.setPlaceholder(new Label("There is no available 'Month' Data in our database!"));
         appointmentColType.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
         appointmentColTypeTotalAmount.setCellValueFactory(new PropertyValueFactory<>("typeCountTotal"));
-
+        appointmentColMonth.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+        appointmentColMonthTotalAmount.setCellValueFactory(new PropertyValueFactory<>("typeCountTotal"));
     }
 }

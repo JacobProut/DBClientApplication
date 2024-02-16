@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
+import static javafx.scene.control.Alert.AlertType.*;
 import static javafx.scene.control.ButtonType.*;
 
 public class reportsMenuController {
@@ -38,7 +40,7 @@ public class reportsMenuController {
 
     @FXML
     void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
-       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+       Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Closing Reports Menu");
         alert.setHeaderText("You are about to return to the Appointment Scheduler");
         alert.setContentText("Click 'OK' to go back to Appointment Scheduler.\r" + "Click 'Cancel' to stay on the Reports Menu Form.");
@@ -52,5 +54,4 @@ public class reportsMenuController {
             System.out.println("Returning to Appointment Scheduler.");
         }
     }
-
 }

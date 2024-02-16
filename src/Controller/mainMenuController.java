@@ -85,28 +85,13 @@ public class mainMenuController implements Initializable {
     }
 
     @FXML
-    void onActionLogout(ActionEvent event) {
-        System.out.println("Logout Button Selected.");
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Log out");
-        alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
-        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to stay on the Appointment Scheduler Form.");
-
-        Optional<ButtonType> confirmation = alert.showAndWait();
-
-        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
-            JDBC.closeConnection();
-            System.out.println("Shutting down Application.");
-            System.exit(0);
-        }
-        if (confirmation.isPresent() && confirmation.get() == CANCEL) {
-            System.out.println("Logout canceled.");
-        }
-    }
-
-    @FXML
-    void onActionReports(ActionEvent event) {
-
+    void onActionReports(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Reports Menu");
+        System.out.println("Opening up Reports Menu");
     }
 
     @FXML
@@ -168,6 +153,26 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Week.");
     }
 
+    @FXML
+    void onActionLogout(ActionEvent event) {
+        System.out.println("Logout Button Selected.");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log out");
+        alert.setHeaderText("Attempting to log out\r" + "Any unsaved data will be LOST!");
+        alert.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm exit.\r" + "Click 'Cancel' to stay on the Appointment Scheduler Form.");
+
+        Optional<ButtonType> confirmation = alert.showAndWait();
+
+        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+            JDBC.closeConnection();
+            System.out.println("Shutting down Application.");
+            System.exit(0);
+        }
+        if (confirmation.isPresent() && confirmation.get() == CANCEL) {
+            System.out.println("Logout canceled.");
+        }
+    }
+
     public static void returnToAppointments(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/mainMenu.fxml")));
@@ -215,6 +220,8 @@ public class mainMenuController implements Initializable {
                     throw new RuntimeException(e);
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());
+
+                //is this considered a Lambda statement?
                 Platform.runLater(()-> timeLabel.setText(showCurrentTime));
             }
         });

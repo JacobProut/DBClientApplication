@@ -17,8 +17,8 @@ public class TimeManipulations {
         //LocalTime.MIDNIGHT.plusHours(1) is so 1am is the earliest a time could be selected.
         LocalTime startTime = LocalTime.MIDNIGHT.plusHours(1);
 
-        //LocalTime.MIDNIGHT.minusHours(2) added so 10pm is the latest a time could be selected.
-        LocalTime endTime = LocalTime.MIDNIGHT.minusHours(2);
+        //LocalTime.MIDNIGHT.minusHours(2) added so 11pm is the latest a time could be selected.
+        LocalTime endTime = LocalTime.MIDNIGHT.minusHours(1);
 
         while (startTime.isBefore(endTime.plusSeconds(1))) {
             listOfTimesAvailable.add(startTime);

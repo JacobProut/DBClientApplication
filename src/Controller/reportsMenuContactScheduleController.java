@@ -5,37 +5,40 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.Appointments;
+import model.Contacts;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 public class reportsMenuContactScheduleController {
 
     @FXML
-    private TableColumn<?, ?> appointmentCustomerIDCol;
+    private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentEndDateAndTimeCol;
+    private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentIDCol;
+    private TableColumn<Appointments, Integer> appointmentIDCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentStartDateAndTimeCol;
+    private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentTitleCol;
+    private TableColumn<Appointments, String> appointmentTitleCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentTypeCol;
+    private TableColumn<Appointments, String> appointmentTypeCol;
 
     @FXML
-    private TableColumn<?, ?> apppointmentDescriptionCol;
+    private TableColumn<Appointments, String> appointmentDescriptionCol;
 
     @FXML
-    private ComboBox<?> comboBoxContacts;
+    private ComboBox<Contacts> comboBoxContacts;
 
     @FXML
-    private TableView<?> tableViewContact;
+    private TableView<Appointments> tableViewContact;
 
     @FXML
     void onActionComboBoxContacts(ActionEvent event) {

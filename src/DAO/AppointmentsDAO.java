@@ -97,6 +97,30 @@ public class AppointmentsDAO {
        return viewWeekList;
    }
 
+   public static ObservableList<Appointments> getAppointmentTypeTotal() throws SQLException {
+        ObservableList<Appointments> totalAppointmentTypeList = FXCollections.observableArrayList();
+        try {
+            String type = "SELECT Type, COUNT(*) AS COUNTEDTYPENUMBER FROM appointments GROUP BY Type";
+            PreparedStatement typeListStatement = createConnection().prepareStatement(type);
+
+            ResultSet listResult = typeListStatement.executeQuery();
+            while (listResult.next()) {
+                String appointmentType = listResult.getString("Type");
+                int typeCountTotal = listResult.getInt("COUNTEDTYPENUMBER");
+
+                Appointments typeResult = new Appointments(appointmentType, typeCountTotal);
+                totalAppointmentTypeList.add(typeResult);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Error with getting Appointment Type Total");
+            throw new RuntimeException(e);
+        }
+       return totalAppointmentTypeList;
+   }
+
+
+
    //works
    public static ObservableList<Appointments> viewMonthAppoints() {
         ObservableList<Appointments> viewMonthList = FXCollections.observableArrayList();

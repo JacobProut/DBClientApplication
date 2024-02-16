@@ -24,7 +24,13 @@ public class reportsMenuController {
     Stage stage;
 
     @FXML
-    void onActionAppointmentTotalByTypeAndMonth(ActionEvent event) {
+    void onActionAppointmentTotalByTypeAndMonth(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuTotalTypeAndMonth.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.setTitle("Viewing Total amount of Types and Months for Appointments");
+        System.out.println("Loading Appointment Types and Months Form");
 
     }
 

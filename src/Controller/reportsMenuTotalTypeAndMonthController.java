@@ -38,13 +38,7 @@ public class reportsMenuTotalTypeAndMonthController {
 
     @FXML
     void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        stage.setTitle("Reports Menu");
-        System.out.println("Returning to Reports Menu.");
-
+        reportsMenuController.returnToReportsMenu(event);
     }
 
 }

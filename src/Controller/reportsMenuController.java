@@ -19,7 +19,6 @@ import static javafx.scene.control.Alert.AlertType.*;
 import static javafx.scene.control.ButtonType.*;
 
 public class reportsMenuController {
-
     Parent scene;
     Stage stage;
 
@@ -30,7 +29,7 @@ public class reportsMenuController {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Viewing Total amount of Types and Months for Appointments");
-        System.out.println("Loading Appointment Types and Months Form");
+        System.out.println("Loading Appointment Types and Months Form.");
 
     }
 

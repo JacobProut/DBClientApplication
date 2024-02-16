@@ -1,7 +1,9 @@
 package Controller;
 
+import DAO.ContactsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -9,9 +11,11 @@ import model.Appointments;
 import model.Contacts;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
+import java.util.ResourceBundle;
 
-public class reportsMenuContactScheduleController {
+public class reportsMenuContactScheduleController implements Initializable {
 
     @FXML
     private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
@@ -50,4 +54,8 @@ public class reportsMenuContactScheduleController {
         reportsMenuController.returnToReportsMenu(event);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        comboBoxContacts.setItems(ContactsDAO.getAllContacts());
+    }
 }

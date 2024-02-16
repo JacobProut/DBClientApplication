@@ -64,6 +64,7 @@ public class loginScreenForm implements Initializable {
             stage.setTitle("Appointment Scheduler Form");
             stage.setScene(scene);
             stage.show();
+            stage.centerOnScreen();
             System.out.println("Successfully Logged in: Loading Appointment Scheduler.");
         }
     }

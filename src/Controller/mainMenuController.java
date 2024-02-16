@@ -90,6 +90,7 @@ public class mainMenuController implements Initializable {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Reports Menu");
         System.out.println("Opening up Reports Menu");
     }
@@ -109,6 +110,7 @@ public class mainMenuController implements Initializable {
             controller.appointmentSelection(appointmentSchedulerTable.getSelectionModel().getSelectedIndex(), appointmentSelection);
             stage.setScene(new Scene(scene));
             stage.show();
+            stage.centerOnScreen();
             stage.setTitle("Appointment Modification Page");
             System.out.println("Switching to Appointment Modification Form.");
         }
@@ -130,6 +132,7 @@ public class mainMenuController implements Initializable {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Customer View List");
         System.out.println("Switching to Customer View List.");
     }
@@ -179,6 +182,7 @@ public class mainMenuController implements Initializable {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Appointment Scheduler Form");
     }
 

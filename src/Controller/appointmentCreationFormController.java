@@ -67,6 +67,7 @@ public class appointmentCreationFormController implements Initializable {
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
+            stage.centerOnScreen();
             stage.setTitle("Appointment Scheduler");
             System.out.println("Returning to Appointment Scheduler.");
         }

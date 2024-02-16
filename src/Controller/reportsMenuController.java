@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -16,8 +15,8 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
-import static javafx.scene.control.Alert.AlertType.*;
-import static javafx.scene.control.ButtonType.*;
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
+import static javafx.scene.control.ButtonType.OK;
 
 public class reportsMenuController {
     Parent scene;
@@ -29,13 +28,21 @@ public class reportsMenuController {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuTotalTypeAndMonth.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Viewing Total amount of Types and Months for Appointments");
         System.out.println("Loading Appointment Types and Months Form.");
 
     }
 
     @FXML
-    void onActionContactSchedules(ActionEvent event) {
+    void onActionContactSchedules(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuContactSchedule.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.centerOnScreen();
+        stage.setTitle("Viewing Contact Schedules");
+        System.out.println("Loading Contact Schedule Form.");
 
     }
 
@@ -56,6 +63,7 @@ public class reportsMenuController {
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
+            stage.centerOnScreen();
             stage.setTitle("Appointment Scheduler");
             System.out.println("Returning to Appointment Scheduler.");
         }
@@ -67,6 +75,7 @@ public class reportsMenuController {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Reports Menu");
         System.out.println("Returning to Reports Menu.");
     }

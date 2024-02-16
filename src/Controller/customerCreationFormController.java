@@ -74,6 +74,7 @@ public class customerCreationFormController implements Initializable {
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
+            stage.centerOnScreen();
             stage.setTitle("Customer View List");
             System.out.println("Returning to Customer View List.");
         }

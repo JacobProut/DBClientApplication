@@ -36,8 +36,25 @@ public static ObservableList<Contacts> getAllContacts() {
     return contactsObservableList;
 }
 
+    //Method used to get contact ID by Name for reportsMenuContactScheduleController.onActionComboBoxContacts()
+    public static int getContactIdByName(String contactName) throws SQLException {
+            String getIdByNam = "SELECT * FROM contacts WHERE Contact_Name = ?";
+            PreparedStatement selectedContactName = createConnection().prepareStatement(getIdByNam);
+
+            selectedContactName.setString(1, contactName);
+
+            ResultSet resultSet = selectedContactName.executeQuery();
+
+            int selectedContactId = 0;
+            while (resultSet.next()) {
+                selectedContactId= resultSet.getInt("Contact_ID");
+            }
+            return selectedContactId;
+
+    }
+
+    //Method  used in appointmentModificationFormController.appointmentSelection()
     public static Contacts getAllContactsById(int contactId) throws SQLException {
-        try {
             String getContactId = "SELECT * FROM contacts WHERE Contact_ID = ?";
             PreparedStatement selectedContactId = createConnection().prepareStatement(getContactId);
 
@@ -52,11 +69,9 @@ public static ObservableList<Contacts> getAllContacts() {
 
                 return new Contacts(collectedId, collectedName);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
         return null;
     }
+
 
 
 

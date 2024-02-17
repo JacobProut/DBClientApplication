@@ -41,6 +41,36 @@ public class AppointmentsDAO {
         return appointmentsObservableList;
     }
 
+    //Attempting to make this for Schedules for Contacts
+    public static ObservableList<Appointments> getAppointmentForContactList(int contactId) {
+        ObservableList<Appointments> appointmentsContactList = FXCollections.observableArrayList();
+
+        try {
+            String contactSql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Type, appointments.Description, appointments.Start, appointments.End, appointments.Customer_ID FROM appointments JOIN contacts ON appointments.Contact_ID = contacts.Contact_ID WHERE appointments.Contact_ID = '" + contactId + "'";
+            PreparedStatement getAppointmentsForContactTable = createConnection().prepareStatement(contactSql);
+            ResultSet results = getAppointmentsForContactTable.executeQuery();
+
+            while (results.next()) {
+                int appointmentId = results.getInt("Appointment_ID");
+                String appointmentTitle = results.getString("Title");
+                String appointmentType = results.getString("Type");
+                String appointmentDescription = results.getString("Description");
+                LocalDateTime startTime = results.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endTime = results.getTimestamp("End").toLocalDateTime();
+                int customerId = results.getInt("Customer_ID");
+
+                Appointments contactList = new Appointments(appointmentId, appointmentTitle, appointmentType, appointmentDescription, startTime, endTime, customerId);
+                appointmentsContactList.add(contactList);
+
+            }
+
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentsContactList;
+    }
+
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);
@@ -67,6 +97,7 @@ public class AppointmentsDAO {
 
    //Unsure this works until I can add data within the current week
     // Still doesn't work. Need to fix.
+    //Working method
    public static ObservableList<Appointments> viewWeekAppoints() {
         ObservableList<Appointments> viewWeekList = FXCollections.observableArrayList();
 

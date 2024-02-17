@@ -57,6 +57,18 @@ public class Appointments {
         this.appointmentType = appointmentType;
         this.CountTotal = CountTotal;
     }
+
+    //Used in AppointmentsDAO - getAppointForContactList()
+    public Appointments(int appointmentId, String appointmentTitle, String appointmentType, String appointmentDescription, LocalDateTime startTime, LocalDateTime endTime, int customerId) {
+        this.appointmentId = appointmentId;
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentType = appointmentType;
+        this.appointmentDescription = appointmentDescription;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.customerId = customerId;
+    }
+
     //Needed this getTypeTotal Function so getAppointmentTypeTotal Would work
     public int getTypeCountTotal() {
         return CountTotal;

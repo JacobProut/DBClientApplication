@@ -206,6 +206,13 @@ public abstract class errorMessages implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 32: //reportsMenuContactScheduleController onActionComboBoxContacts Null Error
+                    alert.setTitle("Empty ComboBox");
+                    alert.setHeaderText("There are no Contacts in your database");
+                    alert.setContentText("Please create a Contact, Make appointments with contact, then try again");
+                    alert.showAndWait();
+                    break;
+
             }
         }
 

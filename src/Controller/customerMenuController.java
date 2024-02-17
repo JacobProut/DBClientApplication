@@ -160,7 +160,14 @@ public class customerMenuController implements Initializable {
     }
 
     @FXML
-    void onActionReports(ActionEvent event) {
+    void onActionReports(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.centerOnScreen();
+        stage.setTitle("Reports Menu");
+        System.out.println("Opening up Reports Menu");
 
     }
 

@@ -47,6 +47,18 @@ public class reportsMenuController {
     }
 
     @FXML
+    void onActionUserSchedules(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuUserSchedule.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        stage.centerOnScreen();
+        stage.setTitle("Viewing User Schedules");
+        System.out.println("Loading User Schedule Form.");
+
+    }
+
+    @FXML
     void onActionTotalNumberOfCustomersByCountry(ActionEvent event) {
 
     }

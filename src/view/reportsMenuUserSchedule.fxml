@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.reportsMenuUsersScheduleController">
+   <children>
+      <Label layoutX="410.0" layoutY="14.0" text="Schedules for Users" underline="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="48.0" text="Please select a User:" />
+      <ComboBox fx:id="comboBoxUsers" layoutX="478.0" layoutY="44.0" onAction="#onActionComboBoxUsers" prefWidth="150.0" />
+      <TableView fx:id="tableViewUsers" layoutX="14.0" layoutY="79.0" prefHeight="303.0" prefWidth="930.0">
+        <columns>
+          <TableColumn fx:id="appointmentIDCol" prefWidth="100.0" text="Appointment_ID" />
+          <TableColumn fx:id="appointmentTitleCol" prefWidth="96.0" text="Title" />
+            <TableColumn fx:id="appointmentDescriptionCol" prefWidth="100.0" text="Description" />
+            <TableColumn fx:id="appointmentLocationCol" prefWidth="102.0" text="Location" />
+            <TableColumn fx:id="appointmentTypeCol" prefWidth="82.0" text="Type" />
+            <TableColumn fx:id="appointmentStartDateAndTimeCol" prefWidth="137.0" text="Start Date/Time" />
+            <TableColumn fx:id="appointmentEndDateAndTimeCol" prefWidth="128.0" text="End Date/Time" />
+            <TableColumn fx:id="appointmentCustomerIDCol" prefWidth="110.0" text="Customer_ID" />
+            <TableColumn fx:id="appointmentContactIDCol" prefWidth="74.0" text="Contact_ID" />
+        </columns>
+      </TableView>
+      <Button layoutX="406.0" layoutY="391.0" mnemonicParsing="false" onAction="#onActionReturnToReportsMenu" text="Return to Reports Menu" />
+   </children>
+</AnchorPane>

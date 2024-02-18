@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.reportsMenuController">
    <children>
       <Label layoutX="94.0" layoutY="14.0" prefHeight="28.0" prefWidth="120.0" text="Reports Menu" underline="true">
@@ -21,6 +20,7 @@
       </Label>
       <Button layoutX="40.0" layoutY="83.0" mnemonicParsing="false" onAction="#onActionAppointmentTotalByTypeAndMonth" text="Appointment Totals by Type and Month" />
       <Button layoutX="97.0" layoutY="127.0" mnemonicParsing="false" onAction="#onActionContactSchedules" text="Contact Schedules" />
-      <Button layoutX="42.0" layoutY="173.0" mnemonicParsing="false" onAction="#onActionTotalNumberOfCustomersByCountry" text="Total number of Customers by Country" />
+      <Button layoutX="45.0" layoutY="211.0" mnemonicParsing="false" onAction="#onActionTotalNumberOfCustomersByCountry" text="Total number of Customers by Country" />
+      <Button layoutX="106.0" layoutY="168.0" mnemonicParsing="false" onAction="#onActionUserSchedules" text="User Schedules" />
    </children>
 </AnchorPane>

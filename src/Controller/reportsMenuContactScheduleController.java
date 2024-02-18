@@ -18,44 +18,34 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class reportsMenuContactScheduleController implements Initializable {
 
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
+    @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
 
-    @FXML
-    private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
+    @FXML private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
 
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentIDCol;
+    @FXML private TableColumn<Appointments, Integer> appointmentIDCol;
 
-    @FXML
-    private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
+    @FXML private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
 
-    @FXML
-    private TableColumn<Appointments, String> appointmentTitleCol;
+    @FXML private TableColumn<Appointments, String> appointmentTitleCol;
 
-    @FXML
-    private TableColumn<Appointments, String> appointmentTypeCol;
+    @FXML private TableColumn<Appointments, String> appointmentTypeCol;
 
-    @FXML
-    private TableColumn<Appointments, String> appointmentDescriptionCol;
+    @FXML private TableColumn<Appointments, String> appointmentDescriptionCol;
 
-    @FXML
-    private ComboBox<Contacts> comboBoxContacts;
+    @FXML private ComboBox<Contacts> comboBoxContacts;
 
-    @FXML
-    private TableView<Appointments> tableViewContact;
+    @FXML private TableView<Appointments> tableViewContact;
 
     @FXML
     void onActionComboBoxContacts(ActionEvent event) throws SQLException {
         if (comboBoxContacts == null) {
             errorMessages.errorCode(32);
         }
-        if (comboBoxContacts != null) {
+        else {
             String nameForId = String.valueOf(comboBoxContacts.getValue());
             int id = ContactsDAO.getContactIdByName(nameForId);
             if (AppointmentsDAO.getAppointmentForContactList(id).isEmpty()) {
@@ -70,7 +60,7 @@ public class reportsMenuContactScheduleController implements Initializable {
         }
     }
 
-@FXML
+    @FXML
     void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }

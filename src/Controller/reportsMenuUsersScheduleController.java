@@ -5,41 +5,45 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.Appointments;
+import model.Users;
+
+import java.sql.Timestamp;
 
 public class reportsMenuUsersScheduleController {
 
     @FXML
-    private TableColumn<?, ?> appointmentContactIDCol;
+    private TableColumn<Appointments, Integer> appointmentContactIDCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentCustomerIDCol;
+    private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentDescriptionCol;
+    private TableColumn<Appointments, String> appointmentDescriptionCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentEndDateAndTimeCol;
+    private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentIDCol;
+    private TableColumn<Appointments, Integer> appointmentIDCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentLocationCol;
+    private TableColumn<Appointments, String> appointmentLocationCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentStartDateAndTimeCol;
+    private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentTitleCol;
+    private TableColumn<Appointments, String> appointmentTitleCol;
 
     @FXML
-    private TableColumn<?, ?> appointmentTypeCol;
+    private TableColumn<Appointments, String> appointmentTypeCol;
 
     @FXML
-    private ComboBox<?> comboBoxUsers;
+    private ComboBox<Users> comboBoxUsers;
 
     @FXML
-    private TableView<?> tableViewUsers;
+    private TableView<Appointments> tableViewUsers;
 
     @FXML
     void onActionComboBoxUsers(ActionEvent event) {

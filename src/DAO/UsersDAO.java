@@ -82,6 +82,23 @@ public class UsersDAO {
         return null;
     }
 
+    //used for reportsMenuUserSchedule
+    public static int getUsersNameById(String userName) throws SQLException {
+            String getIdByNam = "SELECT * FROM users WHERE User_Name = ?";
+            PreparedStatement selectedUserName = createConnection().prepareStatement(getIdByNam);
+
+            selectedUserName.setString(1, userName);
+
+            ResultSet resultSet = selectedUserName.executeQuery();
+
+            int selectedUserId = 0;
+            while (resultSet.next()) {
+                selectedUserId= resultSet.getInt("User_ID");
+            }
+            return selectedUserId;
+
+        }
+
     public static boolean verifyLoginInformation(String username, String password) throws SQLException {
         String checkingLogin = "SELECT * FROM users WHERE User_Name=? AND Password=?";
         PreparedStatement verifyLogin = JDBC.createConnection().prepareStatement(checkingLogin);

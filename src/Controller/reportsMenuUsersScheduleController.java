@@ -65,14 +65,14 @@ public class reportsMenuUsersScheduleController implements Initializable {
         else {
             String nameForId = String.valueOf(comboBoxUsers.getValue());
             int id = UsersDAO.getUsersNameById(nameForId);
-            if (AppointmentsDAO.getAppointmentForContactList(id).isEmpty()) {
+            if (AppointmentsDAO.getAppointmentForUserList(id).isEmpty()) {
                 tableViewUsers.refresh();
                 for (int i = 0; i < tableViewUsers.getItems().size(); i++) {
                     tableViewUsers.getItems().clear();
-                    tableViewUsers.setPlaceholder(new Label(nameForId + " has no appointments."));
+                    tableViewUsers.setPlaceholder(new Label("There are no appointments for " + nameForId));
                 }
             } else {
-                tableViewUsers.setItems(AppointmentsDAO.getAppointmentForContactList(id));
+                tableViewUsers.setItems(AppointmentsDAO.getAppointmentForUserList(id));
             }
         }
 

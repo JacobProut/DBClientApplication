@@ -2,15 +2,14 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Countries;
 import model.Customers;
-import model.First_Level_Divisions;
-import model.Users;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import static DAO.JDBC.connection;
 import static DAO.JDBC.createConnection;
 
 
@@ -68,7 +67,6 @@ public class CustomersDAO {
 
             createCust.executeUpdate();
 
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -98,7 +96,6 @@ public class CustomersDAO {
             updateCustomerToDB.setInt(8, customerId);
 
             updateCustomerToDB.executeUpdate();
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

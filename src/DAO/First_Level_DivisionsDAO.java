@@ -34,7 +34,6 @@ public class First_Level_DivisionsDAO {
                 First_Level_Divisions allDivisions = new First_Level_Divisions(divisionId, division, createDate, createdBy, lastUpdate, lastUpdatedBy, countryId);
                 divisionsObservableList.add(allDivisions);
             }
-
         }
         catch (SQLException e) {
             throw new RuntimeException(e);

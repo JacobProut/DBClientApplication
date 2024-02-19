@@ -61,9 +61,7 @@ public class AppointmentsDAO {
 
                 Appointments contactList = new Appointments(appointmentId, appointmentTitle, appointmentType, appointmentDescription, startTime, endTime, customerId);
                 appointmentsContactList.add(contactList);
-
             }
-
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
@@ -93,7 +91,6 @@ public class AppointmentsDAO {
                 Appointments userList = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentType, appointmentLocation, startTime, endTime, customerId, contactId);
                 appointmentsContactList.add(userList);
             }
-
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
@@ -256,7 +253,6 @@ public class AppointmentsDAO {
             updateAppointmentToDB.setInt(9, contactId);
             updateAppointmentToDB.setInt(10, appointmentId);
             updateAppointmentToDB.execute();
-
     }
 
 }

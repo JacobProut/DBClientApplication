@@ -3,7 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Countries;
-import model.First_Level_Divisions;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,5 +58,4 @@ public class CountriesDAO {
             throw new RuntimeException(e);
         }
     }
-
 }

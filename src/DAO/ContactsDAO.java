@@ -3,7 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Contacts;
-import model.Customers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +49,6 @@ public static ObservableList<Contacts> getAllContacts() {
                 selectedContactId= resultSet.getInt("Contact_ID");
             }
             return selectedContactId;
-
     }
 
     //Method  used in appointmentModificationFormController.appointmentSelection()

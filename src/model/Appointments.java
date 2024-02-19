@@ -69,6 +69,18 @@ public class Appointments {
         this.customerId = customerId;
     }
 
+    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentType, String appointmentLocation, LocalDateTime startTime, LocalDateTime endTime, int customerId, int contactId) {
+        this.appointmentId = appointmentId;
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentDescription = appointmentDescription;
+        this.appointmentType = appointmentType;
+        this.appointmentLocation = appointmentLocation;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.customerId = customerId;
+        this.contactId = contactId;
+    }
+
     //Needed this getTypeTotal Function so getAppointmentTypeTotal Would work
     public int getTypeCountTotal() {
         return CountTotal;

@@ -1,16 +1,27 @@
 package Controller;
 
+import DAO.AppointmentsDAO;
+import DAO.ContactsDAO;
+import DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
 import model.Users;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ResourceBundle;
+import java.util.function.IntBinaryOperator;
 
-public class reportsMenuUsersScheduleController {
+public class reportsMenuUsersScheduleController implements Initializable {
 
     @FXML
     private TableColumn<Appointments, Integer> appointmentContactIDCol;
@@ -46,13 +57,44 @@ public class reportsMenuUsersScheduleController {
     private TableView<Appointments> tableViewUsers;
 
     @FXML
-    void onActionComboBoxUsers(ActionEvent event) {
+    void onActionComboBoxUsers(ActionEvent event) throws SQLException {
+        String nameForId = String.valueOf(comboBoxUsers.getValue());
+        int id = UsersDAO.getUsersNameById(nameForId);
+        if (AppointmentsDAO.getAppointmentForContactList(id).isEmpty()) {
+            tableViewUsers.refresh();
+            for (int i = 0; i < tableViewUsers.getItems().size(); i++) {
+                tableViewUsers.getItems().clear();
+                tableViewUsers.setPlaceholder(new Label(nameForId + " has no appointments."));
+            }
+        } else {
+            tableViewUsers.setItems(AppointmentsDAO.getAppointmentForContactList(id));
+        }
 
     }
 
     @FXML
-    void onActionReturnToReportsMenu(ActionEvent event) {
+    void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
+        reportsMenuController.returnToReportsMenu(event);
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Fill in contact box with all Users
+        comboBoxUsers.setItems(UsersDAO.getAllUsers());
+        comboBoxUsers.setPromptText("Select a User");
+
+        tableViewUsers.setPlaceholder(new Label("No User Selected or User has NO appointments"));
+
+        //Set Cell values
+        appointmentIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        appointmentTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
+        appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
+        appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+        appointmentStartDateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        appointmentEndDateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        appointmentCustomerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        appointmentContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+    }
 }

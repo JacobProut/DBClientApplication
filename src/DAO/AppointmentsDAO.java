@@ -71,6 +71,36 @@ public class AppointmentsDAO {
         return appointmentsContactList;
     }
 
+    public static ObservableList<Appointments> getAppointmentForUserList(int userId) {
+        ObservableList<Appointments> appointmentsContactList = FXCollections.observableArrayList();
+
+        try {
+            String contactSql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.Contact_ID FROM appointments JOIN users ON appointments.User_ID = users.User_ID WHERE appointments.User_ID = '" + userId + "'";
+            PreparedStatement getAppointmentsForUserTable = createConnection().prepareStatement(contactSql);
+            ResultSet results = getAppointmentsForUserTable.executeQuery();
+
+            while (results.next()) {
+                int appointmentId = results.getInt("Appointment_ID");
+                String appointmentTitle = results.getString("Title");
+                String appointmentDescription = results.getString("Description");
+                String appointmentType = results.getString("Type");
+                String appointmentLocation = results.getString("Location");
+                LocalDateTime startTime = results.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endTime = results.getTimestamp("End").toLocalDateTime();
+                int customerId = results.getInt("Customer_ID");
+                int contactId = results.getInt("Contact_ID");
+
+                Appointments userList = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentType, appointmentLocation, startTime, endTime, customerId, contactId);
+                appointmentsContactList.add(userList);
+            }
+
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentsContactList;
+    }
+
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);

@@ -64,15 +64,15 @@ public class reportsMenuUsersScheduleController implements Initializable {
         }
         else {
             String nameForId = String.valueOf(comboBoxUsers.getValue());
-            int id = UsersDAO.getUsersNameById(nameForId);
-            if (AppointmentsDAO.getAppointmentForUserList(id).isEmpty()) {
+            int userId = UsersDAO.getUsersNameById(nameForId);
+            if (AppointmentsDAO.getAppointmentForUserList(userId).isEmpty()) {
                 tableViewUsers.refresh();
                 for (int i = 0; i < tableViewUsers.getItems().size(); i++) {
                     tableViewUsers.getItems().clear();
                     tableViewUsers.setPlaceholder(new Label("There are no appointments for " + nameForId));
                 }
             } else {
-                tableViewUsers.setItems(AppointmentsDAO.getAppointmentForUserList(id));
+                tableViewUsers.setItems(AppointmentsDAO.getAppointmentForUserList(userId));
             }
         }
 
@@ -90,6 +90,7 @@ public class reportsMenuUsersScheduleController implements Initializable {
         comboBoxUsers.setItems(UsersDAO.getAllUsers());
         comboBoxUsers.setPromptText("Select a User");
 
+        //Sets tableViewUsers PlaceHolder Label
         tableViewUsers.setPlaceholder(new Label("No User Selected or User has NO appointments"));
 
         //Set Cell values

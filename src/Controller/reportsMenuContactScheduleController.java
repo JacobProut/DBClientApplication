@@ -52,7 +52,7 @@ public class reportsMenuContactScheduleController implements Initializable {
                 tableViewContact.refresh();
                 for (int i = 0; i < tableViewContact.getItems().size(); i++) {
                     tableViewContact.getItems().clear();
-                    tableViewContact.setPlaceholder(new Label(nameForId + " has no appointments."));
+                    tableViewContact.setPlaceholder(new Label("There are no appointments for " + nameForId + "."));
                 }
             } else {
                 tableViewContact.setItems(AppointmentsDAO.getAppointmentForContactList(id));
@@ -71,6 +71,7 @@ public class reportsMenuContactScheduleController implements Initializable {
         comboBoxContacts.setItems(ContactsDAO.getAllContacts());
         comboBoxContacts.setPromptText("Select a Contact");
 
+        //Placeholder for table when there is no Contact selected/No Appointments for Contact.
         tableViewContact.setPlaceholder(new Label("No Contact Selected or Contact has NO appointments"));
 
         //Set Cell values

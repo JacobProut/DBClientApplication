@@ -226,7 +226,7 @@ public class mainMenuController implements Initializable {
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());
 
-                //Lambda expression that sets timeLabel to showCurrentTime
+                //Lambda expression that sets timeLabel to showCurrentTime.
                 Platform.runLater(()-> timeLabel.setText(showCurrentTime));
             }
         });

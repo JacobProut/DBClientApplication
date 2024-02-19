@@ -190,8 +190,8 @@ public class appointmentModificationFormController implements Initializable {
         contactComboBox.setItems(ContactsDAO.getAllContacts());
 
         //!!!Lambdas Expressions!!!
-        //Sets comboBoxEndTime to comboBoxStartTime plus 1 hour
-        comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusHours(1)));
+        //Sets comboBoxEndTime to comboBoxStartTime plus 15 minutes. This makes it so once a comboBoxStartTime has a set time, comboBoxEndTime adds 15minutes automatically.
+        comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusMinutes(15)));
         //Sets endDateCalendar to the same as startDateCalendar
         startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
     }

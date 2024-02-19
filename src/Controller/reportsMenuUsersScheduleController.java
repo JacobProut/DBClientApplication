@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
 import model.Users;
+import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,16 +59,21 @@ public class reportsMenuUsersScheduleController implements Initializable {
 
     @FXML
     void onActionComboBoxUsers(ActionEvent event) throws SQLException {
-        String nameForId = String.valueOf(comboBoxUsers.getValue());
-        int id = UsersDAO.getUsersNameById(nameForId);
-        if (AppointmentsDAO.getAppointmentForContactList(id).isEmpty()) {
-            tableViewUsers.refresh();
-            for (int i = 0; i < tableViewUsers.getItems().size(); i++) {
-                tableViewUsers.getItems().clear();
-                tableViewUsers.setPlaceholder(new Label(nameForId + " has no appointments."));
+        if (comboBoxUsers == null) {
+            errorMessages.errorCode(33);
+        }
+        else {
+            String nameForId = String.valueOf(comboBoxUsers.getValue());
+            int id = UsersDAO.getUsersNameById(nameForId);
+            if (AppointmentsDAO.getAppointmentForContactList(id).isEmpty()) {
+                tableViewUsers.refresh();
+                for (int i = 0; i < tableViewUsers.getItems().size(); i++) {
+                    tableViewUsers.getItems().clear();
+                    tableViewUsers.setPlaceholder(new Label(nameForId + " has no appointments."));
+                }
+            } else {
+                tableViewUsers.setItems(AppointmentsDAO.getAppointmentForContactList(id));
             }
-        } else {
-            tableViewUsers.setItems(AppointmentsDAO.getAppointmentForContactList(id));
         }
 
     }

@@ -209,8 +209,9 @@ public class mainMenuController implements Initializable {
 
 
 
-    //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
+
     private String displayCurrentTime() {
+        //Lambda expression that displays the Current [systemDefault] time.
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat simpleFormat = new SimpleDateFormat("hh:mm:ss a");
 
@@ -225,7 +226,7 @@ public class mainMenuController implements Initializable {
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());
 
-                //is this considered a Lambda statement?
+                //Lambda expression that sets timeLabel to showCurrentTime
                 Platform.runLater(()-> timeLabel.setText(showCurrentTime));
             }
         });

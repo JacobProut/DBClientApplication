@@ -41,13 +41,8 @@ public class customerMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
-    //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private Label zoneID;
-    @FXML private Button addCustomerButton;
     @FXML private TableView<Customers> customerTableView;
-    @FXML private Button deleteCustomerButton;
-    @FXML private Button logoutButton;
-    @FXML private Button reportsButton;
     @FXML private TableColumn<Customers, String> tableColCustomerAddress;
     @FXML private TableColumn<Customers, String> tableColCustomerCreatedBy;
     @FXML private TableColumn<Customers, Timestamp> tableColCustomerCreatedDate;
@@ -58,8 +53,6 @@ public class customerMenuController implements Initializable {
     @FXML private TableColumn<Customers, String> tableColCustomerPhoneNumber;
     @FXML private TableColumn<Customers, Integer> tableColCustomerPostalCode;
     @FXML private TableColumn<Customers, String> tableColCustomerDivisionId;
-    @FXML private Button updateCustomerButton;
-    @FXML private Button returnToAppointmentScheduler;
     @FXML private Label timeLabel;
 
     //Used for displayCurrentTime()

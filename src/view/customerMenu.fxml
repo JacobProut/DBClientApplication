@@ -15,7 +15,7 @@
       </Label>
       <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
          <children>
-            <RadioButton fx:id="radioButtonViewAllCustomers" layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
+            <RadioButton layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
                </RadioButton>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="707.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
             <Label layoutX="716.0" layoutY="10.0" text="Current TimeZone:" />
@@ -41,11 +41,11 @@
             <Insets />
          </opaqueInsets>
       </TableView>
-      <Button fx:id="reportsButton" layoutX="14.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="25.0" prefWidth="122.0" text="Reports" />
-      <Button fx:id="logoutButton" layoutX="825.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionLogout" prefHeight="25.0" prefWidth="122.0" text="Logout" />
-      <Button fx:id="addCustomerButton" layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
-      <Button fx:id="updateCustomerButton" layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
-      <Button fx:id="deleteCustomerButton" layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
-      <Button fx:id="returnToAppointmentScheduler" layoutX="386.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
+      <Button layoutX="14.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="25.0" prefWidth="122.0" text="Reports" />
+      <Button layoutX="825.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionLogout" prefHeight="25.0" prefWidth="122.0" text="Logout" />
+      <Button layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
+      <Button layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
+      <Button layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
+      <Button layoutX="386.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
    </children>
 </Pane>

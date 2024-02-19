@@ -71,6 +71,8 @@ public class reportsMenuContactScheduleController implements Initializable {
         comboBoxContacts.setItems(ContactsDAO.getAllContacts());
         comboBoxContacts.setPromptText("Select a Contact");
 
+        tableViewContact.setPlaceholder(new Label("No Contact Selected or Contact has NO appointments"));
+
         //Set Cell values
         appointmentIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         appointmentTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));

@@ -99,11 +99,11 @@
             <TextField fx:id="appointmentModificationType" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <DatePicker fx:id="startDateCalendar" editable="false" onAction="#onActionStartDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ComboBox fx:id="comboBoxStartTime" onAction="#onActionStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <DatePicker fx:id="endDateCalendar" editable="false" onAction="#onActionEndDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="comboBoxEndTime" onAction="#onActionEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <ComboBox fx:id="customerComboBox" onAction="#onActionComboBoxCustomer" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ComboBox fx:id="userComboBox" onAction="#onActionComboBoxUser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="contactComboBox" onAction="#onActionComboBoxContact" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <DatePicker fx:id="endDateCalendar" editable="false" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBoxEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <TextField fx:id="appointmentModificationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
             <Label prefHeight="43.0" prefWidth="302.0" text="Start time must be in business hours of 8AM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
@@ -129,7 +129,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="confirmAppointmentModification" layoutX="269.0" layoutY="547.0" mnemonicParsing="false" onAction="#onActionModificationAppointment" prefHeight="37.0" prefWidth="206.0" text="Confirm Appointment Modification" />
-      <Button fx:id="cancelAppointmentModification" layoutX="530.0" layoutY="584.0" mnemonicParsing="false" onAction="#onActionCancelAppointmentModification" text="Cancel Appointment Modification" />
+      <Button layoutX="269.0" layoutY="547.0" mnemonicParsing="false" onAction="#onActionModificationAppointment" prefHeight="37.0" prefWidth="206.0" text="Confirm Appointment Modification" />
+      <Button layoutX="530.0" layoutY="584.0" mnemonicParsing="false" onAction="#onActionCancelAppointmentModification" text="Cancel Appointment Modification" />
    </children>
 </Pane>

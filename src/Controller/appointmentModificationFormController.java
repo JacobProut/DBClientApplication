@@ -47,10 +47,8 @@ public class appointmentModificationFormController implements Initializable {
     @FXML private TextField appointmentModificationLocation;
     @FXML private TextField appointmentModificationTitle;
     @FXML private TextField appointmentModificationType;
-    @FXML private Button cancelAppointmentModification;
     @FXML private ComboBox<LocalTime> comboBoxEndTime;
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
-    @FXML private Button confirmAppointmentModification;
     @FXML private ComboBox<Contacts> contactComboBox;
     @FXML private ComboBox<Customers> customerComboBox;
     @FXML private DatePicker endDateCalendar;
@@ -77,31 +75,6 @@ public class appointmentModificationFormController implements Initializable {
             stage.setTitle("Appointment Scheduler");
             System.out.println("Returning to Application Scheduler.");
         }
-    }
-
-    @FXML
-    void onActionComboBoxContact(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionComboBoxCustomer(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionComboBoxUser(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionEndDate(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionEndTime(ActionEvent event) {
-
     }
 
     @FXML

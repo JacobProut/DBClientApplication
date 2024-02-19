@@ -13,10 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -52,6 +55,7 @@ public class loginScreenForm implements Initializable {
         }
     }
 
+    boolean isLoginTrue = false;
     public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
         if (!loginInfoValidation()) return;
         boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
@@ -66,28 +70,61 @@ public class loginScreenForm implements Initializable {
             stage.show();
             stage.centerOnScreen();
             System.out.println("Successfully Logged in: Loading Appointment Scheduler.");
+            isLoginTrue = true;
         }
     }
 
-
-    public Boolean loginInfoValidation() throws SQLException {
+    public Boolean loginInfoValidation() throws SQLException, IOException {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
             errorCode(4);
             System.out.println("Failed Login Attempt: Blank User/Password");
+            timesAttemptedToLogin();
+            isLoginTrue = false;
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
             errorCode(1);
             System.out.println("Failed Login Attempt: Blank or incorrect Username");
+            timesAttemptedToLogin();
+            isLoginTrue = false;
             return false;
         } else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
             errorCode(2);
             System.out.println("Failed Login Attempt: Blank or incorrect Password");
+            timesAttemptedToLogin();
+            isLoginTrue = false;
             return false;
         } else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
             errorCode(3);
             System.out.println("Failed Login Attempt: Incorrect username or password");
+            timesAttemptedToLogin();
+            isLoginTrue = false;
         }
         return true;
     }
-    
+
+
+
+
+    //FIX THIS AND MAKE IT SEEM LEGITLY MADE!!!!
+    interface loginTries {
+        public String loginAttempt();
+    }
+
+    loginTries setLog = () -> {
+        return "login_activity.txt";
+    };
+
+    LocalDateTime exactTime = LocalDateTime.now();
+    public void timesAttemptedToLogin() throws IOException {
+        FileWriter loginWriter = new FileWriter(setLog.loginAttempt(), true);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm:ss");
+        ZoneId localZone = ZoneId.systemDefault();
+        if (isLoginTrue) {
+            loginWriter.write(usernameField.getText() + " has successfully logged in on " + formatter.format(exactTime));
+        } else if (!isLoginTrue) {
+            loginWriter.write(usernameField.getText() + " has failed login on " + formatter.format(exactTime));
+        }
+        loginWriter.write("\n");
+        loginWriter.close();
+    }
 }

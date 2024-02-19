@@ -213,6 +213,12 @@ public abstract class errorMessages implements Initializable {
                     alert.showAndWait();
                     break;
 
+                case 33: //reportsMenuUsersScheduleController onActionComboBoxUsers() Null Error
+                    alert.setTitle("Empty ComboBox");
+                    alert.setHeaderText("There are no Users in your database");
+                    alert.setContentText("Please create a User, Make appointments with User, then try again");
+                    alert.showAndWait();
+                    break;
             }
         }
 

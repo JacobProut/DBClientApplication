@@ -63,6 +63,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Appointment Creation Form.");
     }
 
+    //ADD A DELETE APPOINTMENTS METHOD!!!
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {

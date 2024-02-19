@@ -1,6 +1,5 @@
 package Controller;
 
-import DAO.AppointmentsDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,10 +10,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
-import java.sql.SQLException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static DAO.AppointmentsDAO.getAppointmentMonthTotal;
@@ -24,24 +23,12 @@ public class reportsMenuTotalTypeAndMonthController implements Initializable {
     Parent scene;
     Stage stage;
 
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentColMonth;
-
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentColMonthTotalAmount;
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentColType;
-
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentColTypeTotalAmount;
-
-    @FXML
-    private TableView<Appointments> tableViewAppointmentMonth;
-
-    @FXML
-    private TableView<Appointments> tableViewAppointmentType;
+    @FXML private TableColumn<Appointments, String> appointmentColMonth;
+    @FXML private TableColumn<Appointments, Integer> appointmentColMonthTotalAmount;
+    @FXML private TableColumn<Appointments, String> appointmentColType;
+    @FXML private TableColumn<Appointments, Integer> appointmentColTypeTotalAmount;
+    @FXML private TableView<Appointments> tableViewAppointmentMonth;
+    @FXML private TableView<Appointments> tableViewAppointmentType;
 
     @FXML
     void onActionReturnToReportsMenu(ActionEvent event) throws IOException {

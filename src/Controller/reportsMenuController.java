@@ -31,7 +31,6 @@ public class reportsMenuController {
         stage.centerOnScreen();
         stage.setTitle("Viewing Total amount of Types and Months for Appointments");
         System.out.println("Loading Appointment Types and Months Form.");
-
     }
 
     @FXML
@@ -43,7 +42,6 @@ public class reportsMenuController {
         stage.centerOnScreen();
         stage.setTitle("Viewing Contact Schedules");
         System.out.println("Loading Contact Schedule Form.");
-
     }
 
     @FXML
@@ -55,7 +53,6 @@ public class reportsMenuController {
         stage.centerOnScreen();
         stage.setTitle("Viewing User Schedules");
         System.out.println("Loading User Schedule Form.");
-
     }
 
     @FXML

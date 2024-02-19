@@ -1,7 +1,6 @@
 package Controller;
 
 import DAO.AppointmentsDAO;
-import DAO.ContactsDAO;
 import DAO.UsersDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,42 +19,20 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
-import java.util.function.IntBinaryOperator;
 
 public class reportsMenuUsersScheduleController implements Initializable {
 
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentContactIDCol;
-
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentDescriptionCol;
-
-    @FXML
-    private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
-
-    @FXML
-    private TableColumn<Appointments, Integer> appointmentIDCol;
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentLocationCol;
-
-    @FXML
-    private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentTitleCol;
-
-    @FXML
-    private TableColumn<Appointments, String> appointmentTypeCol;
-
-    @FXML
-    private ComboBox<Users> comboBoxUsers;
-
-    @FXML
-    private TableView<Appointments> tableViewUsers;
+    @FXML private TableColumn<Appointments, Integer> appointmentContactIDCol;
+    @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
+    @FXML private TableColumn<Appointments, String> appointmentDescriptionCol;
+    @FXML private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
+    @FXML private TableColumn<Appointments, Integer> appointmentIDCol;
+    @FXML private TableColumn<Appointments, String> appointmentLocationCol;
+    @FXML private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
+    @FXML private TableColumn<Appointments, String> appointmentTitleCol;
+    @FXML private TableColumn<Appointments, String> appointmentTypeCol;
+    @FXML private ComboBox<Users> comboBoxUsers;
+    @FXML private TableView<Appointments> tableViewUsers;
 
     @FXML
     void onActionComboBoxUsers(ActionEvent event) throws SQLException {
@@ -75,13 +52,11 @@ public class reportsMenuUsersScheduleController implements Initializable {
                 tableViewUsers.setItems(AppointmentsDAO.getAppointmentForUserList(userId));
             }
         }
-
     }
 
     @FXML
     void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
-
     }
 
     @Override

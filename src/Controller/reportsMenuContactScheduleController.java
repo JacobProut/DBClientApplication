@@ -23,21 +23,13 @@ import java.util.ResourceBundle;
 public class reportsMenuContactScheduleController implements Initializable {
 
     @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
-
     @FXML private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
-
     @FXML private TableColumn<Appointments, Integer> appointmentIDCol;
-
     @FXML private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
-
     @FXML private TableColumn<Appointments, String> appointmentTitleCol;
-
     @FXML private TableColumn<Appointments, String> appointmentTypeCol;
-
     @FXML private TableColumn<Appointments, String> appointmentDescriptionCol;
-
     @FXML private ComboBox<Contacts> comboBoxContacts;
-
     @FXML private TableView<Appointments> tableViewContact;
 
     @FXML

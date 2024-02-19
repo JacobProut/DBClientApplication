@@ -13,13 +13,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -55,7 +59,7 @@ public class loginScreenForm implements Initializable {
         }
     }
 
-    boolean isLoginTrue = false;
+    public boolean isLoginTrue = false;
     public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
         if (!loginInfoValidation()) return;
         boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
@@ -71,6 +75,7 @@ public class loginScreenForm implements Initializable {
             stage.centerOnScreen();
             System.out.println("Successfully Logged in: Loading Appointment Scheduler.");
             isLoginTrue = true;
+            timesAttemptedToLogin();
         }
     }
 
@@ -78,53 +83,47 @@ public class loginScreenForm implements Initializable {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
             errorCode(4);
             System.out.println("Failed Login Attempt: Blank User/Password");
-            timesAttemptedToLogin();
             isLoginTrue = false;
+            timesAttemptedToLogin();
             return false;
         } else if (usernameField.getText().isBlank() || usernameField.getText().isEmpty()) {
             errorCode(1);
             System.out.println("Failed Login Attempt: Blank or incorrect Username");
-            timesAttemptedToLogin();
             isLoginTrue = false;
+            timesAttemptedToLogin();
             return false;
         } else if (passwordField.getText().isBlank() || passwordField.getText().isEmpty()) {
             errorCode(2);
             System.out.println("Failed Login Attempt: Blank or incorrect Password");
-            timesAttemptedToLogin();
             isLoginTrue = false;
+            timesAttemptedToLogin();
             return false;
         } else if (!UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText())) {
             errorCode(3);
             System.out.println("Failed Login Attempt: Incorrect username or password");
-            timesAttemptedToLogin();
             isLoginTrue = false;
+            timesAttemptedToLogin();
         }
         return true;
     }
 
-
-
-
-    //FIX THIS AND MAKE IT SEEM LEGITLY MADE!!!!
-    interface loginTries {
-        public String loginAttempt();
-    }
-
-    loginTries setLog = () -> {
-        return "login_activity.txt";
-    };
-
-    LocalDateTime exactTime = LocalDateTime.now();
     public void timesAttemptedToLogin() throws IOException {
-        FileWriter loginWriter = new FileWriter(setLog.loginAttempt(), true);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm:ss");
-        ZoneId localZone = ZoneId.systemDefault();
+        //Setting dates/times for cleaner login_Activity.txt messages.
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
+
+        //Creating a file for FileWriter to type to.
+        File file = new File("login_activity.txt");
+        FileWriter loginWriter = new FileWriter(file.getAbsoluteFile(), true);
+
         if (isLoginTrue) {
-            loginWriter.write(usernameField.getText() + " has successfully logged in on " + formatter.format(exactTime));
-        } else if (!isLoginTrue) {
-            loginWriter.write(usernameField.getText() + " has failed login on " + formatter.format(exactTime));
+            loginWriter.write("[" + currentDate + "]" + " User: '" + usernameField.getText() + "' has been Accepted in the database at a time of: [" + selectedTimeFormat.format(currentTime) + "]" + "\n");
         }
-        loginWriter.write("\n");
+        else if (!isLoginTrue) {
+            loginWriter.write("[" + currentDate + "]" + " User: '" + usernameField.getText() + "' has been Denied access to the database at a time of: [" + selectedTimeFormat.format(currentTime) + "]" + "\n");
+        }
         loginWriter.close();
     }
+
 }

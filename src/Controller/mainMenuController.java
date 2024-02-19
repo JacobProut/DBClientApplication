@@ -1,7 +1,7 @@
 package Controller;
 
-import DAO.JDBC;
 import DAO.AppointmentsDAO;
+import DAO.JDBC;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
-import utility.errorMessages;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,23 +28,13 @@ import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
 import static javafx.scene.control.ButtonType.CANCEL;
-import static utility.errorMessages.*;
+import static utility.errorMessages.errorCode;
 
 public class mainMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
-    //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private Label ZoneID;
-    @FXML private Button addAppointmentButton;
-    @FXML private Button deleteAppointmentButton;
-    @FXML private Button logoutButton;
-    @FXML private RadioButton radioButtonViewAll;
-    @FXML private RadioButton radioButtonViewAllCustomers;
-    @FXML private RadioButton radioButtonViewByMonth;
-    @FXML private RadioButton radioButtonViewByWeek;
-    @FXML private ToggleGroup radioButtons;
-    @FXML private Button reportsButton;
     @FXML private TableView<Appointments> appointmentSchedulerTable;
     @FXML private TableColumn<Appointments, Integer> tableColAppointmentID;
     @FXML private TableColumn<Appointments, Integer> tableColContact;
@@ -74,14 +63,12 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Appointment Creation Form.");
     }
 
-    //ADD DELETE METHOD
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorCode(31);
             System.out.println("Null Selection while trying to Delete an Appointment.");
         }
-
     }
 
     @FXML
@@ -146,7 +133,6 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Month.");
     }
 
-    //For some odd reason, this doesn't work.
     @FXML
     void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
@@ -206,10 +192,6 @@ public class mainMenuController implements Initializable {
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
-
-
-
-
     private String displayCurrentTime() {
         //Lambda expression that displays the Current [systemDefault] time.
         Thread currentTime = new Thread(() -> {
@@ -233,5 +215,4 @@ public class mainMenuController implements Initializable {
         currentTime.start();
         return null;
     }
-
 }

@@ -73,7 +73,6 @@ public class customerModificationFormController implements Initializable {
                 String updateCustomerAddress = modificationCustomerAddress.getText();
                 String updateCustomerPostalCode = modificationCustomerPostalCode.getText();
                 String updateCustomerPhoneNumber = modificationCustomerPhoneNumber.getText();
-                //int updateCustomerCountry = modificationCountryPicker.getValue().getCountryId();
                 int updateCustomerDivisionId = divisionPicker.getValue().getDivisionId();
                 LocalDateTime updateLastUpdated = LocalDateTime.now();
                 String updateLastUpdatedBy = "User";

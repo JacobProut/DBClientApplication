@@ -1,7 +1,6 @@
 package utility;
 
 import javafx.scene.control.Alert;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -38,7 +37,6 @@ public class warningMessages {
                 alert.setContentText("Appointment cannot start or end during the same time as another customers appointment!");
                 alert.showAndWait();
                 break;
-
         }
     }
 }

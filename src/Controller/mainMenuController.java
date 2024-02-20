@@ -52,7 +52,6 @@ public class mainMenuController implements Initializable {
     @FXML private TableColumn<Appointments, String> tableColTitle;
     @FXML private TableColumn<Appointments, String> tableColType;
     @FXML private TableColumn<Appointments, Integer> tableColUserID;
-    @FXML private Button updateAppointmentButton;
     @FXML private Label timeLabel;
 
     //Used for displayCurrentTime()

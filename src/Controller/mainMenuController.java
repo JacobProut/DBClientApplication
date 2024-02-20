@@ -70,17 +70,18 @@ public class mainMenuController implements Initializable {
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) throws SQLException {
-        ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
-        int appointmentId = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getAppointmentId();
-        LocalDateTime appointmentStartTime = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getStartTime();
-        DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
-        DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        ObservableList<Appointments> allAppointments;
 
-        if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
+        if (appointmentSchedulerTable.getSelectionModel().getSelectedItems().isEmpty()) {
             errorCode(31);
             System.out.println("Null Selection while trying to Delete an Appointment.");
         }
         else {
+            int appointmentId = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getAppointmentId();
+            LocalDateTime appointmentStartTime = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getStartTime();
+            DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
+            DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
             Alert appointmentForDeletion = new Alert(WARNING);
             appointmentForDeletion.setTitle("Removing Appointment");
             appointmentForDeletion.setHeaderText("Attempting to DELETE an Appointment with the Appointment_ID of [" + appointmentId + "].\n" + "That is scheduled on [" + selectedDateFormat.format(appointmentStartTime) + "] at [" + selectedTimeFormat.format(appointmentStartTime) + "]");

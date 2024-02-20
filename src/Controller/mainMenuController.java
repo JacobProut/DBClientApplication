@@ -57,7 +57,6 @@ public class mainMenuController implements Initializable {
     //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
-
     @FXML
     void onActionAddAppointment(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -68,7 +67,6 @@ public class mainMenuController implements Initializable {
         stage.setTitle("Appointment Creation Form");
         System.out.println("Switching to Appointment Creation Form.");
     }
-
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) throws SQLException {
@@ -235,7 +233,7 @@ public class mainMenuController implements Initializable {
                     //Needed this for time to render properly.
                 }
                 catch (Exception e) {
-                    System.out.println("Cannot Display time!");
+                    System.out.println("System Cannot Display Time!");
                     throw new RuntimeException(e);
                 }
                 final String showCurrentTime = simpleFormat.format(new Date());

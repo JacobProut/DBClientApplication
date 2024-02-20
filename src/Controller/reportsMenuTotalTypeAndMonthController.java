@@ -20,8 +20,6 @@ import static DAO.AppointmentsDAO.getAppointmentMonthTotal;
 import static DAO.AppointmentsDAO.getAppointmentTypeTotal;
 
 public class reportsMenuTotalTypeAndMonthController implements Initializable {
-    Parent scene;
-    Stage stage;
 
     @FXML private TableColumn<Appointments, String> appointmentColMonth;
     @FXML private TableColumn<Appointments, Integer> appointmentColMonthTotalAmount;

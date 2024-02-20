@@ -44,6 +44,9 @@ public class loginScreenForm implements Initializable {
     @FXML private TextField passwordField;
     @FXML private TextField usernameField;
 
+    //Used for login validation
+    public boolean isLoginTrue = false;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,26 +65,6 @@ public class loginScreenForm implements Initializable {
             System.out.println("ERROR OCCURRED: "+ e.getMessage());
         }
     }
-
-    public boolean isLoginTrue = false;
-    /*public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
-        if (!loginInfoValidation()) return;
-        boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
-
-        if (isLoginValid) {
-            UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
-            Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/mainMenu.fxml")));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(login);
-            stage.setTitle("Appointment Scheduler Form");
-            stage.setScene(scene);
-            stage.show();
-            stage.centerOnScreen();
-            System.out.println("Successfully Logged in: Loading Appointment Scheduler.");
-            isLoginTrue = true;
-            timesAttemptedToLogin();
-        }
-    }*/
 
     public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
         if (!loginInfoValidation()) return;

@@ -17,7 +17,7 @@
          <children>
             <RadioButton layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
                </RadioButton>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="707.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="45.0" layoutX="707.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
             <Label layoutX="716.0" layoutY="10.0" text="Current TimeZone:" />
             <Label fx:id="zoneID" layoutX="832.0" layoutY="10.0" text="zoneID" />
             <Label layoutX="716.0" layoutY="32.0" prefHeight="17.0" prefWidth="82.0" text="Current Time:" />

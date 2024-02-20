@@ -3,6 +3,8 @@ package Controller;
 import DAO.AppointmentsDAO;
 import DAO.JDBC;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +22,18 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
+import static javafx.scene.control.Alert.AlertType.WARNING;
 import static javafx.scene.control.ButtonType.CANCEL;
+import static javafx.scene.control.ButtonType.OK;
 import static utility.errorMessages.errorCode;
 
 public class mainMenuController implements Initializable {
@@ -59,16 +65,42 @@ public class mainMenuController implements Initializable {
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentCreationForm.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
+        stage.centerOnScreen();
         stage.setTitle("Appointment Creation Form");
         System.out.println("Switching to Appointment Creation Form.");
     }
 
-    //ADD A DELETE APPOINTMENTS METHOD!!!
+
     @FXML
-    void onActionDeleteAppointment(ActionEvent event) {
+    void onActionDeleteAppointment(ActionEvent event) throws SQLException {
+        ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
+        int appointmentId = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getAppointmentId();
+        LocalDateTime appointmentStartTime = appointmentSchedulerTable.getSelectionModel().getSelectedItem().getStartTime();
+        DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter selectedDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorCode(31);
             System.out.println("Null Selection while trying to Delete an Appointment.");
+        }
+        else {
+            Alert appointmentForDeletion = new Alert(WARNING);
+            appointmentForDeletion.setTitle("Removing Appointment");
+            appointmentForDeletion.setHeaderText("Attempting to DELETE an Appointment with the Appointment_ID of [" + appointmentId + "].\n" + "That is scheduled on [" + selectedDateFormat.format(appointmentStartTime) + "] at [" + selectedTimeFormat.format(appointmentStartTime) + "]");
+            appointmentForDeletion.setContentText("Are you sure you want to continue?\r" + "Click 'OK' to confirm deletion of the selected Appointment.\r" + "Click 'Cancel' to go back to Appointment Scheduler.");
+            appointmentForDeletion.getButtonTypes().add(CANCEL);
+            appointmentForDeletion.showAndWait();
+
+            if(appointmentForDeletion.getResult() == OK) {
+                AppointmentsDAO.removeAppointment(appointmentId);
+                allAppointments = AppointmentsDAO.getAllAppointments();
+                appointmentSchedulerTable.setItems(allAppointments);
+                appointmentSchedulerTable.refresh();
+                System.out.println("Appointment_ID [" + appointmentId + "] Deletion Confirmed!");
+            }
+            else if (appointmentForDeletion.getResult() == CANCEL){
+                System.out.println("Deletion of Appointment_ID [" + appointmentId + "] Canceled!");
+            }
         }
     }
 
@@ -153,7 +185,7 @@ public class mainMenuController implements Initializable {
 
         Optional<ButtonType> confirmation = alert.showAndWait();
 
-        if (confirmation.isPresent() && confirmation.get() == ButtonType.OK) {
+        if (confirmation.isPresent() && confirmation.get() == OK) {
             JDBC.closeConnection();
             System.out.println("Shutting down Application.");
             System.exit(0);

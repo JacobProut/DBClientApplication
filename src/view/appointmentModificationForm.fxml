@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentModificationFormController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentModificationFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="336.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="229.0" />
       <Label layoutX="228.0" layoutY="14.0" prefHeight="30.0" prefWidth="287.0" text="Appointment Modification Form" underline="true">
@@ -97,8 +97,8 @@
             <TextField fx:id="appointmentModificationDescription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="appointmentModificationLocation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="appointmentModificationType" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <DatePicker fx:id="startDateCalendar" editable="false" onAction="#onActionStartDate" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="comboBoxStartTime" onAction="#onActionStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <DatePicker fx:id="startDateCalendar" editable="false" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxStartTime" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <DatePicker fx:id="endDateCalendar" editable="false" promptText="Select a Date ---&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <ComboBox fx:id="comboBoxEndTime" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />

@@ -104,7 +104,7 @@
             <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField fx:id="appointmentCreationAppointmentID" editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
+            <TextField editable="false" promptText="Disabled: Auto-Generated" GridPane.columnIndex="1" />
             <Label prefHeight="52.0" prefWidth="282.0" text="Start time must be in business hours of 8AM EST! Time is based off of computers timezone!" underline="true" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="13.0" />
@@ -129,7 +129,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="createAppointment" layoutX="290.0" layoutY="547.0" mnemonicParsing="false" onAction="#onActionCreateAppointment" prefHeight="37.0" prefWidth="163.0" text="Create Appointment" />
-      <Button fx:id="cancelAppointment" layoutX="552.0" layoutY="584.0" mnemonicParsing="false" onAction="#onActionCancelAppointment" text="Cancel Appointment Creation" />
+      <Button layoutX="290.0" layoutY="547.0" mnemonicParsing="false" onAction="#onActionCreateAppointment" prefHeight="37.0" prefWidth="163.0" text="Create Appointment" />
+      <Button layoutX="552.0" layoutY="584.0" mnemonicParsing="false" onAction="#onActionCancelAppointment" text="Cancel Appointment Creation" />
    </children>
 </Pane>

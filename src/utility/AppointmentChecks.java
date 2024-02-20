@@ -28,7 +28,6 @@ public class AppointmentChecks {
         else {
             return false;
         }
-
     }
 
     public static boolean doTimesOverLap(int customerId, LocalDateTime startTime, LocalDateTime endTime) {
@@ -62,5 +61,4 @@ public class AppointmentChecks {
         }
         return false;
     }
-
 }

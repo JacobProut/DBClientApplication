@@ -9,7 +9,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 public class TimeManipulations {
-    //idk if this is correct to fill start/end time comboboxes
     //Currently it allows selection from 6:00am to 22:00[10Pm]
     public static ObservableList<LocalTime> timeIntervals() {
         ObservableList<LocalTime> listOfTimesAvailable = FXCollections.observableArrayList();
@@ -20,6 +19,7 @@ public class TimeManipulations {
         //LocalTime.MIDNIGHT.minusHours(2) added so 11pm is the latest a time could be selected.
         LocalTime endTime = LocalTime.MIDNIGHT.minusHours(1);
 
+        //Needed to add plusSeconds, otherwise it wouldn't work properly
         while (startTime.isBefore(endTime.plusSeconds(1))) {
             listOfTimesAvailable.add(startTime);
             //startTime.plusMinutes(15) makes it so selections of times is every 15 minutes.

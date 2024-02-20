@@ -40,7 +40,6 @@ public class appointmentModificationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
-    //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private Label zoneID;
     @FXML private TextField appointmentModificationAppointmentID;
     @FXML private TextField appointmentModificationDescription;
@@ -117,16 +116,6 @@ public class appointmentModificationFormController implements Initializable {
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
-
-    }
-
-    @FXML
-    void onActionStartDate(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionStartTime(ActionEvent event) {
 
     }
 

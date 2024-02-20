@@ -39,7 +39,7 @@ public class AppointmentChecks {
             appointmentStartTime = overlap.getStartTime();
             appointmentEndTime = overlap.getEndTime();
 
-            //Empty body statement otherwise I get an error?
+            //Empty body statement otherwise I get an error... weird?
             if (customerId != overlap.getCustomerId()) {
 
             }

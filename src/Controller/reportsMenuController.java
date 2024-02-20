@@ -56,11 +56,6 @@ public class reportsMenuController {
     }
 
     @FXML
-    void onActionTotalNumberOfCustomersByCountry(ActionEvent event) {
-
-    }
-
-    @FXML
     void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
        Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Closing Reports Menu");

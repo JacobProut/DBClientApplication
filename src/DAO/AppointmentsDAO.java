@@ -70,7 +70,7 @@ public class AppointmentsDAO {
     }
 
     public static ObservableList<Appointments> getAppointmentForUserList(int userId) {
-        ObservableList<Appointments> appointmentsContactList = FXCollections.observableArrayList();
+        ObservableList<Appointments> appointmentsUserList = FXCollections.observableArrayList();
 
         try {
             String contactSql = "SELECT appointments.Appointment_ID, appointments.Title, appointments.Description, appointments.Location, appointments.Type, appointments.Start, appointments.End, appointments.Customer_ID, appointments.Contact_ID FROM appointments JOIN users ON appointments.User_ID = users.User_ID WHERE appointments.User_ID = '" + userId + "'";
@@ -89,13 +89,13 @@ public class AppointmentsDAO {
                 int contactId = results.getInt("Contact_ID");
 
                 Appointments userList = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentType, appointmentLocation, startTime, endTime, customerId, contactId);
-                appointmentsContactList.add(userList);
+                appointmentsUserList.add(userList);
             }
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return appointmentsContactList;
+        return appointmentsUserList;
     }
 
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {

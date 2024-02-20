@@ -41,7 +41,7 @@ public class AppointmentsDAO {
         return appointmentsObservableList;
     }
 
-    //Attempting to make this for Schedules for Contacts
+    //Made for Schedules for Contacts
     public static ObservableList<Appointments> getAppointmentForContactList(int contactId) {
         ObservableList<Appointments> appointmentsContactList = FXCollections.observableArrayList();
 
@@ -69,6 +69,7 @@ public class AppointmentsDAO {
         return appointmentsContactList;
     }
 
+    //Made for Schedules for Users + loginScreenForm.onActionLogin()
     public static ObservableList<Appointments> getAppointmentForUserList(int userId) {
         ObservableList<Appointments> appointmentsUserList = FXCollections.observableArrayList();
 

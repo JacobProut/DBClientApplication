@@ -19,7 +19,6 @@ public class CustomersDAO {
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
         try {
             String getAllCustomerData = "SELECT *, first_level_divisions.Division, first_level_divisions.Country_ID, countries.Country FROM customers JOIN first_level_divisions ON customers.Division_ID = first_level_divisions.Division_ID JOIN countries ON countries.Country_ID = first_level_divisions.Country_ID ORDER BY customers.Customer_ID";
-            //String getAllCustomerData = "SELECT * FROM Customers";
             PreparedStatement getCust = createConnection().prepareStatement(getAllCustomerData);
             ResultSet result = getCust.executeQuery();
 
@@ -46,9 +45,7 @@ public class CustomersDAO {
         return customersObservableList;
     }
 
-
-
-    //had to include lastUpdated, otherwise i would get java.sql errors
+    //had to include lastUpdated, otherwise I would get java.sql errors
     //FINAL ADDED CREATED_BY & LAST_UPDATED_BY
     public static void createCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) throws SQLException {
         try {
@@ -78,8 +75,7 @@ public class CustomersDAO {
             PreparedStatement byeByeCustomer = createConnection().prepareStatement(removeCustomer);
             byeByeCustomer.setInt(1, customerId);
             byeByeCustomer.execute();
-        }
-
+    }
 
     public static void updateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) {
         try {

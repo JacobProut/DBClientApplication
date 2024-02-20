@@ -65,7 +65,7 @@ public class UsersDAO {
                 selectedUserId= resultSet.getInt("User_ID");
             }
             return selectedUserId;
-        }
+    }
 
     public static boolean verifyLoginInformation(String username, String password) throws SQLException {
         String checkingLogin = "SELECT * FROM users WHERE User_Name=? AND Password=?";

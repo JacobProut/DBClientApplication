@@ -10,13 +10,22 @@ import java.sql.SQLException;
 
 import static DAO.JDBC.createConnection;
 
+/**
+ * CountriesDAO contains all CountriesDAO Methods to communicate with the MySQL database.
+ */
 public class CountriesDAO {
 
-    //No idea why it gives "model@------" in combobox
-    // - FIXED: Added in model.Countries
-    //    public String toString() {
-    //        return this.country;
-    //    }
+    /**
+     * getAllCountriesList() is used in customerCreationFormController and customerModificationFormController. Initialize countryPicker comboBox
+     * @return countriesObservableList
+     *
+     * ERROR i occurred:
+     * //No idea why it gives "model@------" in combobox
+     *     // - FIXED: Added in model.Countries
+     *     //    public String toString() {
+     *     //        return this.country;
+     *     //    }
+     */
     public static ObservableList<Countries> getAllCountriesList() {
         ObservableList<Countries> countriesObservableList = FXCollections.observableArrayList();
 
@@ -38,6 +47,11 @@ public class CountriesDAO {
         return countriesObservableList;
     }
 
+    /**
+     * getSelectedCustomerCountry(int countryId) is used in customerModificationFormController.customerSelection
+     * @param countryId
+     * @return new Countries(selectedCountryId, selectedCountryName)
+     */
     //Method used in customerModificationFormController.java  - customerSelection method
     public static Countries getSelectedCustomerCountry(int countryId) {
         try {

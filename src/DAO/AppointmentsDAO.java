@@ -9,8 +9,20 @@ import java.time.LocalDateTime;
 
 import static DAO.JDBC.createConnection;
 
+/**
+ * AppointmentsDAO contains all AppointmentsDAO Methods to communicate with the MySQL database.
+ */
 public class AppointmentsDAO {
 
+    /**
+     * getAllAppointments() is used in customerMenuController.onActionDeleteCustomer(ActionEvent)
+     *      - Used to see if there are any appointments associated with Customer_ID
+     * getAllAppointments() is also used in mainMenuController.onActionDeleteAppointment(ActionEvent)
+     *      - Used to get all appointments then refresh table
+     * getAllAppointments() is also used in mainMenuController.radioButtonViewAll(ActionEvent) & mainMenuController. Initialize
+     *      - Sets the tableview to view ALL appointments
+     * @return appointmentsObservableList
+     */
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
 
@@ -41,6 +53,13 @@ public class AppointmentsDAO {
         return appointmentsObservableList;
     }
 
+    /**
+     * getAppointmentForContactList() is used in reportsMenuContactScheduleController.onActionComboBoxContacts(ActionEvent)
+     *      - Checks if tableview is empty by contactId
+     *      - Also sets tableview by contactId
+     * @param contactId
+     * @return appointmentsContactList
+     */
     //Made for Schedules for Contacts
     public static ObservableList<Appointments> getAppointmentForContactList(int contactId) {
         ObservableList<Appointments> appointmentsContactList = FXCollections.observableArrayList();
@@ -69,6 +88,15 @@ public class AppointmentsDAO {
         return appointmentsContactList;
     }
 
+    /**
+     * getAppointmentForUserList() is used in loginScreenForm.onActionLogin(ActionEvent)
+     *      - Used for login verification
+     * Also used in reportsMenuUsersScheduleController.onActionComboBoxUsers(ActionEvent)
+     *      - Checks if tableview is empty by userId
+     *      - Also sets tableview by userId
+     * @param userId
+     * @return appointmentsUserList
+     */
     //Made for Schedules for Users + loginScreenForm.onActionLogin()
     public static ObservableList<Appointments> getAppointmentForUserList(int userId) {
         ObservableList<Appointments> appointmentsUserList = FXCollections.observableArrayList();
@@ -99,6 +127,20 @@ public class AppointmentsDAO {
         return appointmentsUserList;
     }
 
+    /**
+     * createAppointments() is used in appointmentCreationFormController.onActionCreateAppointment(ActionEvent)
+     *      - Adds appointment to tableview
+     * @param appointmentTitle
+     * @param appointmentDescription
+     * @param appointmentLocation
+     * @param appointmentType
+     * @param startTime
+     * @param endTime
+     * @param customerId
+     * @param userId
+     * @param contactId
+     * @throws SQLException
+     */
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
         String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);
@@ -115,6 +157,14 @@ public class AppointmentsDAO {
         createAppointment.execute();
    }
 
+    /**
+     * removeAppointment() is used in mainMenuController.onActionDeleteAppointment(ActionEvent)
+     *      - Removes appointments from tableview
+     * Also used in customerMenuController.onActionDeleteCustomer(ActionEvent)
+     *      - Removes appointments associated to certain customer_id
+     * @param appointmentId
+     * @throws SQLException
+     */
    public static void removeAppointment(int appointmentId) throws SQLException {
        String deleteAppointment = "DELETE FROM appointments WHERE Appointment_ID = ?";
        PreparedStatement removeAppointment = createConnection().prepareStatement(deleteAppointment);
@@ -123,9 +173,11 @@ public class AppointmentsDAO {
        removeAppointment.execute();
    }
 
-   //Unsure this works until I can add data within the current week
-    // Still doesn't work. Need to fix.
-    //Working method
+    /**
+     * viewWeekAppoints() is used on mainMenuController.radioButtonViewByWeek(ActionEvent).
+     * This sets the appointmentSchedulerTable to view appointments in CURRENT week.
+     * @return viewWeekList
+     */
    public static ObservableList<Appointments> viewWeekAppoints() {
         ObservableList<Appointments> viewWeekList = FXCollections.observableArrayList();
 
@@ -156,7 +208,14 @@ public class AppointmentsDAO {
        return viewWeekList;
    }
 
-   //Start of Reports menu DAO
+    /**
+     * //Start of Reports menu DAO
+     *
+     * getAppointmentTypeTotal() used in reportsMenuTotalTypeAndMonthController. Initialize to set tableViewAppointmentType column
+     * @return totalAppointmentTypeList
+     * @throws SQLException
+     */
+
    public static ObservableList<Appointments> getAppointmentTypeTotal() throws SQLException {
         ObservableList<Appointments> totalAppointmentTypeList = FXCollections.observableArrayList();
 
@@ -181,6 +240,13 @@ public class AppointmentsDAO {
        return totalAppointmentTypeList;
    }
 
+    /**
+     * //End of Report menu DAO
+     *
+     * getAppointmentMonthTotal() used in reportsMenuTotalTypeAndMonthController. Initialize to set tableViewAppointmentMonth column
+     * @return totalAppointmentMonthList
+     * @throws SQLException
+     */
    public static ObservableList<Appointments> getAppointmentMonthTotal() throws SQLException {
         ObservableList<Appointments> totalAppointmentMonthList = FXCollections.observableArrayList();
 
@@ -204,11 +270,14 @@ public class AppointmentsDAO {
         }
        return totalAppointmentMonthList;
    }
-   //End of Report menu DAO
 
 
 
-   //works
+    /**
+     * viewMonthAppoints() is used on mainMenuController.radioButtonViewByMonth(ActionEvent).
+     * This sets the appointmentSchedulerTable to view appointments in CURRENT month.
+     * @return viewMonthList
+     */
    public static ObservableList<Appointments> viewMonthAppoints() {
         ObservableList<Appointments> viewMonthList = FXCollections.observableArrayList();
 
@@ -239,6 +308,21 @@ public class AppointmentsDAO {
        return viewMonthList;
    }
 
+    /**
+     * updateAppointments() is used in appointmentModificationFormController.onActionModificationAppointment(ActionEvent) ]
+     * This is used to update appointments into the table.
+     * @param appointmentId
+     * @param appointmentTitle
+     * @param appointmentDescription
+     * @param appointmentLocation
+     * @param appointmentType
+     * @param startTime
+     * @param endTime
+     * @param customerId
+     * @param userId
+     * @param contactId
+     * @throws SQLException
+     */
     public static void updateAppointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
             String updateAppointment = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
             PreparedStatement updateAppointmentToDB = createConnection().prepareStatement(updateAppointment);
@@ -255,5 +339,4 @@ public class AppointmentsDAO {
             updateAppointmentToDB.setInt(10, appointmentId);
             updateAppointmentToDB.execute();
     }
-
 }

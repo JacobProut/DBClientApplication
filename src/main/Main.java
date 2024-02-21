@@ -8,7 +8,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+/**
+ * Main is the main class that creates the Appointment Scheduler Application.
+ */
 public class Main extends Application {
+    /**
+     * start method loads the /view/Login-Screen.fxml file
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/Login-Screen.fxml"));
@@ -18,6 +27,10 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * main method is used to open, launch, and close the database connection to mySql
+     * @param args
+     */
     public static void main(String[] args) {
         JDBC.openConnection();
         launch();

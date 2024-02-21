@@ -37,11 +37,22 @@ import static javafx.scene.control.ButtonType.CANCEL;
 import static javafx.scene.control.ButtonType.OK;
 import static utility.errorMessages.errorCode;
 
+/**
+ * customerMenuController is the Customer View List Form
+ */
 public class customerMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * Label Declarations
+     */
     @FXML private Label zoneID;
+    @FXML private Label timeLabel;
+
+    /**
+     * TableView/Column Declarations
+     */
     @FXML private TableView<Customers> customerTableView;
     @FXML private TableColumn<Customers, String> tableColCustomerAddress;
     @FXML private TableColumn<Customers, String> tableColCustomerCreatedBy;
@@ -53,11 +64,17 @@ public class customerMenuController implements Initializable {
     @FXML private TableColumn<Customers, String> tableColCustomerPhoneNumber;
     @FXML private TableColumn<Customers, Integer> tableColCustomerPostalCode;
     @FXML private TableColumn<Customers, String> tableColCustomerDivisionId;
-    @FXML private Label timeLabel;
 
-    //Used for displayCurrentTime()
+    /**
+     * timeStopped is used for displayCurrentTime()
+     */
     private final boolean timeStopped = false;
 
+    /**
+     * onActionAddCustomer(ActionEvent) opens up customerCreationForm.fxml to create Customers
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionAddCustomer(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerCreationForm.fxml")));
@@ -68,9 +85,15 @@ public class customerMenuController implements Initializable {
         System.out.println("Switching to Customer Creation Form.");
     }
 
-    //Working method!
-    ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
+
+    /**
+     * onActionDeleteCustomer(ActionEvent) is the method used to delete customers from the tableview
+     *      - If a customer has an appointment, it will warn the user before customer is deleted
+     * @param event
+     * @throws SQLException
+     */
     @FXML void onActionDeleteCustomer(ActionEvent event) throws SQLException {
+        ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
             errorCode(13);
@@ -130,6 +153,11 @@ public class customerMenuController implements Initializable {
         }
     }
 
+    /**
+     * onActionLogout(ActionEvent) is used to log the user out of the program.
+     *      - If the OK button is pressed, the mySQL connection is closed nad the system.exit() command is run
+     * @param event
+     */
     @FXML void onActionLogout(ActionEvent event) {
         System.out.println("Logout Button Selected.");
         Alert alert = new Alert(CONFIRMATION);
@@ -149,6 +177,11 @@ public class customerMenuController implements Initializable {
         }
     }
 
+    /**
+     * onActionReports(ActionEvent) opens up reportsMenu.fxml to see reports
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReports(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
@@ -160,6 +193,12 @@ public class customerMenuController implements Initializable {
 
     }
 
+    /**
+     * onActionUpdateCustomer(ActionEvent) uses selected customer from tableView then opens up customerModificationForm.fxml with all the selected customers data put into modification fields
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     //Method used in customerModificationFormController.java  - customerSelection method
     @FXML void onActionUpdateCustomer(ActionEvent event) throws IOException {
 
@@ -182,6 +221,11 @@ public class customerMenuController implements Initializable {
        }
     }
 
+    /**
+     * radioButtonViewAllCustomers(ActionEvent) just shows that the user is currently on the Customer View List
+     * @param event
+     * @throws IOException
+     */
     @FXML void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
@@ -190,6 +234,11 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
+    /**
+     * onActionReturnToAppointmentScheduler(ActionEvent) opens up mainMenu.fxml to see Appointment Scheduler
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
@@ -200,6 +249,12 @@ public class customerMenuController implements Initializable {
         System.out.println("Returning to Appointment Scheduler.");
     }
 
+    /**
+     * onActionReturnToAppointmentScheduler(ActionEvent) opens up customerMenu.fxml to see Customer View List
+     * Used in customerCreationFormController.onActionSaveButton(ActionEvent) & customerModificationFormController.onActionUpdateCustomerButton(ActionEvent)
+     * @param event
+     * @throws IOException
+     */
     public static void returnToCustomerAppointments(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/customerMenu.fxml")));
@@ -210,6 +265,12 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
+    /**
+     * Initialize sets the zoneId and time label to systemDefault timezone and time
+     *      - Also populates the Customer TableView
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TimeZone & Time Setters
@@ -230,7 +291,13 @@ public class customerMenuController implements Initializable {
         tableColCustomerDivisionId.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
     }
 
-    //Found this code up online and added my own touches to it. Figured it would be nice to see a displayed time on the forms.
+
+    /**
+     * displayCurrentTime() is a Lambda expression used to display systemDefaults time
+     * "Lambda newThread(() ->"
+     * "Lambda Platform.runLater(()-> "
+     * @return null
+     */
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat simpleFormat = new SimpleDateFormat("hh:mm:ss a");

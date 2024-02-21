@@ -23,18 +23,32 @@ import java.util.ResourceBundle;
 
 import static utility.errorMessages.errorCode;
 
+/**
+ * customerCreationFormController is used to create Customers
+ */
 public class customerCreationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
-    //WILL NEED TO REMOVE UN-USED DECLARATIONS
+    /**
+     * ComboBox Declarations
+     */
     @FXML private ComboBox<Countries> countryPicker;
+    @FXML private ComboBox<First_Level_Divisions> divisionPicker;
+
+    /**
+     * TextField Declarations
+     */
     @FXML private TextField creationCustomerAddress;
     @FXML private TextField creationCustomerName;
     @FXML private TextField creationCustomerPhoneNumber;
     @FXML private TextField creationCustomerPostalCode;
-    @FXML private ComboBox<First_Level_Divisions> divisionPicker;
 
+
+    /**
+     * onActionSaveButton(ActionEvent) method is used to create Customers + add it to database
+     * @param event
+     */
     @FXML void onActionSaveButton(ActionEvent event) {
         try {
             if (createCustomerValidation()) {
@@ -57,6 +71,13 @@ public class customerCreationFormController implements Initializable {
         }
     }
 
+    /**
+     * onActionCreationCancel(ActionEvent) is used to return to customerMenu.fxml[Customer View List]
+     *      - Prompt pulls up asking if the user wants to return to the Customer View List
+     *          - Pressing 'OK' sends the user back to customerMenu.fxml
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionCreationCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Closing Customer Creation Page");
@@ -74,12 +95,21 @@ public class customerCreationFormController implements Initializable {
         }
     }
 
-    //I believe this is completed.
+
+    /**
+     * onActionCountryPicker(ActionEvent) sets divisionPicker comboBox items depending on countryPicker comboBox value
+     * @param event
+     */
     @FXML void onActionCountryPicker(ActionEvent event) {
         Countries list = countryPicker.getValue();
         divisionPicker.setItems(First_Level_DivisionsDAO.countryToDivision(list.getCountryId()));
     }
 
+    /**
+     * initialize sets countryPickerComboBox with getAllCountriesList() & Adds comboBox Prompt Texts.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryPicker.setItems(CountriesDAO.getAllCountriesList());
@@ -87,6 +117,10 @@ public class customerCreationFormController implements Initializable {
         divisionPicker.setPromptText("Select a Division");
     }
 
+    /**
+     * createCustomerValidation() checks to make sure textFields, and ComboBoxes are not empty or Null
+     * @return false or true
+     */
     public boolean createCustomerValidation() {
         if (creationCustomerName.getText().isEmpty() && creationCustomerAddress.getText().isEmpty() && creationCustomerPostalCode.getText().isEmpty() && creationCustomerPhoneNumber.getText().isEmpty() && countryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
             errorCode(5);

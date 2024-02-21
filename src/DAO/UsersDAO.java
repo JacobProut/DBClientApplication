@@ -73,7 +73,6 @@ public class UsersDAO {
      * @return selectedUserId
      * @throws SQLException
      */
-    //used for reportsMenuUserSchedule
     public static int getUsersNameById(String userName) throws SQLException {
             String getIdByNam = "SELECT * FROM users WHERE User_Name = ?";
             PreparedStatement selectedUserName = createConnection().prepareStatement(getIdByNam);

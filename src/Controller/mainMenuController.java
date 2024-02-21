@@ -35,11 +35,23 @@ import static javafx.scene.control.ButtonType.CANCEL;
 import static javafx.scene.control.ButtonType.OK;
 import static utility.errorMessages.errorCode;
 
+/**
+ * mainMenuController is the Main form of the whole program.
+ * It is called Appointment Scheduler Form
+ */
 public class mainMenuController implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * Label Declarations
+     */
     @FXML private Label ZoneID;
+    @FXML private Label timeLabel;
+
+    /**
+     * TableView/Column Declarations
+     */
     @FXML private TableView<Appointments> appointmentSchedulerTable;
     @FXML private TableColumn<Appointments, Integer> tableColAppointmentID;
     @FXML private TableColumn<Appointments, Integer> tableColContact;
@@ -51,11 +63,17 @@ public class mainMenuController implements Initializable {
     @FXML private TableColumn<Appointments, String> tableColTitle;
     @FXML private TableColumn<Appointments, String> tableColType;
     @FXML private TableColumn<Appointments, Integer> tableColUserID;
-    @FXML private Label timeLabel;
 
-    //Used for displayCurrentTime()
+    /**
+     * timeStopped is used for displayCurrentTime()
+     */
     private final boolean timeStopped = false;
 
+    /**
+     * onActionAddAppointment(ActionEvent) opens up appointmentCreationForm.fxml to create appointments
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionAddAppointment(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentCreationForm.fxml")));
@@ -66,6 +84,11 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Appointment Creation Form.");
     }
 
+    /**
+     * onActionDeleteAppointment(ActionEvent) is the method used to delete appointments from the tableview
+     * @param event
+     * @throws SQLException
+     */
     @FXML void onActionDeleteAppointment(ActionEvent event) throws SQLException {
         ObservableList<Appointments> allAppointments;
 
@@ -99,6 +122,11 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * onActionReports(ActionEvent) opens up reportsMenu.fxml to see reports
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReports(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
@@ -109,6 +137,12 @@ public class mainMenuController implements Initializable {
         System.out.println("Opening up Reports Menu");
     }
 
+    /**
+     * onActionUpdateAppointment(ActionEvent) uses selected appointment from tableView then opens up appointmentModificationForm.fxml with all the selected appointments data put into modification fields
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorCode(30);
@@ -129,6 +163,10 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * radioButtonViewAll(ActionEvent) sets appointmentSchedulerTable to view ALL appointments
+     * @param event
+     */
     @FXML void radioButtonViewAll(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
 
@@ -137,6 +175,11 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing All Appointments.");
     }
 
+    /**
+     * radioButtonViewAllCustomers(ActionEvent) opens up the customerMenu.fxml to see Customer View List
+     * @param event
+     * @throws IOException
+     */
     @FXML void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
@@ -147,6 +190,10 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Customer View List.");
     }
 
+    /**
+     * radioButtonViewByMonth(ActionEvent) sets appointmentSchedulerTable to view current month appointments
+     * @param event
+     */
     @FXML void radioButtonViewByMonth(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
 
@@ -155,6 +202,10 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Month.");
     }
 
+    /**
+     * radioButtonViewByWeek(ActionEvent) sets appointmentSchedulerTable to view current week appointments
+     * @param event
+     */
     @FXML void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
 
@@ -163,6 +214,11 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Week.");
     }
 
+    /**
+     * onActionLogout(ActionEvent) is used to log the user out of the program.
+     *      - If the OK button is pressed, the mySQL connection is closed nad the system.exit() command is run
+     * @param event
+     */
     @FXML void onActionLogout(ActionEvent event) {
         System.out.println("Logout Button Selected.");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -182,6 +238,11 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * returnToAppointments(ActionEvent) is used in appointmentCreationFormController.onActionCreateAppointment(ActionEvent) & appointmentModificationFormController.onActionModificationAppointment(ActionEvent)
+     * @param event
+     * @throws IOException
+     */
     public static void returnToAppointments(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent parent = FXMLLoader.load(Objects.requireNonNull(customerMenuController.class.getResource("/view/mainMenu.fxml")));
@@ -192,6 +253,12 @@ public class mainMenuController implements Initializable {
         stage.setTitle("Appointment Scheduler Form");
     }
 
+    /**
+     * Initialize sets the zoneId and time label to systemDefault timezone and time
+     *      - Also populates the Appointment TableView
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TimeZone & Time Setters
@@ -212,6 +279,12 @@ public class mainMenuController implements Initializable {
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
+    /**
+     * displayCurrentTime() is a Lambda expression used to display systemDefaults time
+     * "Lambda newThread(() ->"
+     * "Lambda Platform.runLater(()-> "
+     * @return null
+     */
     private String displayCurrentTime() {
         //Lambda expression that displays the Current [systemDefault] time.
         Thread currentTime = new Thread(() -> {

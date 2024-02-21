@@ -19,19 +19,40 @@ import java.util.ResourceBundle;
 import static DAO.AppointmentsDAO.getAppointmentMonthTotal;
 import static DAO.AppointmentsDAO.getAppointmentTypeTotal;
 
+/**
+ * reportsMenuTotalTypeAndMonthController is used to see appointment totals based off of Type and Month
+ */
 public class reportsMenuTotalTypeAndMonthController implements Initializable {
 
-    @FXML private TableColumn<Appointments, String> appointmentColMonth;
-    @FXML private TableColumn<Appointments, Integer> appointmentColMonthTotalAmount;
+    /**
+     * Appointment Type TableView/Column Declarations
+     */
+    @FXML private TableView<Appointments> tableViewAppointmentType;
     @FXML private TableColumn<Appointments, String> appointmentColType;
     @FXML private TableColumn<Appointments, Integer> appointmentColTypeTotalAmount;
-    @FXML private TableView<Appointments> tableViewAppointmentMonth;
-    @FXML private TableView<Appointments> tableViewAppointmentType;
 
+    /**
+     * Appointment Month TableView/Column Declarations
+     */
+    @FXML private TableView<Appointments> tableViewAppointmentMonth;
+    @FXML private TableColumn<Appointments, String> appointmentColMonth;
+    @FXML private TableColumn<Appointments, Integer> appointmentColMonthTotalAmount;
+
+
+    /**
+     * onActionReturnToReportsMenu(ActionEvent) returns the user to the Reports Menu
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 
+    /**
+     * initialize sets tableview/columns and gets the Type/Month Totals
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

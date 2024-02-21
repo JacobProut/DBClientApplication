@@ -33,7 +33,8 @@ public class UsersDAO {
                 usersObservableList.add(allUsers);
             }
             return usersObservableList;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -60,7 +61,8 @@ public class UsersDAO {
 
                 return new Users(collectedId, collectedName);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;
@@ -105,7 +107,8 @@ public class UsersDAO {
             verifyLogin.execute();
             ResultSet result = verifyLogin.getResultSet();
             return (result.next());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("ERROR OCCURRED: " + e.getMessage());
             return false;
         }

@@ -11,7 +11,16 @@ import java.sql.SQLException;
 
 import static DAO.JDBC.createConnection;
 
+/**
+ * UsersDAO contains all User Methods to communicate with the MySQL database.
+ */
 public class UsersDAO {
+    /**
+     * getAllUsers() used in appointmentCreationFormController. Initialize to set userComboBox.
+     *  - Also used in appointmentModification. Initialize to set userComboBox.
+     *  - Also used in reportsMenuUsersScheduleController. Initialize to set a userComboBox
+     * @return usersObservableList
+     */
     public static ObservableList<Users> getAllUsers() {
         Connection connection;
         ObservableList<Users> usersObservableList = FXCollections.observableArrayList();
@@ -29,6 +38,12 @@ public class UsersDAO {
         }
     }
 
+    /**
+     * getAllUsersById(String userId) used for appointmentModificationFormController.appointmentSelection to set the userComboBox
+     * @param userId
+     * @return new Users(collectedId, collectedName) or null
+     * @throws SQLException
+     */
     public static Users getAllUsersById(int userId) throws SQLException {
         try {
             String getUserId = "SELECT * FROM users WHERE User_ID = ?";
@@ -51,6 +66,13 @@ public class UsersDAO {
         return null;
     }
 
+    /**
+     * getUserNameById() was created for loginScreenForm.onActionLogin(ActionEvent event) to be used in reportsMenuUsersScheduleController.onActionComboBoxUsers(Action Event)
+     * This was a way of collecting the username for reportsMenuUsersScheduleController.onActionComboBoxUsers(Action Event)
+     * @param userName
+     * @return selectedUserId
+     * @throws SQLException
+     */
     //used for reportsMenuUserSchedule
     public static int getUsersNameById(String userName) throws SQLException {
             String getIdByNam = "SELECT * FROM users WHERE User_Name = ?";
@@ -67,6 +89,14 @@ public class UsersDAO {
             return selectedUserId;
     }
 
+    /**
+     * verifyLoginInformation() was created for loginScreenForm.onActionLogin(ActionEvent event) && loginScreenForm.loginInfoValidation()
+     * Method was created to send error messages for blank, empty User_Name & Password fields
+     * @param username
+     * @param password
+     * @return true/false
+     * @throws SQLException
+     */
     public static boolean verifyLoginInformation(String username, String password) throws SQLException {
         String checkingLogin = "SELECT * FROM users WHERE User_Name=? AND Password=?";
         PreparedStatement verifyLogin = JDBC.createConnection().prepareStatement(checkingLogin);

@@ -19,8 +19,8 @@ public class CountriesDAO {
      * getAllCountriesList() is used in customerCreationFormController and customerModificationFormController. Initialize countryPicker comboBox
      * @return countriesObservableList
      *
-     * ERROR i occurred:
-     * //No idea why it gives "model@------" in combobox
+     * ERROR I occurred:
+     * //No idea why it gives "model@------" in comboBox
      *     // - FIXED: Added in model.Countries
      *     //    public String toString() {
      *     //        return this.country;

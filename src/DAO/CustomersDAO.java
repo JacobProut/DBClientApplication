@@ -12,9 +12,17 @@ import java.time.LocalDateTime;
 
 import static DAO.JDBC.createConnection;
 
-
+/**
+ * CustomersDAO contains all Customers Methods to communicate with the MySQL database.
+ */
 public class CustomersDAO {
 
+    /**
+     * getAllCustomers() is used in appointmentCreationFormController. Initialize to set customerComboBox.
+     * Also used in appointmentModificationFormController. Initialize to set customerComboBox.
+     * Also used in customerMenuController.onActionDeleteCustomer(ActionEvent) & In the Initialize section to SET customerTableView
+     * @return customersObservableList
+     */
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
         try {
@@ -45,8 +53,22 @@ public class CustomersDAO {
         return customersObservableList;
     }
 
-    //had to include lastUpdated, otherwise I would get java.sql errors
-    //FINAL ADDED CREATED_BY & LAST_UPDATED_BY
+    /**
+     * createCustomer() is used in customerCreationFormController.onActionSaveButton(ActionEvent)
+     * This creates a customer and adds them to the tableview
+     * @param customerName
+     * @param customerAddress
+     * @param customerPostalCode
+     * @param customerPhoneNumber
+     * @param createDate
+     * @param createdBy
+     * @param lastUpdated
+     * @param lastUpdatedBy
+     * @param divisionId
+     * @throws SQLException
+     * //had to include lastUpdated, otherwise I would get java.sql errors
+     * //had to add CREATED_BY & LAST_UPDATED_BY
+     */
     public static void createCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) throws SQLException {
         try {
             String customerCreation = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -64,12 +86,18 @@ public class CustomersDAO {
 
             createCust.executeUpdate();
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
+    /**
+     * removeCustomerFromTableView(int customerId) is used in customerMenuController.onActionDeleteCustomer(ActionEvent)
+     * It removes customer from table view by their customerId
+     * @param customerId
+     * @throws SQLException
+     */
     public static void removeCustomerFromTableView(int customerId) throws SQLException {
             String removeCustomer = "DELETE FROM customers WHERE Customer_ID = ?";
             PreparedStatement byeByeCustomer = createConnection().prepareStatement(removeCustomer);
@@ -77,6 +105,18 @@ public class CustomersDAO {
             byeByeCustomer.execute();
     }
 
+    /**
+     * updateCustomer() is used in customerModificationFormController.onActionUpdateCustomerButton(ActionEvent)
+     * Updates customer data into table.
+     * @param customerId
+     * @param customerName
+     * @param customerAddress
+     * @param customerPostalCode
+     * @param customerPhoneNumber
+     * @param lastUpdated
+     * @param lastUpdatedBy
+     * @param divisionId
+     */
     public static void updateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, LocalDateTime lastUpdated, String lastUpdatedBy, int divisionId) {
         try {
             String updateCustomer = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
@@ -98,6 +138,13 @@ public class CustomersDAO {
         }
     }
 
+    /**
+     * getAllCustomersById(int customerId) is used in appointmentModificationFormController.appointmentSelection()
+     * Sets value of customerComboBox
+     * @param customerId
+     * @return new Customers(collectedId, collectedName) or Null
+     * @throws SQLException
+     */
     public static Customers getAllCustomersById(int customerId) throws SQLException {
         try {
             String getCustomerId = "SELECT * FROM customers WHERE Customer_ID = ?";
@@ -114,7 +161,8 @@ public class CustomersDAO {
 
                 return new Customers(collectedId, collectedName);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;

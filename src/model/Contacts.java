@@ -36,7 +36,7 @@ public class Contacts {
     }
 
     /**
-     * getContactId gets the contactId
+     * getContactId() gets the contactId
      * @return contactId
      */
     public int getContactId() {
@@ -44,7 +44,7 @@ public class Contacts {
     }
 
     /**
-     * setContactId sets the contactId
+     * setContactId() sets the contactId
      * @param contactId
      */
     public void setContactId(int contactId) {
@@ -52,7 +52,7 @@ public class Contacts {
     }
 
     /**
-     * toString needed for tableview mishaps
+     * toString() needed for tableview mishaps
      * @return this.contactName
      */
     public String toString() {

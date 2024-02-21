@@ -137,7 +137,7 @@ public class Appointments {
     }
 
     /**
-     * Needed this getTypeTotal Function so getAppointmentTypeTotal Would work
+     * Needed this getTypeCountTotal() Function so getAppointmentTypeTotal Would work
      * @return CountTotal
      */
     public int getTypeCountTotal() {
@@ -155,7 +155,7 @@ public class Appointments {
     }
 
     /**
-     * setCustomerId sets the customerId
+     * setCustomerId() sets the customerId
      * @param customerId
      */
     public void setCustomerId(int customerId) {
@@ -171,7 +171,7 @@ public class Appointments {
     }
 
     /**
-     * setUserId sets the userId
+     * setUserId() sets the userId
      * @param userId
      */
     public void setUserId(int userId) {
@@ -179,7 +179,7 @@ public class Appointments {
     }
 
     /**
-     * getContactId gets the contactId
+     * getContactId() gets the contactId
      * @return contactId
      */
     public int getContactId() {
@@ -187,7 +187,7 @@ public class Appointments {
     }
 
     /**
-     * setContactId sets the contactId
+     * setContactId() sets the contactId
      * @param contactId
      */
     public void setContactId(int contactId) {
@@ -197,7 +197,7 @@ public class Appointments {
 
 
     /**
-     * getAppointmentId gets the appointmentId
+     * getAppointmentId() gets the appointmentId
      * @return appointmentId
      */
     public int getAppointmentId() {
@@ -205,7 +205,7 @@ public class Appointments {
     }
 
     /**
-     * getAppointmentTitle gets the appointmentTitle
+     * getAppointmentTitle() gets the appointmentTitle
      * @return appointmentTitle
      */
     public String getAppointmentTitle() {
@@ -213,7 +213,7 @@ public class Appointments {
     }
 
     /**
-     * getAppointmentDescription gets the appointmentDescription
+     * getAppointmentDescription() gets the appointmentDescription
      * @return appointmentDescription
      */
     public String getAppointmentDescription() {
@@ -221,7 +221,7 @@ public class Appointments {
     }
 
     /**
-     * getAppointmentLocation gets the appointmentLocation
+     * getAppointmentLocation() gets the appointmentLocation
      * @return appointmentLocation
      */
     public String getAppointmentLocation() {
@@ -229,7 +229,7 @@ public class Appointments {
     }
 
     /**
-     * getAppointmentType gets the appointmentType
+     * getAppointmentType() gets the appointmentType
      * @return appointmentType
      */
     public String getAppointmentType() {
@@ -237,7 +237,7 @@ public class Appointments {
     }
 
     /**
-     * getStartTime gets the startTime
+     * getStartTime() gets the startTime
      * @return startTime
      */
     public LocalDateTime getStartTime() {
@@ -245,7 +245,7 @@ public class Appointments {
     }
 
     /**
-     * setStartTime sets the startTime
+     * setStartTime() sets the startTime
      * @param startTime
      */
     public void setStartTime(LocalDateTime startTime) {
@@ -253,7 +253,7 @@ public class Appointments {
     }
 
     /**
-     * getEndTime gets the endTime
+     * getEndTime() gets the endTime
      * @return endTime
      */
     public LocalDateTime getEndTime() {
@@ -261,7 +261,7 @@ public class Appointments {
     }
 
     /**
-     * getLastUpdatedBy gets the lastUpdatedBy
+     * getLastUpdatedBy() gets the lastUpdatedBy
      * @return lastUpdatedBy
      */
     public String getLastUpdatedBy() {
@@ -269,7 +269,7 @@ public class Appointments {
     }
 
     /**
-     * setLastUpdatedBy sets the lastUpdatedBy
+     * setLastUpdatedBy() sets the lastUpdatedBy
      * @param lastUpdatedBy
      */
     public void setLastUpdatedBy(String lastUpdatedBy) {

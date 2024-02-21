@@ -18,13 +18,17 @@ public class First_Level_Divisions {
     private int countryId;
 
     /**
-     * Declarations
+     * String Declarations
      */
     private String divisionName;
-    private LocalDateTime createDate;
-    private String createdBy;
-    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
+    private String createdBy;
+
+    /**
+     * LocalDateTime Declarations
+     */
+    private LocalDateTime lastUpdate;
+    private LocalDateTime createDate;
 
     /**
      * Constructor for First_Level_DivisionsDAO.getAllDivisions()

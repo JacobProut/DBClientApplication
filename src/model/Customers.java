@@ -22,14 +22,22 @@ public class Customers {
     private int countryId;
 
 
+    /**
+     * String Declarations
+     */
     private String customerName;
     private String customerAddress;
     private String customerPostalCode;
     private String customerPhoneNumber;
-    private LocalDateTime createDate;
     private String createdBy;
-    private LocalDateTime lastUpdated;
     private String lastUpdatedBy;
+
+
+    /**
+     * LocalDateTime Declarations
+     */
+    private LocalDateTime lastUpdated;
+    private LocalDateTime createDate;
 
 
     /**

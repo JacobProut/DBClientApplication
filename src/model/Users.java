@@ -13,15 +13,18 @@ public class Users {
     private int userId;
 
     /**
-     * Declarations
+     * String Declarations
      */
     private String userName;
     private String password;
-    private LocalDateTime createDate;
     private String createdBy;
-    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
 
+    /**
+     * LocalDateTime Declarations
+     */
+    private LocalDateTime lastUpdate;
+    private LocalDateTime createDate;
 
     /**
      * Constructor for getting all user information

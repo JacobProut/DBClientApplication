@@ -6,21 +6,35 @@ import java.time.LocalDateTime;
  * Countries class is created for recording objects into tables/ComboBoxes
  */
 public class Countries {
+
     /**
      * Primary Key Declaration
      */
     private int countryId;
 
     /**
-     * Declarations
+     * String Declarations
      */
     private String country;
-    private LocalDateTime createDate;
     private String createdBy;
-    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
 
+    /**
+     * LocalDateTime Declarations
+     */
+    private LocalDateTime createDate;
+    private LocalDateTime lastUpdate;
 
+
+    /**
+     * Countries Constructor
+     * @param countryId
+     * @param country
+     * @param createDate
+     * @param createdBy
+     * @param lastUpdate
+     * @param lastUpdatedBy
+     */
     public Countries(int countryId, String country, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String lastUpdatedBy) {
         this.countryId = countryId;
         this.country = country;

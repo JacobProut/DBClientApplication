@@ -8,25 +8,37 @@ import java.time.LocalDateTime;
 public class Appointments {
 
     /**
-     * Primary key Declarations
+     * Primary key Declaration
      */
     private int appointmentId;
-    private String appointmentTitle;
-    private String appointmentDescription;
-    private String appointmentLocation;
-    private String appointmentType;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String lastUpdatedBy;
-    private int CountTotal;
 
     /**
      * Foreign key Declarations
      */
-    //Foreign Keys
     private int customerId;
     private int userId;
     private int contactId;
+
+    /**
+     * String Declarations
+     */
+    private String appointmentTitle;
+    private String appointmentDescription;
+    private String appointmentLocation;
+    private String appointmentType;
+    private String lastUpdatedBy;
+
+    /**
+     * Int Declaration
+     */
+    private int CountTotal;
+
+    /**
+     * LocalDateTime Declarations
+     */
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+
 
     /**
      * Constructor used in appointmentModificationFormController.onActionModificationAppointment()
@@ -41,7 +53,6 @@ public class Appointments {
      * @param userId
      * @param contactId
      */
-    //Do you need foreign keys in here?
     public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.appointmentTitle = appointmentTitle;

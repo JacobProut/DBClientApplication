@@ -5,11 +5,15 @@ package model;
  */
 public class Contacts {
 
-
     /**
      * Primary Key Declarations
      */
     private int contactId;
+
+
+    /**
+     * String Declarations
+     */
     private String contactName;
     private String contactEmail;
 

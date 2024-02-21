@@ -18,10 +18,18 @@ import java.util.Optional;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 import static javafx.scene.control.ButtonType.OK;
 
+/**
+ * reportsMenuController form is used to be an interface to the different report sections
+ */
 public class reportsMenuController {
     Parent scene;
     Stage stage;
 
+    /**
+     * onActionAppointmentTotalByTypeAndMonth(ActionEvent) opens up the reportsMenuTotalTypeAndMonth.fxml to see Viewing Total amount of Types and Months for Appointments Form.
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionAppointmentTotalByTypeAndMonth(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuTotalTypeAndMonth.fxml")));
@@ -32,6 +40,11 @@ public class reportsMenuController {
         System.out.println("Loading Appointment Types and Months Form.");
     }
 
+    /**
+     * onActionContactSchedules(ActionEvent) opens up the reportsMenuContactSchedule.fxml to see Viewing Contact Schedules Form.
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionContactSchedules(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuContactSchedule.fxml")));
@@ -42,6 +55,11 @@ public class reportsMenuController {
         System.out.println("Loading Contact Schedule Form.");
     }
 
+    /**
+     * onActionUserSchedules(ActionEvent) opens up the reportsMenuUserSchedule.fxml to see Viewing User Schedules Form.
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionUserSchedules(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuUserSchedule.fxml")));
@@ -52,6 +70,11 @@ public class reportsMenuController {
         System.out.println("Loading User Schedule Form.");
     }
 
+    /**
+     * onActionReturnToAppointmentScheduler(ActionEvent) opens up mainMenu.fxml to see Appointment Scheduler
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
        Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Closing Reports Menu");
@@ -69,6 +92,12 @@ public class reportsMenuController {
         }
     }
 
+    /**
+     * returnToReportsMenu(ActionEvent) is used in onActionAppointmentTotalByTypeAndMonth(), onActionContactSchedules(), onActionUserSchedules()
+     * Returns user to reportsMenu.fxml
+     * @param event
+     * @throws IOException
+     */
     public static void returnToReportsMenu(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent parent = FXMLLoader.load(Objects.requireNonNull(reportsMenuController.class.getResource("/view/reportsMenu.fxml")));

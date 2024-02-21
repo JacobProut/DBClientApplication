@@ -10,8 +10,17 @@ import java.sql.SQLException;
 
 import static DAO.JDBC.createConnection;
 
+/**
+ * ContactsDAO contains all ContactsDAO Methods to communicate with the MySQL database.
+ */
 public class ContactsDAO {
 
+    /**
+     * getAllContacts() is used in appointmentCreationFormController. Initialize to set Contacts ComboBox.
+     *  - Also used in appointmentModification. Initialize to set Contacts ComboBox.
+     *  - Also used in reportsMenuContactScheduleController. Initialize to set a Contacts ComboBox.
+     * @return contactsObservableList
+     */
 public static ObservableList<Contacts> getAllContacts() {
     ObservableList<Contacts> contactsObservableList = FXCollections.observableArrayList();
 
@@ -35,6 +44,12 @@ public static ObservableList<Contacts> getAllContacts() {
     return contactsObservableList;
 }
 
+    /**
+     * getContactIdByName(String contactName) is used in reportsMenuContactScheduleController.onActionComboBoxContacts(ActionEvent)
+     * @param contactName
+     * @return selectedContactId
+     * @throws SQLException
+     */
     //Method used to get contact ID by Name for reportsMenuContactScheduleController.onActionComboBoxContacts()
     public static int getContactIdByName(String contactName) throws SQLException {
             String getIdByNam = "SELECT * FROM contacts WHERE Contact_Name = ?";
@@ -51,6 +66,12 @@ public static ObservableList<Contacts> getAllContacts() {
             return selectedContactId;
     }
 
+    /**
+     * getAllContactsById(int contactId) is used in appointmentModificationFormController.appointmentSelection to set a Contact ComboBox.
+     * @param contactId
+     * @return new Contacts(collectedId, collectedName) or null
+     * @throws SQLException
+     */
     //Method  used in appointmentModificationFormController.appointmentSelection()
     public static Contacts getAllContactsById(int contactId) throws SQLException {
             String getContactId = "SELECT * FROM contacts WHERE Contact_ID = ?";
@@ -69,8 +90,4 @@ public static ObservableList<Contacts> getAllContacts() {
             }
         return null;
     }
-
-
-
-
 }

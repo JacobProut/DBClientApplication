@@ -1,6 +1,5 @@
 package model;
 
-
 /**
  * Contacts class is created for recording objects into tables/ComboBoxes
  */

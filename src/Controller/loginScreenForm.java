@@ -40,13 +40,21 @@ import static utility.errorMessages.errorCode;
 public class loginScreenForm implements Initializable {
 
     /**
-     * Declarations
+     * Button Declaration
      */
     @FXML private Button LoginButton;
+
+    /**
+     * Label Declarations
+     */
     @FXML private Label ZoneID;
     @FXML private Label labelPassword;
     @FXML private Label labelTimezone;
     @FXML private Label labelUsername;
+
+    /**
+     * TextField Declarations
+     */
     @FXML private TextField passwordField;
     @FXML private TextField usernameField;
 

@@ -8,8 +8,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 
+/**
+ * TimeManipulations was created to keep all appointment timing things in one area.
+ */
 public class TimeManipulations {
-    //Currently it allows selection from 6:00am to 22:00[10Pm]
+    /**
+     * timeIntervals() was created to populate time comboBoxes in appointmentCreationFormController. Initialize & appointmentModificationFormController. Initialize
+     * @return listOfTimesAvailable
+     * //Currently it allows selection from 6:00am to 22:00[10Pm]
+     */
     public static ObservableList<LocalTime> timeIntervals() {
         ObservableList<LocalTime> listOfTimesAvailable = FXCollections.observableArrayList();
 
@@ -28,7 +35,11 @@ public class TimeManipulations {
         return listOfTimesAvailable;
     }
 
-    //This method sets the starting time in AppointmentChecks.openHoursForBusiness()
+    /**
+     * establishLocalStartingTime() was created for loginScreenForm. It is used in errorCode(1)
+     * @return
+     * //This method sets the starting time in AppointmentChecks.openHoursForBusiness()
+     */
     public static LocalTime establishLocalStartingTime() {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();
@@ -40,7 +51,11 @@ public class TimeManipulations {
         return businessLocationLocal.toLocalTime();
     }
 
-    //This method sets the ending time in AppointmentChecks.openHoursForBusiness()
+    /**
+     * establishLocalEndingTime() was created for loginScreenForm. It is used in errorCode(1)
+     * @return
+     * //This method sets the ending time in AppointmentChecks.openHoursForBusiness()
+     */
     public static LocalTime establishLocalEndingTime() {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();

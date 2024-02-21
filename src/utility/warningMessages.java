@@ -4,6 +4,9 @@ import javafx.scene.control.Alert;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * warningMessages was created to keep almost all Warning Alerts into one spot.
+ */
 public class warningMessages {
     public static void warningCode(int code) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

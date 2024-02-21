@@ -34,8 +34,14 @@ import java.util.ResourceBundle;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import static utility.errorMessages.errorCode;
 
+/**
+ * loginScreenForm is the first form that loads up before the Appointment Scheduler Application Form.
+ */
 public class loginScreenForm implements Initializable {
 
+    /**
+     * Declarations
+     */
     @FXML private Button LoginButton;
     @FXML private Label ZoneID;
     @FXML private Label labelPassword;
@@ -44,10 +50,17 @@ public class loginScreenForm implements Initializable {
     @FXML private TextField passwordField;
     @FXML private TextField usernameField;
 
-    //Used for login validation
+    /**
+     * isLoginTrue is used for onActionLogin() & loginInfoValidation()
+     */
     public boolean isLoginTrue = false;
 
-
+    /**
+     * Initialize sets the ZoneID text to systemDefault()
+     *      - Also checks if computers default language is French. If so then it changes text to French.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ZoneID.setText(String.valueOf(ZoneId.systemDefault()));
@@ -66,6 +79,13 @@ public class loginScreenForm implements Initializable {
         }
     }
 
+    /**
+     * onActionLogin(ActionEvent) is used hand to hand with loginInfoValidation(), timesAttemptedToLogin() and checks if the user has an appointment within 15 minutes of log in
+     * MAIN METHOD TO LOG INTO mainMenuController
+     * @param actionEvent
+     * @throws SQLException
+     * @throws IOException
+     */
     public void onActionLogin(ActionEvent actionEvent) throws SQLException, IOException {
         if (!loginInfoValidation()) return;
         boolean isLoginValid = UsersDAO.verifyLoginInformation(usernameField.getText(), passwordField.getText());
@@ -106,6 +126,13 @@ public class loginScreenForm implements Initializable {
         }
     }
 
+    /**
+     * loginInfoValidation() is used to check for blank/empty username/password fields.
+     *      - if false a prompt gets sent-back in an errorCode.
+     * @return false or true
+     * @throws SQLException
+     * @throws IOException
+     */
     public Boolean loginInfoValidation() throws SQLException, IOException {
         if (usernameField.getText().isBlank() && passwordField.getText().isEmpty()) {
             errorCode(4);
@@ -134,6 +161,10 @@ public class loginScreenForm implements Initializable {
         return true;
     }
 
+    /**
+     * timesAttemptedToLogin() Is used to send Failed and Successful Login Attempts to "login_activity.txt".
+     * @throws IOException
+     */
     public void timesAttemptedToLogin() throws IOException {
         //Setting dates/times for cleaner login_Activity.txt messages.
         LocalDate currentDate = LocalDate.now();
@@ -153,6 +184,12 @@ public class loginScreenForm implements Initializable {
         loginWriter.close();
     }
 
+    /**
+     * loadAppointmentMenu(ActionEvent event) is used to take the user to mainMenu.fxml(Appointment Scheduler)
+     * Created to clean up code in onActionLogin()
+     * @param event
+     * @throws IOException
+     */
     public static void loadAppointmentMenu(ActionEvent event) throws IOException {
         Parent login = FXMLLoader.load(Objects.requireNonNull(loginScreenForm.class.getResource("/View/mainMenu.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -29,7 +29,7 @@ public class Appointments {
     private int contactId;
 
     /**
-     * Constructor used in appointmentModificationFormController - onActionModificationAppointment()
+     * Constructor used in appointmentModificationFormController.onActionModificationAppointment()
      * @param appointmentId
      * @param appointmentTitle
      * @param appointmentDescription
@@ -82,7 +82,7 @@ public class Appointments {
     }
 
     /**
-     * Constructor used in AppointmentsDAO - getAppointForContactList()
+     * Constructor used in AppointmentsDAO.getAppointForContactList()
      * @param appointmentId
      * @param appointmentTitle
      * @param appointmentType
@@ -102,7 +102,7 @@ public class Appointments {
     }
 
     /**
-     * Constructor used for AppointmentsDAO - getAppointmentForUserList()
+     * Constructor used for AppointmentsDAO.getAppointmentForUserList()
      * @param appointmentId
      * @param appointmentTitle
      * @param appointmentDescription
@@ -126,7 +126,7 @@ public class Appointments {
     }
 
     /**
-     * Constructor used in AppointmentsDAO - getAppointmentTypeTotal()
+     * Constructor used in AppointmentsDAO.getAppointmentTypeTotal()
      * @param appointmentType
      * @param CountTotal
      */

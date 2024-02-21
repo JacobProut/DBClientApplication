@@ -210,7 +210,6 @@ public class AppointmentsDAO {
 
     /**
      * //Start of Reports menu DAO
-     *
      * getAppointmentTypeTotal() used in reportsMenuTotalTypeAndMonthController. Initialize to set tableViewAppointmentType column
      * @return totalAppointmentTypeList
      * @throws SQLException
@@ -242,7 +241,6 @@ public class AppointmentsDAO {
 
     /**
      * //End of Report menu DAO
-     *
      * getAppointmentMonthTotal() used in reportsMenuTotalTypeAndMonthController. Initialize to set tableViewAppointmentMonth column
      * @return totalAppointmentMonthList
      * @throws SQLException

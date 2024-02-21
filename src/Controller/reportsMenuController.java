@@ -22,8 +22,7 @@ public class reportsMenuController {
     Parent scene;
     Stage stage;
 
-    @FXML
-    void onActionAppointmentTotalByTypeAndMonth(ActionEvent event) throws IOException {
+    @FXML void onActionAppointmentTotalByTypeAndMonth(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuTotalTypeAndMonth.fxml")));
         stage.setScene(new Scene(scene));
@@ -33,8 +32,7 @@ public class reportsMenuController {
         System.out.println("Loading Appointment Types and Months Form.");
     }
 
-    @FXML
-    void onActionContactSchedules(ActionEvent event) throws IOException {
+    @FXML void onActionContactSchedules(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuContactSchedule.fxml")));
         stage.setScene(new Scene(scene));
@@ -44,8 +42,7 @@ public class reportsMenuController {
         System.out.println("Loading Contact Schedule Form.");
     }
 
-    @FXML
-    void onActionUserSchedules(ActionEvent event) throws IOException {
+    @FXML void onActionUserSchedules(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenuUserSchedule.fxml")));
         stage.setScene(new Scene(scene));
@@ -55,8 +52,7 @@ public class reportsMenuController {
         System.out.println("Loading User Schedule Form.");
     }
 
-    @FXML
-    void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
+    @FXML void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
        Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Closing Reports Menu");
         alert.setHeaderText("You are about to return to the Appointment Scheduler");

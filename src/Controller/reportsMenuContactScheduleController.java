@@ -32,8 +32,7 @@ public class reportsMenuContactScheduleController implements Initializable {
     @FXML private ComboBox<Contacts> comboBoxContacts;
     @FXML private TableView<Appointments> tableViewContact;
 
-    @FXML
-    void onActionComboBoxContacts(ActionEvent event) throws SQLException {
+    @FXML void onActionComboBoxContacts(ActionEvent event) throws SQLException {
         if (comboBoxContacts == null) {
             errorMessages.errorCode(32);
         }
@@ -52,8 +51,7 @@ public class reportsMenuContactScheduleController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
+    @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 

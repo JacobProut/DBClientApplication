@@ -29,18 +29,13 @@ public class customerCreationFormController implements Initializable {
 
     //WILL NEED TO REMOVE UN-USED DECLARATIONS
     @FXML private ComboBox<Countries> countryPicker;
-    @FXML private Button creationCancelButton;
     @FXML private TextField creationCustomerAddress;
-    @FXML private TextField creationCustomerID;
     @FXML private TextField creationCustomerName;
     @FXML private TextField creationCustomerPhoneNumber;
     @FXML private TextField creationCustomerPostalCode;
     @FXML private ComboBox<First_Level_Divisions> divisionPicker;
-    @FXML private Button saveButton;
 
-    //Working method without Last_Updated_By | Add Last_Updated_By
-    @FXML
-    void onActionSaveButton(ActionEvent event) {
+    @FXML void onActionSaveButton(ActionEvent event) {
         try {
             if (createCustomerValidation()) {
                 String customerName = creationCustomerName.getText();
@@ -62,8 +57,7 @@ public class customerCreationFormController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionCreationCancel(ActionEvent event) throws IOException {
+    @FXML void onActionCreationCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Closing Customer Creation Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
@@ -80,14 +74,8 @@ public class customerCreationFormController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionDivisionPicker(ActionEvent event) {
-
-    }
-
     //I believe this is completed.
-    @FXML
-    void onActionCountryPicker(ActionEvent event) {
+    @FXML void onActionCountryPicker(ActionEvent event) {
         Countries list = countryPicker.getValue();
         divisionPicker.setItems(First_Level_DivisionsDAO.countryToDivision(list.getCountryId()));
     }

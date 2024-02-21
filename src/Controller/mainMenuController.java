@@ -56,8 +56,7 @@ public class mainMenuController implements Initializable {
     //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
-    @FXML
-    void onActionAddAppointment(ActionEvent event) throws IOException {
+    @FXML void onActionAddAppointment(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/appointmentCreationForm.fxml")));
         stage.setScene(new Scene(scene));
@@ -67,8 +66,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Appointment Creation Form.");
     }
 
-    @FXML
-    void onActionDeleteAppointment(ActionEvent event) throws SQLException {
+    @FXML void onActionDeleteAppointment(ActionEvent event) throws SQLException {
         ObservableList<Appointments> allAppointments;
 
         if (appointmentSchedulerTable.getSelectionModel().getSelectedItems().isEmpty()) {
@@ -101,8 +99,7 @@ public class mainMenuController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionReports(ActionEvent event) throws IOException {
+    @FXML void onActionReports(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
         stage.setScene(new Scene(scene));
@@ -112,8 +109,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Opening up Reports Menu");
     }
 
-    @FXML
-    void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
+    @FXML void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
         if (appointmentSchedulerTable.getSelectionModel().isEmpty()) {
             errorCode(30);
             System.out.println("Null Selection while trying to Update an Appointment.");
@@ -131,11 +127,9 @@ public class mainMenuController implements Initializable {
             stage.setTitle("Appointment Modification Page");
             System.out.println("Switching to Appointment Modification Form.");
         }
-
     }
 
-    @FXML
-    void radioButtonViewAll(ActionEvent event) {
+    @FXML void radioButtonViewAll(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.getAllAppointments());
 
         //Added a placeholder in the TableView for when there is nothing in the database!
@@ -143,8 +137,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing All Appointments.");
     }
 
-    @FXML
-    void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
+    @FXML void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
         stage.setScene(new Scene(scene));
@@ -154,8 +147,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Switching to Customer View List.");
     }
 
-    @FXML
-    void radioButtonViewByMonth(ActionEvent event) {
+    @FXML void radioButtonViewByMonth(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
 
         //added a placeholder in the TableView for when there is nothing being displayed.
@@ -163,8 +155,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Month.");
     }
 
-    @FXML
-    void radioButtonViewByWeek(ActionEvent event) {
+    @FXML void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
 
         //added a placeholder in the TableView for when there is nothing being displayed.
@@ -172,8 +163,7 @@ public class mainMenuController implements Initializable {
         System.out.println("Viewing Appointments by Week.");
     }
 
-    @FXML
-    void onActionLogout(ActionEvent event) {
+    @FXML void onActionLogout(ActionEvent event) {
         System.out.println("Logout Button Selected.");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log out");

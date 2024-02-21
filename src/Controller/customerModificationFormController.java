@@ -36,8 +36,7 @@ public class customerModificationFormController implements Initializable {
     @FXML private TextField modificationCustomerPostalCode;
     @FXML private ComboBox<Countries> modificationCountryPicker;
 
-    @FXML
-    void onActionModificationCancel(ActionEvent event) throws IOException {
+    @FXML void onActionModificationCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Modification Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
@@ -55,16 +54,14 @@ public class customerModificationFormController implements Initializable {
 
     }
 
-    @FXML
-    void onActionModificationCountryPicker(ActionEvent event) {
+    @FXML void onActionModificationCountryPicker(ActionEvent event) {
         divisionPicker.setValue(null);
         Countries list = modificationCountryPicker.getValue();
         divisionPicker.setItems(First_Level_DivisionsDAO.countryToDivision(list.getCountryId()));
 
     }
 
-    @FXML
-    void onActionUpdateCustomerButton(ActionEvent event) {
+    @FXML void onActionUpdateCustomerButton(ActionEvent event) {
 
         try {
             if (updateCustomerValidation()) {

@@ -55,8 +55,7 @@ public class appointmentCreationFormController implements Initializable {
     //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
-    @FXML
-    void onActionCancelAppointment(ActionEvent event) throws IOException {
+    @FXML void onActionCancelAppointment(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Appointment Creation Page");
         alert.setHeaderText("Are you sure you want to leave without saving?");
@@ -74,8 +73,7 @@ public class appointmentCreationFormController implements Initializable {
     }
 
     //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
-    @FXML
-    void onActionCreateAppointment(ActionEvent event) {
+    @FXML void onActionCreateAppointment(ActionEvent event) {
         try {
             if (appointFieldsEmpty()) {
                 String title = appointmentCreationTitle.getText();

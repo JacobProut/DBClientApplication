@@ -58,8 +58,7 @@ public class appointmentModificationFormController implements Initializable {
     //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
-    @FXML
-    void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
+    @FXML void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
         Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Close Appointment Modification Page");
         alert.setHeaderText("You are about to cancel an Appointment with a Appointment_ID of [" + appointmentModificationAppointmentID.getText() + "] and with a Appointment Type of [" + appointmentModificationType.getText() + "].\r" + "Are you sure you want to continue?");
@@ -76,8 +75,7 @@ public class appointmentModificationFormController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionModificationAppointment(ActionEvent event) {
+    @FXML void onActionModificationAppointment(ActionEvent event) {
         try {
             if (appointFieldsEmpty()) {
                 int id = Integer.parseInt(appointmentModificationAppointmentID.getText());

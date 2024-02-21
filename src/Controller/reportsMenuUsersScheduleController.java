@@ -34,8 +34,7 @@ public class reportsMenuUsersScheduleController implements Initializable {
     @FXML private ComboBox<Users> comboBoxUsers;
     @FXML private TableView<Appointments> tableViewUsers;
 
-    @FXML
-    void onActionComboBoxUsers(ActionEvent event) throws SQLException {
+    @FXML void onActionComboBoxUsers(ActionEvent event) throws SQLException {
         if (comboBoxUsers == null) {
             errorMessages.errorCode(33);
         }
@@ -54,8 +53,7 @@ public class reportsMenuUsersScheduleController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
+    @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 

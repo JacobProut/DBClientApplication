@@ -28,8 +28,7 @@ public class reportsMenuTotalTypeAndMonthController implements Initializable {
     @FXML private TableView<Appointments> tableViewAppointmentMonth;
     @FXML private TableView<Appointments> tableViewAppointmentType;
 
-    @FXML
-    void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
+    @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 

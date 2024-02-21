@@ -58,8 +58,7 @@ public class customerMenuController implements Initializable {
     //Used for displayCurrentTime()
     private final boolean timeStopped = false;
 
-    @FXML
-    void onActionAddCustomer(ActionEvent event) throws IOException {
+    @FXML void onActionAddCustomer(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerCreationForm.fxml")));
         stage.setScene(new Scene(scene));
@@ -71,8 +70,7 @@ public class customerMenuController implements Initializable {
 
     //Working method!
     ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
-    @FXML
-    void onActionDeleteCustomer(ActionEvent event) throws SQLException {
+    @FXML void onActionDeleteCustomer(ActionEvent event) throws SQLException {
         Customers selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
             errorCode(13);
@@ -132,8 +130,7 @@ public class customerMenuController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionLogout(ActionEvent event) {
+    @FXML void onActionLogout(ActionEvent event) {
         System.out.println("Logout Button Selected.");
         Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Log out");
@@ -152,8 +149,7 @@ public class customerMenuController implements Initializable {
         }
     }
 
-    @FXML
-    void onActionReports(ActionEvent event) throws IOException {
+    @FXML void onActionReports(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/reportsMenu.fxml")));
         stage.setScene(new Scene(scene));
@@ -165,8 +161,7 @@ public class customerMenuController implements Initializable {
     }
 
     //Method used in customerModificationFormController.java  - customerSelection method
-   @FXML
-    void onActionUpdateCustomer(ActionEvent event) throws IOException {
+    @FXML void onActionUpdateCustomer(ActionEvent event) throws IOException {
 
        if (customerTableView.getSelectionModel().isEmpty()) {
            errorCode(15);
@@ -187,8 +182,7 @@ public class customerMenuController implements Initializable {
        }
     }
 
-    @FXML
-    void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
+    @FXML void radioButtonViewAllCustomers(ActionEvent event) throws IOException {
         stage = (Stage) ((RadioButton)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/customerMenu.fxml")));
         stage.setScene(new Scene(scene));
@@ -196,8 +190,7 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
-    @FXML
-    void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
+    @FXML void onActionReturnToAppointmentScheduler(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/mainMenu.fxml")));
         stage.setScene(new Scene(scene));

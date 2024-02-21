@@ -11,9 +11,15 @@ import java.time.LocalDateTime;
 
 import static DAO.JDBC.createConnection;
 
-
+/**
+ * First_Level_DivisionsDAO contains all First_Level_Division Methods to communicate with the MySQL database.
+ */
 public class First_Level_DivisionsDAO {
 
+    /**
+     * getAllDivisions() gets all Divisions Data
+     * @return divisionsObservableList
+     */
     public static ObservableList<First_Level_Divisions> getAllDivisions() {
         ObservableList<First_Level_Divisions> divisionsObservableList = FXCollections.observableArrayList();
 
@@ -41,6 +47,13 @@ public class First_Level_DivisionsDAO {
         return divisionsObservableList;
     }
 
+    /**
+     * countryToDivision(int countryId) is used in customerCreationFormController.onActionCountryPicker(ActionEvent) & customerModificationCountryPicker(ActionEvent) to fill a comboBox.
+     * Also used in customerModificationCountryPicker.customerSelection
+     *
+     * @param countryId
+     * @return countryToDivisionComboBoxes
+     */
     public static ObservableList<First_Level_Divisions> countryToDivision(int countryId) {
         ObservableList<First_Level_Divisions> countryToDivisionComboBoxes = FXCollections.observableArrayList();
 
@@ -64,6 +77,11 @@ public class First_Level_DivisionsDAO {
         return countryToDivisionComboBoxes;
     }
 
+    /**
+     * getSelectedCustomerDivisionLevel(int divisionId) used in customerModificationFormController.customerSelection
+     * @param divisionId
+     * @return First_Level_Divisions(selectedDivId, selectedDivName)
+     */
     //Method used in customerModificationFormController.java  - customerSelection method
     public static First_Level_Divisions getSelectedCustomerDivisionLevel(int divisionId) {
 
@@ -85,6 +103,4 @@ public class First_Level_DivisionsDAO {
             throw new RuntimeException(e);
         }
     }
-
-
 }

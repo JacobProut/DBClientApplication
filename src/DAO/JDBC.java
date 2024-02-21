@@ -3,8 +3,10 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * JDBC contains all Connection Methods to communicate with the MySQL database.
+ */
 public abstract class JDBC {
-
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
     private static final String location = "//localhost/";
@@ -15,6 +17,9 @@ public abstract class JDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
 
+    /**
+     * openConnection() Opens the connection to mySQL database.
+     */
     public static void openConnection()
     {
         try {
@@ -28,6 +33,9 @@ public abstract class JDBC {
         }
     }
 
+    /**
+     * closeConnection Closes the connection to mySQL database.
+     */
     public static void closeConnection() {
         try {
             connection.close();

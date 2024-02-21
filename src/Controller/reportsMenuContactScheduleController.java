@@ -20,8 +20,20 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
+/**
+ * reportsMenuContactScheduleController is used to see appointments based off of selected Contacts.
+ */
 public class reportsMenuContactScheduleController implements Initializable {
 
+    /**
+     * ComboBox Declaration
+     */
+    @FXML private ComboBox<Contacts> comboBoxContacts;
+
+    /**
+     * TableView/Column Declarations
+     */
+    @FXML private TableView<Appointments> tableViewContact;
     @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
     @FXML private TableColumn<Appointments, Timestamp> appointmentEndDateAndTimeCol;
     @FXML private TableColumn<Appointments, Integer> appointmentIDCol;
@@ -29,9 +41,13 @@ public class reportsMenuContactScheduleController implements Initializable {
     @FXML private TableColumn<Appointments, String> appointmentTitleCol;
     @FXML private TableColumn<Appointments, String> appointmentTypeCol;
     @FXML private TableColumn<Appointments, String> appointmentDescriptionCol;
-    @FXML private ComboBox<Contacts> comboBoxContacts;
-    @FXML private TableView<Appointments> tableViewContact;
 
+
+    /**
+     * onActionComboBoxContacts(ActionEvent) is used to populate tableview by selected contact from comboBox
+     * @param event
+     * @throws SQLException
+     */
     @FXML void onActionComboBoxContacts(ActionEvent event) throws SQLException {
         if (comboBoxContacts == null) {
             errorMessages.errorCode(32);
@@ -51,10 +67,21 @@ public class reportsMenuContactScheduleController implements Initializable {
         }
     }
 
+    /**
+     * onActionReturnToReportsMenu(ActionEvent) returns the user to the Reports Menu
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 
+    /**
+     * initialize fills comboBoxContacts with all Contacts
+     * initialize sets cellValues in tableView
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Fill in contact box with all contacts

@@ -20,8 +20,20 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
+/**
+ * reportsMenuUsersScheduleController is used to see appointments based off of selected User.
+ */
 public class reportsMenuUsersScheduleController implements Initializable {
 
+    /**
+     * ComboBox Declaration
+     */
+    @FXML private ComboBox<Users> comboBoxUsers;
+
+    /**
+     * TableView/Column Declarations
+     */
+    @FXML private TableView<Appointments> tableViewUsers;
     @FXML private TableColumn<Appointments, Integer> appointmentContactIDCol;
     @FXML private TableColumn<Appointments, Integer> appointmentCustomerIDCol;
     @FXML private TableColumn<Appointments, String> appointmentDescriptionCol;
@@ -31,9 +43,12 @@ public class reportsMenuUsersScheduleController implements Initializable {
     @FXML private TableColumn<Appointments, Timestamp> appointmentStartDateAndTimeCol;
     @FXML private TableColumn<Appointments, String> appointmentTitleCol;
     @FXML private TableColumn<Appointments, String> appointmentTypeCol;
-    @FXML private ComboBox<Users> comboBoxUsers;
-    @FXML private TableView<Appointments> tableViewUsers;
 
+    /**
+     * onActionComboBoxUsers(ActionEvent) is used to populate tableview by selected user from comboBox
+     * @param event
+     * @throws SQLException
+     */
     @FXML void onActionComboBoxUsers(ActionEvent event) throws SQLException {
         if (comboBoxUsers == null) {
             errorMessages.errorCode(33);
@@ -53,10 +68,21 @@ public class reportsMenuUsersScheduleController implements Initializable {
         }
     }
 
+    /**
+     * onActionReturnToReportsMenu(ActionEvent) returns the user to the Reports Menu
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionReturnToReportsMenu(ActionEvent event) throws IOException {
         reportsMenuController.returnToReportsMenu(event);
     }
 
+    /**
+     * initialize fills comboBoxContacts with all Users
+     * initialize sets cellValues in tableView
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Fill in contact box with all Users

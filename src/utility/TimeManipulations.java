@@ -37,7 +37,7 @@ public class TimeManipulations {
 
     /**
      * establishLocalStartingTime() was created for loginScreenForm. It is used in errorCode(1)
-     * @return
+     * @return businessLocationLocal.toLocalTime()
      * //This method sets the starting time in AppointmentChecks.openHoursForBusiness()
      */
     public static LocalTime establishLocalStartingTime() {
@@ -53,7 +53,7 @@ public class TimeManipulations {
 
     /**
      * establishLocalEndingTime() was created for loginScreenForm. It is used in errorCode(1)
-     * @return
+     * @return businessLocationLocal.toLocalTime()
      * //This method sets the ending time in AppointmentChecks.openHoursForBusiness()
      */
     public static LocalTime establishLocalEndingTime() {

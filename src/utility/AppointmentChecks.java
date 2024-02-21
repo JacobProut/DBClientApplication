@@ -44,7 +44,7 @@ public class AppointmentChecks {
      * @param customerId
      * @param startTime
      * @param endTime
-     * @return
+     * @return false
      */
     public static boolean doTimesOverLap(int customerId, LocalDateTime startTime, LocalDateTime endTime) {
         LocalDateTime appointmentStartTime;

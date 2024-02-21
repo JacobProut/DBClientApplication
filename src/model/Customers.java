@@ -126,10 +126,6 @@ public class Customers {
         return customerName;
     }
 
-    /*    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }*/
-
     /**
      * getCustomerAddress() gets customerAddress
      * @return customerAddress
@@ -137,10 +133,6 @@ public class Customers {
     public String getCustomerAddress() {
         return customerAddress;
     }
-
-  /*  public void setCustomerAddress(String customerName) {
-        this.customerAddress = customerAddress;
-    }*/
 
     /**
      * getCustomerPostalCode() gets the customerPostalCode
@@ -150,10 +142,6 @@ public class Customers {
         return customerPostalCode;
     }
 
-    /*public void setCustomerPostalCode(String customerPostalCode) {
-        this.customerPostalCode = customerPostalCode;
-    }*/
-
     /**
      * getCustomerPhoneNumber() gets the customerPhoneNumber
      * @return customerPhoneNumber
@@ -161,10 +149,6 @@ public class Customers {
     public String getCustomerPhoneNumber() {
         return customerPhoneNumber;
     }
-
-   /* public void setCustomerPhoneNumber(String customerPhoneNumber) {
-        this.customerPhoneNumber = customerPhoneNumber;
-    }*/
 
     /**
      * getCreateDate() gets the createDate

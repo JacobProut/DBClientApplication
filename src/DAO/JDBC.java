@@ -47,6 +47,10 @@ public abstract class JDBC {
         }
     }
 
+    /**
+     * createConnection() was created as a shortcut to get connection
+     * @return connection
+     */
     public static Connection createConnection() {
         return  connection;
     }

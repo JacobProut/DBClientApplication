@@ -7,9 +7,18 @@ import model.Appointments;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+/**
+ * AppointmentChecks was created to keep all appointment checks in one area.
+ */
 public class AppointmentChecks {
 
-    //Changed computers timezone to EST and looked at what the ZoneId.systemDefault() was to get EST Timezone of: "ZoneId.of("America/New_York")".
+    /**
+     * openHoursForBusiness is a method created so Appointments cannot be created outside of business hours.
+     * @param startTime
+     * @param endTime
+     * @return
+     * //Changed computers timezone to EST and looked at what the ZoneId.systemDefault() was to get EST Timezone of: "ZoneId.of("America/New_York")".
+     */
     public static boolean openHoursForBusiness(LocalDateTime startTime, LocalDateTime endTime) {
         ZoneId locationEST = ZoneId.of("America/New_York");
         ZoneId locationLocal = ZoneId.systemDefault();
@@ -30,6 +39,13 @@ public class AppointmentChecks {
         }
     }
 
+    /**
+     * doTimeOverLap is a method created so Appointments cannot overlap with other Customers Appointments.
+     * @param customerId
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     public static boolean doTimesOverLap(int customerId, LocalDateTime startTime, LocalDateTime endTime) {
         LocalDateTime appointmentStartTime;
         LocalDateTime appointmentEndTime;

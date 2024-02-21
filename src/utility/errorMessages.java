@@ -3,10 +3,11 @@ package utility;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * errorMessages was created to keep almost all Error Alerts into one spot.
+ */
 public abstract class errorMessages implements Initializable {
     static ResourceBundle languageBundle = ResourceBundle.getBundle("LanguageBundle/language");
 

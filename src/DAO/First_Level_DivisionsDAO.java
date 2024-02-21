@@ -82,7 +82,6 @@ public class First_Level_DivisionsDAO {
      * @param divisionId
      * @return First_Level_Divisions(selectedDivId, selectedDivName)
      */
-    //Method used in customerModificationFormController.java  - customerSelection method
     public static First_Level_Divisions getSelectedCustomerDivisionLevel(int divisionId) {
 
         try {

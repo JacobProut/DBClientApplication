@@ -34,27 +34,54 @@ import java.util.ResourceBundle;
 import static java.lang.Thread.sleep;
 import static utility.errorMessages.errorCode;
 
+/**
+ * appointmentCreationFormController is used to create appointments
+ */
 public class appointmentCreationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
+    /**
+     * Label Declarations
+     */
     @FXML private Label zoneID;
+    @FXML private Label timeLabel;
+
+    /**
+     * ComboBox Declarations
+     */
     @FXML private ComboBox<LocalTime> comboBoxStartTime;
     @FXML private ComboBox<LocalTime> comboBoxEndTime;
     @FXML private ComboBox<Users> userComboBox;
     @FXML private ComboBox<Customers> customerComboBox;
     @FXML private ComboBox<Contacts> contactComboBox;
+
+    /**
+     * TextField Declarations
+     */
     @FXML private TextField appointmentCreationDescription;
     @FXML private TextField appointmentCreationLocation;
     @FXML private TextField appointmentCreationTitle;
     @FXML private TextField appointmentCreationType;
+
+    /**
+     * DatePicker Declarations
+     */
     @FXML private DatePicker endDateCalendar;
     @FXML private DatePicker startDateCalendar;
-    @FXML private Label timeLabel;
 
-    //Used for displayCurrentTime()
+    /**
+     * timeStopped is used for displayCurrentTime()
+     */
     private final boolean timeStopped = false;
 
+    /**
+     * onActionCancelAppointment(ActionEvent) is used to return to mainMenu.fxml[Appointment Scheduler Form]
+     *      - Prompt pulls up asking if the user wants to return to the Appointment Scheduler
+     *          - Pressing 'OK' sends the user back to mainMenu.fxml
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionCancelAppointment(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Appointment Creation Page");
@@ -72,7 +99,11 @@ public class appointmentCreationFormController implements Initializable {
         }
     }
 
-    //Working create Appointment Method w/openHoursForBusiness & doTimesOverLap!!
+    /**
+     * onActionCreateAppointment(ActionEvent) method to create appointment + add it to database
+     *      - Method contains openHoursForBusiness() and doTimesOverLap()
+     * @param event
+     */
     @FXML void onActionCreateAppointment(ActionEvent event) {
         try {
             if (appointFieldsEmpty()) {
@@ -108,11 +139,23 @@ public class appointmentCreationFormController implements Initializable {
                     mainMenuController.returnToAppointments(event);
                 }
             }
-        } catch (SQLException | IOException e) {
+        }
+        catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * initialize sets zoneID and timeLabel to systemDefault date and currentTime()[Lambda], sets ComboBoxes items and PromptText.
+     * Lambda expression 1: timeLabel.setText(displayCurrentTime()) [Explained above displayCurrentTime() javaDoc]
+     * Lambda expression 2: comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusMinutes(15)));
+     *      - this automatically sets the comboBoxEndTime to 15 minutes after the comboBoxStartTime
+     * Lambda expression 3: startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
+     *      - this automatically sets endDateCalendar date to the same as startDateCalendar date
+     *          - I did this considering I don't see how an appointment can run into a different day if the business hours aren't 24/7.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TimeZone & Time Setters
@@ -138,12 +181,12 @@ public class appointmentCreationFormController implements Initializable {
         comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusMinutes(15)));
         //Sets endDateCalendar to the same as startDateCalendar
         startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
-
-
-
     }
 
-    //Add appointment empty fields.
+    /**
+     * appointFieldsEmpty() checks to make sure textFields, Calendar, ComboBoxes are not empty or Null
+     * @return false or true
+     */
     public boolean appointFieldsEmpty() {
         if (appointmentCreationTitle.getText().isBlank() || appointmentCreationTitle.getText().isEmpty()) {
             errorCode(16);
@@ -192,6 +235,12 @@ public class appointmentCreationFormController implements Initializable {
         return true;
     }
 
+    /**
+     * displayCurrentTime() is a Lambda expression used to display systemDefaults time
+     * "Lambda newThread(() ->"
+     * "Lambda Platform.runLater(()-> "
+     * @return null
+     */
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat simpleFormat = new SimpleDateFormat("hh:mm:ss a");

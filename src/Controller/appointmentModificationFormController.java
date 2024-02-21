@@ -36,28 +36,61 @@ import java.util.ResourceBundle;
 import static java.lang.Thread.sleep;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
+/**
+ * appointmentModificationFormController is used to modify selected appointments
+ */
 public class appointmentModificationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
+    /**
+     * Label Declarations
+     */
     @FXML private Label zoneID;
+    @FXML private Label timeLabel;
+
+    /**
+     * ComboBox Declarations
+     */
+    @FXML private ComboBox<LocalTime> comboBoxEndTime;
+    @FXML private ComboBox<LocalTime> comboBoxStartTime;
+    @FXML private ComboBox<Contacts> contactComboBox;
+    @FXML private ComboBox<Customers> customerComboBox;
+    @FXML private ComboBox<Users> userComboBox;
+
+    /**
+     * TextField Declarations
+     */
     @FXML private TextField appointmentModificationAppointmentID;
     @FXML private TextField appointmentModificationDescription;
     @FXML private TextField appointmentModificationLocation;
     @FXML private TextField appointmentModificationTitle;
     @FXML private TextField appointmentModificationType;
-    @FXML private ComboBox<LocalTime> comboBoxEndTime;
-    @FXML private ComboBox<LocalTime> comboBoxStartTime;
-    @FXML private ComboBox<Contacts> contactComboBox;
-    @FXML private ComboBox<Customers> customerComboBox;
+
+    /**
+     * DatePicker Declarations
+     */
     @FXML private DatePicker endDateCalendar;
     @FXML private DatePicker startDateCalendar;
-    @FXML private ComboBox<Users> userComboBox;
-    @FXML private Label timeLabel;
 
-    //Used for displayCurrentTime()
+    /**
+     * timeStopped is used for displayCurrentTime()
+     */
     private final boolean timeStopped = false;
 
+    /**
+     * selectedIndex & selectedAppointment are used for appointmentSelection()
+     */
+    public int selectedIndex;
+    Appointments selectedAppointment = new Appointments(1, "title", "desc", "location", "type", LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
+
+    /**
+     * onActionCancelAppointmentModification(ActionEvent) is used to return to mainMenu.fxml[Appointment Scheduler Form]
+     *      - Alert is given stating the appointment_Id and appointment_Type when button is clicked
+     *          - Pressing 'OK' sends the user back to mainMenu.fxml
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionCancelAppointmentModification(ActionEvent event) throws IOException {
         Alert alert = new Alert(CONFIRMATION);
         alert.setTitle("Close Appointment Modification Page");
@@ -75,6 +108,11 @@ public class appointmentModificationFormController implements Initializable {
         }
     }
 
+    /**
+     * onActionModificationAppointment(ActionEvent) method to Modify selected appointment[appointmentSelection()] + add it to database
+     *      - Method contains openHoursForBusiness() and doTimesOverLap()
+     * @param event
+     */
     @FXML void onActionModificationAppointment(ActionEvent event) {
         try {
             if (appointFieldsEmpty()) {
@@ -111,14 +149,18 @@ public class appointmentModificationFormController implements Initializable {
                     mainMenuController.returnToAppointments(event);
                 }
             }
-        } catch (SQLException | IOException e) {
+        }
+        catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-    public int selectedIndex;
-    Appointments selectedAppointment = new Appointments(1, "title", "desc", "location", "type", LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1);
+    /**
+     * appointmentSelection used in mainMenuController.onActionUpdateAppointment(ActionEvent) to get selected appointment from tableview and put information into appointmentModificationFormController fields.
+     * @param index
+     * @param selectedAppointment
+     * @throws SQLException
+     */
     public void appointmentSelection(int index, Appointments selectedAppointment) throws SQLException {
         this.selectedIndex = index;
         this.selectedAppointment = selectedAppointment;
@@ -138,6 +180,17 @@ public class appointmentModificationFormController implements Initializable {
         contactComboBox.setValue(ContactsDAO.getAllContactsById(selectedAppointment.getContactId()));
     }
 
+    /**
+     * initialize sets zoneID and timeLabel to systemDefault date and currentTime()[Lambda], sets ComboBoxes items.
+     * Lambda expression 1: timeLabel.setText(displayCurrentTime()) [Explained above displayCurrentTime() javaDoc]
+     * Lambda expression 2: comboBoxStartTime.valueProperty().addListener((firstLookedAtTime, oldTime, newTime) -> comboBoxEndTime.setValue(newTime.plusMinutes(15)));
+     *      - this automatically sets the comboBoxEndTime to 15 minutes after the comboBoxStartTime
+     * Lambda expression 3: startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
+     *      - this automatically sets endDateCalendar date to the same as startDateCalendar date
+     *          - I did this considering I don't see how an appointment can run into a different day if the business hours aren't 24/7.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TimeZone & Time Setters
@@ -156,6 +209,10 @@ public class appointmentModificationFormController implements Initializable {
         startDateCalendar.valueProperty().addListener((firstLookedAtDate, oldDate, newDate) -> endDateCalendar.setValue(newDate));
     }
 
+    /**
+     * appointFieldsEmpty() checks to make sure textFields, Calendar, ComboBoxes are not empty or Null
+     * @return false or true
+     */
     public boolean appointFieldsEmpty() {
         if (appointmentModificationTitle.getText().isBlank() || appointmentModificationTitle.getText().isEmpty()) {
             errorMessages.errorCode(16);
@@ -204,6 +261,12 @@ public class appointmentModificationFormController implements Initializable {
         return true;
     }
 
+    /**
+     * displayCurrentTime() is a Lambda expression used to display systemDefaults time
+     * "Lambda newThread(() ->"
+     * "Lambda Platform.runLater(()-> "
+     * @return null
+     */
     private String displayCurrentTime() {
         Thread currentTime = new Thread(() -> {
             SimpleDateFormat simpleFormat = new SimpleDateFormat("hh:mm:ss a");

@@ -17,6 +17,7 @@ import model.First_Level_Divisions;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,18 +25,41 @@ import java.util.ResourceBundle;
 
 import static utility.errorMessages.errorCode;
 
+/**
+ * customerModificationFormController is used to modify selected Customers
+ */
 public class customerModificationFormController implements Initializable {
     Parent scene;
     Stage stage;
 
+    /**
+     * ComboBox Declarations
+     */
+    @FXML private ComboBox<Countries> modificationCountryPicker;
     @FXML private ComboBox<First_Level_Divisions> divisionPicker;
+
+    /**
+     * TextField Declarations
+     */
     @FXML private TextField modificationCustomerAddress;
     @FXML private TextField modificationCustomerID;
     @FXML private TextField modificationCustomerName;
     @FXML private TextField modificationCustomerPhoneNumber;
     @FXML private TextField modificationCustomerPostalCode;
-    @FXML private ComboBox<Countries> modificationCountryPicker;
 
+    /**
+     * selectedIndex & selectedCustomer are used for customerSelection()
+     */
+    public int selectedIndex;
+    Customers selectedCustomer = new Customers(1, "name", "n", "n", "n", LocalDateTime.now(), "script", LocalDateTime.now(), "script", 1, 1);
+
+    /**
+     * onActionModificationCancel(ActionEvent) is used to return to customerMenu.fxml[Customer View List]
+     *      - Prompt pulls up asking if the user wants to return to the Customer View List
+     *          - Pressing 'OK' sends the user back to customerMenu.fxml
+     * @param event
+     * @throws IOException
+     */
     @FXML void onActionModificationCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Close Modification Page");
@@ -54,6 +78,11 @@ public class customerModificationFormController implements Initializable {
 
     }
 
+    /**
+     * onActionModificationCountryPicker(ActionEvent) if modificationsCountryPicker value changes, then divisionsPicker is set to null
+     *  Then divisionPicker should have a new selection of items to choose from.
+     * @param event
+     */
     @FXML void onActionModificationCountryPicker(ActionEvent event) {
         divisionPicker.setValue(null);
         Countries list = modificationCountryPicker.getValue();
@@ -61,6 +90,10 @@ public class customerModificationFormController implements Initializable {
 
     }
 
+    /**
+     * onActionUpdateCustomerButton(ActionEvent) method to Modify selected Customer[customerSelection()] + add it to database
+     * @param event
+     */
     @FXML void onActionUpdateCustomerButton(ActionEvent event) {
 
         try {
@@ -84,9 +117,12 @@ public class customerModificationFormController implements Initializable {
 
     }
 
-    // Method that involves Customers model to include "getCountryId()" WHICH IS NOT IN THE DATABASE ERD FOR COURSE
-    public int selectedIndex;
-    Customers selectedCustomer = new Customers(1, "name", "n", "n", "n", LocalDateTime.now(), "script", LocalDateTime.now(), "script", 1, 1);
+    /**
+     * customerSelection used in customerMenuController.onActionUpdateCustomer(ActionEvent) to get selected customer from tableview and put information into customerModificationFormController fields.
+     * @param index
+     * @param selectedCustomer
+     * @throws SQLException
+     */
     public void customerSelection(int index, Customers selectedCustomer) {
         this.selectedCustomer = selectedCustomer;
         this.selectedIndex = index;
@@ -103,6 +139,10 @@ public class customerModificationFormController implements Initializable {
         divisionPicker.setItems(First_Level_DivisionsDAO.countryToDivision(selectedCountryNDiv.getCountryId()));
     }
 
+    /**
+     * updateCustomerValidation() checks to make sure textFields, and ComboBoxes are not empty or Null
+     * @return false or true
+     */
     public boolean updateCustomerValidation() {
         if (modificationCustomerID.getText().isEmpty() && modificationCustomerAddress.getText().isEmpty() && modificationCustomerPostalCode.getText().isEmpty() && modificationCustomerPhoneNumber.getText().isEmpty() && modificationCountryPicker.getSelectionModel().isEmpty() && divisionPicker.getSelectionModel().isEmpty()) {
             errorCode(5);
@@ -135,6 +175,11 @@ public class customerModificationFormController implements Initializable {
         return true;
     }
 
+    /**
+     * initialize sets modificationCountryPicker comboBox to getAllCountriesList()
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modificationCountryPicker.setItems(CountriesDAO.getAllCountriesList());

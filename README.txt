@@ -123,3 +123,6 @@ Reports Menu:
             - Clicking on this button opens up a prompt called "Closing Reports Menu".
                 - If "OK" is selected: The user will return to the "Appointment Scheduler" Form.
                 - If "Cancel" is selected: The prompt will go away and the user will stay on the "Reports Menu".
+
+
+MySql Connector Driver Version Number: mysql-connector-java-8.0.25

@@ -114,7 +114,7 @@ public class loginScreenForm implements Initializable {
                 LocalDateTime nowPlus15Minutes = LocalDateTime.now().plusMinutes(15);
                 DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
-                if (start.isEqual(now) || (start.isBefore(nowPlus15Minutes)) && (start.isAfter(now) || start.isEqual(nowPlus15Minutes))) {
+                if ((start.isEqual(now) || (start.isBefore(nowPlus15Minutes))) && ((start.isAfter(now) || start.isEqual(nowPlus15Minutes)))) {
                     Alert checkIfAppointmentsWithin15MinsOfLogin = new Alert(INFORMATION);
                     checkIfAppointmentsWithin15MinsOfLogin.setTitle("You have an appointment");
                     checkIfAppointmentsWithin15MinsOfLogin.setHeaderText("There is an appointment within the next 15 minutes!\n" + "Todays date is: [" + startDate + "]");

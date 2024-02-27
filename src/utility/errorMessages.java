@@ -208,16 +208,16 @@ public abstract class errorMessages implements Initializable {
                     break;
 
                 case 32: //reportsMenuContactScheduleController onActionComboBoxContacts Null Error
-                    alert.setTitle("Empty ComboBox");
-                    alert.setHeaderText("There are no Contacts in your database");
-                    alert.setContentText("Please create a Contact, Make appointments with contact, then try again");
+                    alert.setTitle((languageBundle.getString("reportsEmptyComboBox")));
+                    alert.setHeaderText((languageBundle.getString("reportsNoContactHeader")));
+                    alert.setContentText((languageBundle.getString("reportsNoContactContent")));
                     alert.showAndWait();
                     break;
 
                 case 33: //reportsMenuUsersScheduleController onActionComboBoxUsers() Null Error
-                    alert.setTitle("Empty ComboBox");
-                    alert.setHeaderText("There are no Users in your database");
-                    alert.setContentText("Please create a User, Make appointments with User, then try again");
+                    alert.setTitle((languageBundle.getString("reportsEmptyComboBox")));
+                    alert.setHeaderText((languageBundle.getString("reportsNoUserHeader")));
+                    alert.setContentText((languageBundle.getString("reportsNoUserContent")));
                     alert.showAndWait();
                     break;
             }

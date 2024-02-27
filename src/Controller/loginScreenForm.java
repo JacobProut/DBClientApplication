@@ -114,7 +114,7 @@ public class loginScreenForm implements Initializable {
                 LocalDateTime nowPlus15Minutes = LocalDateTime.now().plusMinutes(15);
                 DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
-                if ((start.isAfter(now) || start.isEqual(nowPlus15Minutes)) && (start.isBefore(nowPlus15Minutes) || start.isEqual(now))) {
+                if (start.isEqual(now) || (start.isBefore(nowPlus15Minutes)) && (start.isAfter(now) || start.isEqual(nowPlus15Minutes))) {
                     Alert checkIfAppointmentsWithin15MinsOfLogin = new Alert(INFORMATION);
                     checkIfAppointmentsWithin15MinsOfLogin.setTitle("You have an appointment");
                     checkIfAppointmentsWithin15MinsOfLogin.setHeaderText("There is an appointment within the next 15 minutes!\n" + "Todays date is: [" + startDate + "]");
@@ -122,14 +122,14 @@ public class loginScreenForm implements Initializable {
                     checkIfAppointmentsWithin15MinsOfLogin.showAndWait();
                     hasAppointmentsOnLogin = true;
                 }
-                else if (!hasAppointmentsOnLogin) {
+            }
+
+            if (!hasAppointmentsOnLogin) {
                     Alert noAppointmentsWithInNext15Minutes = new Alert(INFORMATION);
                     noAppointmentsWithInNext15Minutes.setTitle("You have NO Appointments scheduled");
                     noAppointmentsWithInNext15Minutes.setHeaderText("No Appointments Scheduled for at least the next 15 minutes!");
                     noAppointmentsWithInNext15Minutes.setContentText("There are NO Appointments scheduled within the next 15 minutes!");
                     noAppointmentsWithInNext15Minutes.showAndWait();
-                    break;
-                }
             }
         }
     }

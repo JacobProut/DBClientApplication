@@ -42,6 +42,7 @@ public class First_Level_DivisionsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Divisions");
             throw new RuntimeException(e);
         }
         return divisionsObservableList;
@@ -72,6 +73,7 @@ public class First_Level_DivisionsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting Country to Division");
             throw new RuntimeException(e);
         }
         return countryToDivisionComboBoxes;
@@ -99,6 +101,7 @@ public class First_Level_DivisionsDAO {
             return new First_Level_Divisions(selectedDivId, selectedDivName);
         }
         catch (SQLException e) {
+            System.out.println("Error with getting SELECTED Customer Division Level");
             throw new RuntimeException(e);
         }
     }

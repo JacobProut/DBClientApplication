@@ -42,6 +42,7 @@ public class CountriesDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Countries for list");
             throw new RuntimeException(e);
         }
         return countriesObservableList;
@@ -69,6 +70,7 @@ public class CountriesDAO {
             return new Countries(selectedCountryId, selectedCountryName);
         }
         catch (SQLException e) {
+            System.out.println("Error with getting SELECTED Customer Country");
             throw new RuntimeException(e);
         }
     }

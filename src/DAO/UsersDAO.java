@@ -35,6 +35,7 @@ public class UsersDAO {
             return usersObservableList;
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Users");
             throw new RuntimeException(e);
         }
     }
@@ -63,6 +64,7 @@ public class UsersDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Users by ID");
             throw new RuntimeException(e);
         }
         return null;

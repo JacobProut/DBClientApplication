@@ -39,6 +39,7 @@ public static ObservableList<Contacts> getAllContacts() {
         }
     }
     catch (SQLException e) {
+        System.out.println("Error with getting ALL Contacts");
         throw new RuntimeException(e);
     }
     return contactsObservableList;

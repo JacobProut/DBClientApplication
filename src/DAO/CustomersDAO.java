@@ -48,6 +48,7 @@ public class CustomersDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Customers");
             throw new RuntimeException(e);
         }
         return customersObservableList;
@@ -134,6 +135,7 @@ public class CustomersDAO {
             updateCustomerToDB.executeUpdate();
 
         } catch (SQLException e) {
+            System.out.println("Error with UPDATING Customer");
             throw new RuntimeException(e);
         }
     }
@@ -163,6 +165,7 @@ public class CustomersDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Customers by ID");
             throw new RuntimeException(e);
         }
         return null;

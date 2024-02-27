@@ -27,8 +27,8 @@ public class AppointmentsDAO {
         ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
-            PreparedStatement getAllAppointmentData = JDBC.connection.prepareStatement(sql);
+            String getAll = "SELECT * FROM appointments ORDER BY appointments.Appointment_ID";
+            PreparedStatement getAllAppointmentData = JDBC.connection.prepareStatement(getAll);
             ResultSet result = getAllAppointmentData.executeQuery();
 
             while (result.next()) {
@@ -48,6 +48,7 @@ public class AppointmentsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting ALL Appointments");
             throw new RuntimeException(e);
         }
         return appointmentsObservableList;
@@ -83,6 +84,7 @@ public class AppointmentsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting Appointments for contactList");
             throw new RuntimeException(e);
         }
         return appointmentsContactList;
@@ -122,6 +124,7 @@ public class AppointmentsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with getting Appointments for userList");
             throw new RuntimeException(e);
         }
         return appointmentsUserList;
@@ -142,8 +145,8 @@ public class AppointmentsDAO {
      * @throws SQLException
      */
    public static void createAppointments(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) throws SQLException {
-        String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement createAppointment = JDBC.connection.prepareStatement(sql);
+        String createApt = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement createAppointment = JDBC.connection.prepareStatement(createApt);
 
         createAppointment.setString(1, appointmentTitle);
         createAppointment.setString(2, appointmentDescription);
@@ -203,6 +206,7 @@ public class AppointmentsDAO {
             }
         }
         catch (Exception e) {
+            System.out.println("Error with viewing Weekly Appointments");
             throw new RuntimeException(e);
         }
        return viewWeekList;
@@ -301,6 +305,7 @@ public class AppointmentsDAO {
             }
         }
         catch (SQLException e) {
+            System.out.println("Error with viewing Monthly Appointments");
             throw new RuntimeException(e);
         }
        return viewMonthList;

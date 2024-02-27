@@ -13,7 +13,7 @@ import java.time.ZoneId;
 public class AppointmentChecks {
 
     /**
-     * openHoursForBusiness is a method created so Appointments cannot be created outside of business hours.
+     * openHoursForBusiness is a method created so Appointments cannot be created outside business hours.
      * @param startTime
      * @param endTime
      * @return

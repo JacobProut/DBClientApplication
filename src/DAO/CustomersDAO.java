@@ -176,9 +176,8 @@ public class CustomersDAO {
     public static ObservableList<Customers> getAllCustomersInUSA(int countryId) throws SQLException {
         ObservableList<Customers> usaCustomersList = FXCollections.observableArrayList();
         try {
-            String getUSACustomers = "SELECT c.*, fld.Country_ID FROM customers c " +
-                    "JOIN first_level_divisions fld ON c.Division_ID = fld.Division_ID " +
-                    "WHERE fld.Country_ID = 1";
+            String getUSACustomers = "SELECT customers.*, first_level_divisions.Country_ID " + "FROM customers " + "JOIN first_level_divisions ON customers.Division_ID = first_level_divisions.Division_ID " + "WHERE first_level_divisions.Country_ID = 1";
+
             PreparedStatement selectedCountryId = createConnection().prepareStatement(getUSACustomers);
 
             ResultSet results = selectedCountryId.executeQuery();
@@ -208,9 +207,7 @@ public class CustomersDAO {
     public static ObservableList<Customers> getAllCustomersOutsideUSA() throws SQLException {
         ObservableList<Customers> outsideUSACustomersList = FXCollections.observableArrayList();
         try {
-            String getNonUSACustomers = "SELECT c.*, fld.Country_ID FROM customers c " +
-                    "JOIN first_level_divisions fld ON c.Division_ID = fld.Division_ID " +
-                    "WHERE fld.Country_ID <> 1";
+            String getNonUSACustomers = "SELECT customers.*, first_level_divisions.Country_ID " + "FROM customers " + "JOIN first_level_divisions ON customers.Division_ID = first_level_divisions.Division_ID " + "WHERE first_level_divisions.Country_ID <> 1";
             PreparedStatement selectedCountryId = createConnection().prepareStatement(getNonUSACustomers);
 
             ResultSet results = selectedCountryId.executeQuery();

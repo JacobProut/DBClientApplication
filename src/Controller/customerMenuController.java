@@ -232,16 +232,25 @@ public class customerMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
+
+        customerTableView.setPlaceholder(new Label("There are no customers in the database"));
+        System.out.println("Viewing All Customers");
     }
 
     @FXML
-    void radioButtonViewAllOutOfState(ActionEvent event) {
+    void radioButtonViewAllOutOfState(ActionEvent event) throws SQLException {
+        customerTableView.setItems(CustomersDAO.getAllCustomersOutsideUSA());
 
+        customerTableView.setPlaceholder(new Label("There are no customers outside of the USA"));
+        System.out.println("Viewing Customers Located outside of the USA");
     }
 
     @FXML
-    void radioButtonViewAllUSA(ActionEvent event) {
+    void radioButtonViewAllUSA(ActionEvent event) throws SQLException {
+        customerTableView.setItems(CustomersDAO.getAllCustomersInUSA(1));
 
+        customerTableView.setPlaceholder(new Label("There are no customers in the USA Region"));
+        System.out.println("Viewing Customers Located inside of the USA");
     }
 
     /**

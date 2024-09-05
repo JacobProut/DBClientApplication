@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -52,11 +53,13 @@
       <Button layoutX="255.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
       <Button layoutX="413.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
       <Button layoutX="581.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
-      <Button layoutX="386.0" layoutY="606.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="360.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
       <Label layoutX="368.0" layoutY="81.0" text="Current Time Zone:" />
       <Label fx:id="timeLabel" layoutX="504.0" layoutY="98.0" prefHeight="17.0" prefWidth="83.0" text="Time" />
       <Label fx:id="zoneID" layoutX="504.0" layoutY="81.0" text="zoneID" />
       <Label layoutX="368.0" layoutY="98.0" text="Current Time:" />
+      <Label layoutX="701.0" layoutY="90.0" text="Search:" />
+      <TextField fx:id="searchTextField" layoutX="748.0" layoutY="86.0" prefHeight="25.0" prefWidth="207.0" promptText="Type to Search..." />
    </children>
 </Pane>

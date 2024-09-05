@@ -112,6 +112,7 @@ public class loginScreenForm implements Initializable {
                 LocalDateTime start = selectedAppointment.getStartTime();
                 LocalDate startDate = selectedAppointment.getStartTime().toLocalDate();
                 LocalDateTime nowPlus15Minutes = LocalDateTime.now().plusMinutes(15);
+                LocalDateTime nowPlus1Hour = LocalDateTime.now().plusHours(1);
                 DateTimeFormatter selectedTimeFormat = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
                 if ((start.isEqual(now) || (start.isBefore(nowPlus15Minutes))) && ((start.isAfter(now) || start.isEqual(nowPlus15Minutes)))) {
@@ -120,6 +121,14 @@ public class loginScreenForm implements Initializable {
                     checkIfAppointmentsWithin15MinsOfLogin.setHeaderText("There is an appointment within the next 15 minutes!\n" + "Todays date is: [" + startDate + "]");
                     checkIfAppointmentsWithin15MinsOfLogin.setContentText("Selected Appointment_ID of [" + selectedAppointment.getAppointmentId() + "] starts at " + selectedTimeFormat.format(selectedAppointment.getStartTime()) + ".");
                     checkIfAppointmentsWithin15MinsOfLogin.showAndWait();
+                    hasAppointmentsOnLogin = true;
+                }
+                if ((start.isEqual(now) || (start.isBefore(nowPlus1Hour))) && ((start.isAfter(now) || start.isEqual(nowPlus1Hour)))) {
+                    Alert checkIfAppointmentsWithin1HourOfLogin = new Alert(INFORMATION);
+                    checkIfAppointmentsWithin1HourOfLogin.setTitle("You have an appointment");
+                    checkIfAppointmentsWithin1HourOfLogin.setHeaderText("There is an appointment within the next 1 Hour!\n" + "Todays date is: [" + startDate + "]");
+                    checkIfAppointmentsWithin1HourOfLogin.setContentText("Selected Appointment_ID of [" + selectedAppointment.getAppointmentId() + "] starts at " + selectedTimeFormat.format(selectedAppointment.getStartTime()) + ".");
+                    checkIfAppointmentsWithin1HourOfLogin.showAndWait();
                     hasAppointmentsOnLogin = true;
                 }
             }

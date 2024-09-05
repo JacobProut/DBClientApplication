@@ -234,6 +234,16 @@ public class customerMenuController implements Initializable {
         stage.setTitle("Customer View List");
     }
 
+    @FXML
+    void radioButtonViewAllOutOfState(ActionEvent event) {
+
+    }
+
+    @FXML
+    void radioButtonViewAllUSA(ActionEvent event) {
+
+    }
+
     /**
      * onActionReturnToAppointmentScheduler(ActionEvent) opens up mainMenu.fxml to see Appointment Scheduler
      * @param event

@@ -257,13 +257,25 @@ public class customerMenuController implements Initializable {
                 }
                 String searchWord = newValue.toLowerCase();
 
-                if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
                     return true;
                 } else
                     return false;
@@ -290,13 +302,25 @@ public class customerMenuController implements Initializable {
                 }
                 String searchWord = newValue.toLowerCase();
 
-                if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
                     return true;
                 } else
                     return false;
@@ -375,13 +399,25 @@ public class customerMenuController implements Initializable {
                 }
                 String searchWord = newValue.toLowerCase();
 
-                if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
                     return true;
                 } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
                     return true;
                 } else
                     return false;

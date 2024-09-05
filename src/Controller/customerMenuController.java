@@ -68,7 +68,7 @@ public class customerMenuController implements Initializable {
     @FXML private TableColumn<Customers, String> tableColCustomerDivisionId;
 
     /**
-     * * TextField For Searching
+     * TextField For Searching
      */
     @FXML private TextField searchTextField;
 

@@ -3,6 +3,7 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
+import utility.CustomerConversion;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,8 +44,8 @@ public class CustomersDAO {
                 int divisionId = result.getInt("Division_ID");
                 int countryId = result.getInt("Country_ID");
 
-                Customers allCustomers = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId, countryId);
-                customersObservableList.add(allCustomers);
+                Customers customer = CustomerConversion.createCustomer(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId, countryId);
+                customersObservableList.add(customer);
             }
         }
         catch (SQLException e) {
@@ -169,5 +170,71 @@ public class CustomersDAO {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+
+    public static ObservableList<Customers> getAllCustomersInUSA(int countryId) throws SQLException {
+        ObservableList<Customers> usaCustomersList = FXCollections.observableArrayList();
+        try {
+            String getUSACustomers = "SELECT c.*, fld.Country_ID FROM customers c " +
+                    "JOIN first_level_divisions fld ON c.Division_ID = fld.Division_ID " +
+                    "WHERE fld.Country_ID = 1";
+            PreparedStatement selectedCountryId = createConnection().prepareStatement(getUSACustomers);
+
+            ResultSet results = selectedCountryId.executeQuery();
+
+            while (results.next()) {
+                int customerId = results.getInt("Customer_ID");
+                String customerName = results.getString("Customer_Name");
+                String customerAddress = results.getString("Address");
+                String customerPostalCode = results.getString("Postal_Code");
+                String customerPhoneNumber = results.getString("Phone");
+                LocalDateTime createDate = results.getTimestamp("Create_Date").toLocalDateTime();
+                String createdBy = results.getString("Created_By");
+                LocalDateTime lastUpdated = results.getTimestamp("Last_Update").toLocalDateTime();
+                String lastUpdatedBy = results.getString("Last_Updated_By");
+                int divisionId = results.getInt("Division_ID");
+
+                Customers customer = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId, countryId);
+                usaCustomersList.add(customer);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with getting ALL Customers in the USA");
+            throw new RuntimeException(e);
+        }
+        return usaCustomersList;
+    }
+
+    public static ObservableList<Customers> getAllCustomersOutsideUSA() throws SQLException {
+        ObservableList<Customers> outsideUSACustomersList = FXCollections.observableArrayList();
+        try {
+            String getNonUSACustomers = "SELECT c.*, fld.Country_ID FROM customers c " +
+                    "JOIN first_level_divisions fld ON c.Division_ID = fld.Division_ID " +
+                    "WHERE fld.Country_ID <> 1";
+            PreparedStatement selectedCountryId = createConnection().prepareStatement(getNonUSACustomers);
+
+            ResultSet results = selectedCountryId.executeQuery();
+
+            while (results.next()) {
+                int customerId = results.getInt("Customer_ID");
+                String customerName = results.getString("Customer_Name");
+                String customerAddress = results.getString("Address");
+                String customerPostalCode = results.getString("Postal_Code");
+                String customerPhoneNumber = results.getString("Phone");
+                LocalDateTime createDate = results.getTimestamp("Create_Date").toLocalDateTime();
+                String createdBy = results.getString("Created_By");
+                LocalDateTime lastUpdated = results.getTimestamp("Last_Update").toLocalDateTime();
+                String lastUpdatedBy = results.getString("Last_Updated_By");
+                int divisionId = results.getInt("Division_ID");
+                int countryId = results.getInt("Country_ID");
+
+                Customers customer = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhoneNumber, createDate, createdBy, lastUpdated, lastUpdatedBy, divisionId, countryId);
+                outsideUSACustomersList.add(customer);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with getting Customers outside the USA: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return outsideUSACustomersList;
     }
 }

@@ -1,17 +1,15 @@
-Title: Scheduling Application for Software 2 Course-C195
+Title: Appointment Scheduler Application for Software Development Capstone
 Purpose of application: Adding, Updating, Deleting Appointments/Customers from a User interface that is linked to a mySQL database.
 
 Author: Jacob Prout
 Contact Information:[Student identification number - 000791718]
-Application Version: 1.0 [First Attempt]
-Current date: 2-20-2024 [February 20th, 2024]
+Application Version: 2.0 
+Current date: 9-13-2024 [September 13th, 2024]
 
 IDE version: IntelliJ IDEA Community Edition 2023.2.2
 Full JDK Version: jdk-17.0.8
 JavaFX version Compatible with JDK version[SDK]: Oracle OpenJDK version 17.0.8
 
-
-!!Line 112 to 120 References A3F!!
 
 
 Directions on how to run the program:
@@ -32,6 +30,9 @@ Appointment Scheduler Menu[Main Menu]:
         - View by Month: Views all the appointments for the CURRENT month.
         - View by Week : Views all the appointments for the CURRENT week.
         - View all Customers: Opens up the "Customer View List".
+
+	Near the top right of the table view is a search field.
+		- This search field can be used to locate anything inside of the appointment view table.
 
     In the middle of the menu there is a table with information regarding the current Appointments in the database:
         - Appointment_ID, Title, Description, Location, Contact, Type, Start Date/Time, End Date/Time, Customer_ID, and User_ID.
@@ -61,6 +62,14 @@ Appointment Scheduler Menu[Main Menu]:
 Customer View List:
     At the top of the menu there is button called "Return to Appointment Scheduler".
         - Return to Appointment Scheduler: Clicking this button returns to the "Appointment Scheduler" menu.
+	
+	Under the "Customer View" Label, there is a 3 radio buttons: "View all Customers", "View USA Customers", "View Out Of USA Customers".
+		- View all Customers: Populates the table with every customer in the database.
+		- View USA Customers: Populates the table with only customers who are located inside of the USA.
+		- View Out Of USA Customers: Populates the table with only customers who are located outside of the USA.
+
+	Near the top right of the table view is a search field.
+		- This search field can be used to locate anything inside of the customer view table.
 
     In the middle of the menu there is a table with information regarding the current Customers in the database:
         - Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, and Division_ID.
@@ -108,16 +117,14 @@ Reports Menu:
 
             - On the bottom of the form there is a button called: Return to Reports Menu.
                 - Clicking on this button returns the user to "Reports Menu".
-
-                                **THIS IS THE ADDITIONAL REPORT FOR A3F**
+   
         - Schedules created by Users Button: Opens up the "Viewing User Schedules" Form.
             - On this form there is a comboBox that contains all the "Users" in the database and a Table right below it.
                 - Selecting a "User" will populate the table with all the Appointments associated/created to/by that "User".
                     - The table will show: Appointment_ID, Title, Description, Location, Type, Start Date/Time, End Date/Time, Customer_ID, and Contact_ID.
 
             - On the bottom of the form there is a button called: Return to Reports Menu.
-                - Clicking on this button returns the user to "Reports Menu".
-                                **END OF ADDITIONAL REPORT FOR A3F**
+                - Clicking on this button returns the user to "Reports Menu".   
 
         - Return to Appointment Scheduler Button:
             - Clicking on this button opens up a prompt called "Closing Reports Menu".

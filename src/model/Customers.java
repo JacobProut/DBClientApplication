@@ -25,7 +25,7 @@ public class Customers {
     /**
      * String Declarations
      */
-    private String customerName;
+    protected String customerName;
     private String customerAddress;
     private String customerPostalCode;
     private String customerPhoneNumber;
@@ -230,6 +230,14 @@ public class Customers {
      */
     public String toString() {
         return this.customerName;
+    }
+
+    public boolean isInUSA() {
+        return this.countryId == 1;
+    }
+
+    public boolean outOfUSA() {
+        return !isInUSA();
     }
 
 }

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.customerMenuController">
    <children>
@@ -13,18 +20,18 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="-1.0" layoutY="44.0" prefHeight="38.0" prefWidth="966.0">
+      <AnchorPane layoutY="44.0" prefHeight="25.0" prefWidth="966.0">
          <children>
-            <RadioButton layoutX="422.0" layoutY="11.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers">
+            <RadioButton layoutX="566.0" layoutY="6.0" mnemonicParsing="false" onAction="#radioButtonViewAllOutOfState" text="View Out Of USA Customers">
+               <toggleGroup>
+                  <ToggleGroup fx:id="customerRadios" />
+               </toggleGroup></RadioButton>
+            <RadioButton layoutX="417.0" layoutY="6.0" mnemonicParsing="false" onAction="#radioButtonViewAllUSA" text="View USA Customers" toggleGroup="$customerRadios" />
+            <RadioButton layoutX="276.0" layoutY="6.0" mnemonicParsing="false" onAction="#radioButtonViewAllCustomers" selected="true" text="View all Customers" toggleGroup="$customerRadios">
                </RadioButton>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="45.0" layoutX="707.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
-            <Label layoutX="716.0" layoutY="10.0" text="Current TimeZone:" />
-            <Label fx:id="zoneID" layoutX="832.0" layoutY="10.0" text="zoneID" />
-            <Label layoutX="716.0" layoutY="32.0" prefHeight="17.0" prefWidth="82.0" text="Current Time:" />
-            <Label fx:id="timeLabel" layoutX="832.0" layoutY="32.0" text="Time" />
          </children>
       </AnchorPane>
-      <TableView fx:id="customerTableView" layoutX="7.0" layoutY="119.0" prefHeight="427.0" prefWidth="950.0">
+      <TableView fx:id="customerTableView" layoutX="6.0" layoutY="125.0" prefHeight="427.0" prefWidth="950.0">
         <columns>
           <TableColumn fx:id="tableColCustomerID" prefWidth="78.0" text="Customer_ID" />
           <TableColumn fx:id="tableColCustomerName" prefWidth="99.0" text="Customer_Name" />
@@ -43,9 +50,16 @@
       </TableView>
       <Button layoutX="14.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="25.0" prefWidth="122.0" text="Reports" />
       <Button layoutX="825.0" layoutY="600.0" mnemonicParsing="false" onAction="#onActionLogout" prefHeight="25.0" prefWidth="122.0" text="Logout" />
-      <Button layoutX="256.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
-      <Button layoutX="413.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
-      <Button layoutX="587.0" layoutY="552.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
-      <Button layoutX="386.0" layoutY="82.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
+      <Button layoutX="255.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="122.0" text="Add Customer" />
+      <Button layoutX="413.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="25.0" prefWidth="139.0" text="Update Customer" />
+      <Button layoutX="581.0" layoutY="558.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="139.0" text="Delete Customer" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onActionReturnToAppointmentScheduler" text="Return to Appointment Scheduler" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="360.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
+      <Label layoutX="368.0" layoutY="81.0" text="Current Time Zone:" />
+      <Label fx:id="timeLabel" layoutX="504.0" layoutY="98.0" prefHeight="17.0" prefWidth="83.0" text="Time" />
+      <Label fx:id="zoneID" layoutX="504.0" layoutY="81.0" text="zoneID" />
+      <Label layoutX="368.0" layoutY="98.0" text="Current Time:" />
+      <Label layoutX="701.0" layoutY="90.0" text="Search:" />
+      <TextField fx:id="searchTextField" layoutX="748.0" layoutY="86.0" prefHeight="25.0" prefWidth="207.0" promptText="Type to Search..." />
    </children>
 </Pane>

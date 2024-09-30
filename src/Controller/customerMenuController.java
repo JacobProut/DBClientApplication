@@ -6,6 +6,8 @@ import DAO.JDBC;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +66,11 @@ public class customerMenuController implements Initializable {
     @FXML private TableColumn<Customers, String> tableColCustomerPhoneNumber;
     @FXML private TableColumn<Customers, Integer> tableColCustomerPostalCode;
     @FXML private TableColumn<Customers, String> tableColCustomerDivisionId;
+
+    /**
+     * TextField For Searching
+     */
+    @FXML private TextField searchTextField;
 
     /**
      * timeStopped is used for displayCurrentTime()
@@ -232,6 +239,99 @@ public class customerMenuController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
         stage.setTitle("Customer View List");
+
+        customerTableView.setPlaceholder(new Label("There are no customers in the database"));
+        System.out.println("Viewing All Customers");
+    }
+
+    @FXML
+    void radioButtonViewAllOutOfState(ActionEvent event) throws SQLException {
+        customerTableView.setItems(CustomersDAO.getAllCustomersOutsideUSA());
+
+        //Used for search functionality on View All Outside of USA Customers
+        FilteredList <Customers> filteredOutsideUsaData = new FilteredList<>(CustomersDAO.getAllCustomersOutsideUSA(), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredOutsideUsaData.setPredicate(Customers -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Customers> sortedOutsideUsaData = new SortedList<>(filteredOutsideUsaData);
+        sortedOutsideUsaData.comparatorProperty().bind(customerTableView.comparatorProperty());
+        customerTableView.setItems(sortedOutsideUsaData);
+
+        customerTableView.setPlaceholder(new Label("There are no customers outside of the USA"));
+        System.out.println("Viewing Customers Located outside of the USA");
+    }
+
+    @FXML
+    void radioButtonViewAllUSA(ActionEvent event) throws SQLException {
+        customerTableView.setItems(CustomersDAO.getAllCustomersInUSA(1));
+
+        //Used for search functionality on View All in USA
+        FilteredList <Customers> filteredUsaData = new FilteredList<>(CustomersDAO.getAllCustomersInUSA(1), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredUsaData.setPredicate(Customers -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Customers> sortedUsaData = new SortedList<>(filteredUsaData);
+        sortedUsaData.comparatorProperty().bind(customerTableView.comparatorProperty());
+        customerTableView.setItems(sortedUsaData);
+
+        customerTableView.setPlaceholder(new Label("There are no customers in the USA Region"));
+        System.out.println("Viewing Customers Located inside of the USA");
     }
 
     /**
@@ -289,6 +389,43 @@ public class customerMenuController implements Initializable {
         tableColCustomerLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
         tableColCustomerLastUpdatedBy.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
         tableColCustomerDivisionId.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+
+        //Used for search functionality on View All Customers
+        FilteredList <Customers> filteredData = new FilteredList<>(CustomersDAO.getAllCustomers(), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(Customers -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+
+                if (String.valueOf(Customers.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerName().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerAddress().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPostalCode().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Customers.getCustomerPhoneNumber().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreateDate()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getCreatedBy()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getLastUpdated()).contains(searchWord)) {
+                    return true;
+                } else if (Customers.getLastUpdatedBy().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Customers.getDivisionId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Customers> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(customerTableView.comparatorProperty());
+        customerTableView.setItems(sortedData);
     }
 
 

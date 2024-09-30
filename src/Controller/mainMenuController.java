@@ -4,6 +4,8 @@ import DAO.AppointmentsDAO;
 import DAO.JDBC;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +65,11 @@ public class mainMenuController implements Initializable {
     @FXML private TableColumn<Appointments, String> tableColTitle;
     @FXML private TableColumn<Appointments, String> tableColType;
     @FXML private TableColumn<Appointments, Integer> tableColUserID;
+
+    /**
+     * TextField For Searching
+     */
+    @FXML private TextField searchTextField;
 
     /**
      * timeStopped is used for displayCurrentTime()
@@ -197,6 +204,42 @@ public class mainMenuController implements Initializable {
     @FXML void radioButtonViewByMonth(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewMonthAppoints());
 
+        //Used for search functionality on View Monthly Appointments
+        FilteredList<Appointments> filteredMonthData = new FilteredList<>(AppointmentsDAO.viewMonthAppoints(), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredMonthData.setPredicate(Appointments -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+                if (String.valueOf(Appointments.getAppointmentId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentTitle().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentDescription().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentLocation().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getContactId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentType().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getStartTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getEndTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getUserId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Appointments> sortedMonthData = new SortedList<>(filteredMonthData);
+        sortedMonthData.comparatorProperty().bind(appointmentSchedulerTable.comparatorProperty());
+        appointmentSchedulerTable.setItems(sortedMonthData);
+
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this upcoming month!"));
         System.out.println("Viewing Appointments by Month.");
@@ -208,6 +251,42 @@ public class mainMenuController implements Initializable {
      */
     @FXML void radioButtonViewByWeek(ActionEvent event) {
         appointmentSchedulerTable.setItems(AppointmentsDAO.viewWeekAppoints());
+
+        //Used for search functionality on View Weekly Appointments
+        FilteredList<Appointments> filteredWeekData = new FilteredList<>(AppointmentsDAO.viewWeekAppoints(), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredWeekData.setPredicate(Appointments -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+                if (String.valueOf(Appointments.getAppointmentId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentTitle().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentDescription().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentLocation().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getContactId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentType().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getStartTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getEndTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getUserId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Appointments> sortedWeekData = new SortedList<>(filteredWeekData);
+        sortedWeekData.comparatorProperty().bind(appointmentSchedulerTable.comparatorProperty());
+        appointmentSchedulerTable.setItems(sortedWeekData);
 
         //added a placeholder in the TableView for when there is nothing being displayed.
         appointmentSchedulerTable.setPlaceholder(new Label("There are no appointments scheduled for this week!"));
@@ -277,6 +356,43 @@ public class mainMenuController implements Initializable {
         tableColEndDateAndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         tableColCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         tableColUserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+
+        //Used for search functionality on View All Appointments
+        FilteredList<Appointments> filteredData = new FilteredList<>(AppointmentsDAO.getAllAppointments(), b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(Appointments -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String searchWord = newValue.toLowerCase();
+                if (String.valueOf(Appointments.getAppointmentId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentTitle().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentDescription().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentLocation().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getContactId()).contains(searchWord)) {
+                    return true;
+                } else if (Appointments.getAppointmentType().toLowerCase().contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getStartTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getEndTime()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getCustomerId()).contains(searchWord)) {
+                    return true;
+                } else if (String.valueOf(Appointments.getUserId()).contains(searchWord)) {
+                    return true;
+                } else
+                    return false;
+            });
+        });
+        SortedList<Appointments> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(appointmentSchedulerTable.comparatorProperty());
+        appointmentSchedulerTable.setItems(sortedData);
     }
 
     /**
